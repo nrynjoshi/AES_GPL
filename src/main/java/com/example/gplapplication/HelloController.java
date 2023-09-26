@@ -17,11 +17,27 @@ public class HelloController {
 
     @FXML
     protected void onRunButtonClick() {
-        welcomeText.setText("Run button clicked !");
+
+        this.fetchClickText();
     }
 
     @FXML
     protected void onSyntaxButtonClick() {
         welcomeText.setText("Syntax Button Clicked");
+    }
+
+    private void fetchClickText(){
+        StringBuilder stringBuilder= new StringBuilder("Run button clicked !");
+       String inputSingleCodeString = inputSingleCodeText.getText();
+        String inputMultipleCodeString = inputMultipleCodeText.getText();
+        if(inputSingleCodeString != null && !inputSingleCodeString.trim().isEmpty()){
+            stringBuilder.append("\n Single line of code executed.");
+        }else if(inputMultipleCodeString != null && !inputMultipleCodeString.trim().isEmpty()){
+            stringBuilder.append("\n Multiple line of code executed.");
+        }else {
+            stringBuilder.append("\n Nothing to execute.");
+        }
+
+        welcomeText.setText(stringBuilder.toString());
     }
 }
