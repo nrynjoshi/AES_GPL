@@ -2,18 +2,26 @@ package com.example.gplapplication;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class HelloController {
     @FXML
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private TextArea inputMultipleCodeText;
+
+    @FXML
+    private TextField inputSingleCodeText;
+
+    @FXML
+    protected void onRunButtonClick() {
+        welcomeText.setText("Run button clicked !");
     }
 
     @FXML
-    protected void onValidateButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onSyntaxButtonClick() {
+        welcomeText.setText("Syntax Button Clicked");
     }
 }
