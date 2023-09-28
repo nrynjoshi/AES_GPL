@@ -8,4 +8,6 @@ module com.example.gplapplication {
 
     opens com.example.gplapplication to javafx.fxml;
     exports com.example.gplapplication;
+    exports com.example.gplapplication.service;
+    opens com.example.gplapplication.service to javafx.fxml;
 }
