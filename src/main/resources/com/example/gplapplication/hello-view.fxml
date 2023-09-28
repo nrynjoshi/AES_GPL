@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
@@ -39,15 +40,27 @@
             <children>
                <TextArea fx:id="inputMultipleCodeText" prefHeight="400.0" prefWidth="400.0">
                </TextArea>
-               <TextField fx:id="inputSingleCodeText">
+               <TextField fx:id="inputSingleCodeText" prefHeight="30.0" prefWidth="400.0">
                </TextField>
             </children>
 
          </VBox>
-         <Label fx:id="welcomeText" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #e8e3e3;">
-            <HBox.margin>
-               <Insets left="5.0" />
-            </HBox.margin></Label>
+
+         <VBox>
+            <VBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </VBox.margin>
+            <children>
+<!--               <Label fx:id="welcomeText" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #e8e3e3;">-->
+<!--                  <HBox.margin>-->
+<!--                     <Insets left="5.0" />-->
+<!--                  </HBox.margin>-->
+<!--               </Label>-->
+               <Canvas fx:id="canvasId" height="400.0" style="-fx-border-width: 1px; -fx-border-color: black;" width="400.0" />
+            </children>
+
+         </VBox>
+
       </children>
    </HBox>
    <columnConstraints>
