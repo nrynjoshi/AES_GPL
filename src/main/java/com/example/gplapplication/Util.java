@@ -2,6 +2,7 @@ package com.example.gplapplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,16 +24,23 @@ public class Util {
             validCommandParamCount++;
         }
 
+        List<String> actualParamValue = getAllParameterFromCommand(inputCommand);
+
+        if(validCommandParamCount != actualParamValue.size()){
+            throw new CommandNotFound("Command is not valid or parameter is not defined properly.");
+        }
+
+    }
+
+    public static List<String> getAllParameterFromCommand(String inputCommand){
+
         // check first with first one and other rest as param
         String[] words1 = inputCommand.split("\\s+");
         List<String> al = Arrays.asList(words1);
-        if(al.size()>1){
-            al.remove(0);
-        }
 
 
         List<String> actualParamValue = new ArrayList<>();
-        for (int i = 0; i < al.size(); i++) {
+        for (int i = 1; i < al.size(); i++) {
             String arg = al.get(i);
             String[] paramValues = arg.split(",");
             actualParamValue.addAll(Arrays.asList(paramValues));
@@ -40,14 +48,7 @@ public class Util {
 
         actualParamValue = actualParamValue.stream().filter(data -> isNotEmpty(data)).map(data -> data.trim()).collect(Collectors.toList());
 
-        if(validCommandParamCount != actualParamValue.size()){
-            throw new CommandNotFound("Command is not valid or parameter is not defined properly.");
-        }
-
-        for (String str: actualParamValue) {
-            System.out.println("---- Actual param split ----");
-            System.out.println(" -> "+str);
-        }
+        return actualParamValue;
     }
 
     public static boolean checkBothCommandStartWithSameWord(String command1, String command2) {
@@ -68,11 +69,9 @@ public class Util {
     }
 
     public static boolean startWithIgnoreCase(String inputCommand, String validCommand){
-        return inputCommand.toLowerCase().startsWith(validCommand.toLowerCase());
+        String inputCommandSplit = inputCommand.toLowerCase().split("\\s+")[0];
+        String validCommandSplit = validCommand.toLowerCase().split("\\s+")[0];
+        return inputCommandSplit.startsWith(validCommandSplit);
     }
 
-    public static List<String> fetchParameterFromCommand(String inputStatement, String command){
-
-        return null;
-    }
 }
