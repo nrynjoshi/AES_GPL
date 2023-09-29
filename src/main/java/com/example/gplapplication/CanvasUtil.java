@@ -98,6 +98,10 @@ public class CanvasUtil{
     }
 
     public void reset(){
-
+        graphicsContext.beginPath();
+        this.clear();
+        this.moveTo(0,0);
+        this.moveX = 0;
+        this.moveY = 0;
     }
 }
