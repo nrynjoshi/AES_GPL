@@ -28,8 +28,8 @@ public class RectangleShape extends DrawShape{
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
-        double height = Float.parseFloat(params.get(1))+ moveX;
-        double width = Float.parseFloat(params.get(0))+ moveY;
+        double width = Float.parseFloat(params.get(0))+ moveX;
+        double height = Float.parseFloat(params.get(1))+ moveY;
 
         canvasUtil.lineTo(width, moveY);
         canvasUtil.lineTo(width, height);
