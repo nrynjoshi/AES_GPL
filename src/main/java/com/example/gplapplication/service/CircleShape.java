@@ -1,5 +1,6 @@
 package com.example.gplapplication.service;
 
+import com.example.gplapplication.CanvasUtil;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -8,8 +9,8 @@ public class CircleShape  extends DrawShape{
 
     public final static String COMMAND="circle <x>,<y>";
 
-    public CircleShape(Canvas canvasId){
-        super(canvasId);
+    public CircleShape(CanvasUtil canvasUtil){
+        super(canvasUtil);
     }
 
 
@@ -17,11 +18,10 @@ public class CircleShape  extends DrawShape{
     public void draw(String command) {
         System.out.println("Circle shape draw area.");
 
-        GraphicsContext gc = canvasId.getGraphicsContext2D();
         // Set the stroke and fill color.
-        gc.setStroke(Color.BLUE);
-        gc.setFill(Color.RED);
+        canvasUtil.getGraphicsContext().setStroke(Color.BLUE);
+        canvasUtil.getGraphicsContext().setFill(Color.RED);
 
-        gc.fillOval(200, 200, 50, 50);
+        canvasUtil.getGraphicsContext().fillOval(200, 200, 50, 50);
     }
 }

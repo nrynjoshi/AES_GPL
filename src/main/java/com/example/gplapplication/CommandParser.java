@@ -1,12 +1,8 @@
 package com.example.gplapplication;
 
 
-import com.example.gplapplication.service.CircleShape;
-import com.example.gplapplication.service.DrawShape;
-import com.example.gplapplication.service.RectangleShape;
-import com.example.gplapplication.service.TriangleShape;
+import com.example.gplapplication.service.*;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,35 +38,39 @@ public class CommandParser {
 
     private void process(String command){
         String[] commandSplit = command.split("\n");
+        CanvasUtil canvasUtil= new CanvasUtil(canvasId);
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
             System.out.println("===> "+i+" :"+ chunkCommand);
-            Util.validateCommand(chunkCommand, TriangleShape.COMMAND);
-            DrawShape drawShape;
-            if(Util.startWithIgnoreCase(chunkCommand, "drawTo")){
+            DrawShapeIfc drawShape = new DrawShape(canvasUtil);
+            if(Util.startWithIgnoreCase(chunkCommand, "//")){
+                System.out.println("comment line so ignore");
+            }else if(Util.startWithIgnoreCase(chunkCommand, "drawTo")){
                 System.out.println("drawTo command found.");
-                drawTo(chunkCommand);
+                canvasUtil.drawTo(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand,"moveTo")){
                 System.out.println("moveTo command found.");
-                moveTo(chunkCommand);
+                canvasUtil.moveTo(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand,"lineTo")){
                 System.out.println("lineTo command found.");
-                lineTo(chunkCommand);
+                canvasUtil.lineTo(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand,"clear")){
                 System.out.println("clear command found.");
-                clear();
+                canvasUtil.clear();
             }else if(Util.startWithIgnoreCase(chunkCommand, RectangleShape.COMMAND)){
                 System.out.println("rectangle command found.");
-                drawShape= new RectangleShape(canvasId);
+                drawShape= new RectangleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand, TriangleShape.COMMAND)){
                 System.out.println("triangle command found.");
-                drawShape= new TriangleShape(canvasId);
+                drawShape= new TriangleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand, CircleShape.COMMAND)){
                 System.out.println("circle command found.");
-                drawShape= new CircleShape(canvasId);
+                drawShape= new CircleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
+            }else {
+                System.out.println("not condition detected...");
             }
         }
     }
@@ -84,31 +84,6 @@ public class CommandParser {
         throw new CommandNotFound("No command has been passed.");
     }
 
-    private void moveTo(String command){
-        GraphicsContext graphicsContext = canvasId.getGraphicsContext2D();
-        graphicsContext.beginPath();
-        graphicsContext.moveTo(35, 35);
 
-    }
 
-    private void lineTo(String command){
-        GraphicsContext graphicsContext = canvasId.getGraphicsContext2D();
-        graphicsContext.beginPath();
-        graphicsContext.lineTo(35, 35);
-
-    }
-
-    private void drawTo(String command){
-        //unknown about drawTo functionalities
-    }
-
-    private void clear(){
-        GraphicsContext graphicsContext = canvasId.getGraphicsContext2D();
-        graphicsContext.beginPath();
-        graphicsContext.clearRect(0, 0, canvasId.getWidth(), canvasId.getHeight());
-    }
-
-    private void reset(){
-
-    }
 }
