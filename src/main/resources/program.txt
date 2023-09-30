@@ -1,3 +1,7 @@
-//moveTo 100,100
-//rectangle 150,100
-//clear
+clear
+moveTo 5,5
+rectangle 150,100
+moveTo 100,100
+circle 50
+moveTo 50, 50
+triangle 100,100
