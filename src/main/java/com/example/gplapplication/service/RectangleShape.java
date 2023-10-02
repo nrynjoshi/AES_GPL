@@ -10,7 +10,7 @@ public class RectangleShape extends DrawShape{
 
     private int width, height;
 
-    public final static String COMMAND="rectangle <x>,<y>";
+    public final static String COMMAND="rectangle <width>,<height>";
 
     public RectangleShape(CanvasUtil canvasUtil){
         super(canvasUtil);
