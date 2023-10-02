@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CircleShape  extends DrawShape{
 
-    public final static String COMMAND="circle <x>";
+    public final static String COMMAND="circle <radius>";
 
     public CircleShape(CanvasUtil canvasUtil){
         super(canvasUtil);
@@ -35,5 +35,6 @@ public class CircleShape  extends DrawShape{
         canvasUtil.getGraphicsContext().setFill(Color.RED);
 
         canvasUtil.getGraphicsContext().strokeOval(moveX, moveY, radius, radius);
+        canvasUtil.getGraphicsContext().stroke();
     }
 }
