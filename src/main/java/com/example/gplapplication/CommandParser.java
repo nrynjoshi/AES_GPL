@@ -60,6 +60,9 @@ public class CommandParser {
             }else if(Util.startWithIgnoreCase(chunkCommand,"reset")){
                 System.out.println("clear command found.");
                 canvasUtil.reset();
+            }else if(Util.startWithIgnoreCase(chunkCommand,canvasUtil.saveToFile_COMMAND)){
+                System.out.println("saveToFile command found.");
+                canvasUtil.saveToFile(chunkCommand, command);
             }else if(Util.startWithIgnoreCase(chunkCommand, RectangleShape.COMMAND)){
                 System.out.println("rectangle command found.");
                 drawShape= new RectangleShape(canvasUtil);
