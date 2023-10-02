@@ -15,17 +15,21 @@ import java.util.List;
 
 public class CanvasUtil{
 
+    public static final String saveToFile_COMMAND = "saveToFile <filepath>";
+    public static final String PEN_COMMAND = "pen <color>";
+
     protected Canvas canvasId;
     protected GraphicsContext graphicsContext;
 
     private double moveX;
     private double moveY;
 
+    private Color penColor = Color.BLACK;
+
     public CanvasUtil(Canvas canvasId){
         this.canvasId= canvasId;
         this.graphicsContext = canvasId.getGraphicsContext2D();
         this.graphicsContext.beginPath();
-
     }
 
     public Canvas getCanvasId() {
@@ -33,7 +37,7 @@ public class CanvasUtil{
     }
 
     public GraphicsContext getGraphicsContext() {
-        this.graphicsContext.setStroke(Color.BLACK);
+        this.graphicsContext.setStroke(penColor);
         return graphicsContext;
     }
 
@@ -71,8 +75,7 @@ public class CanvasUtil{
     public void moveTo(double x, double y){
         this.moveX = x;
         this.moveY = y;
-        graphicsContext.moveTo(x, y);
-        graphicsContext.stroke();
+        this.getGraphicsContext().moveTo(x, y);
     }
 
 
@@ -88,8 +91,7 @@ public class CanvasUtil{
 
 
     public void lineTo(double x, double y){
-        graphicsContext.lineTo( x, y);
-        graphicsContext.stroke();
+        this.getGraphicsContext().lineTo( x, y);
     }
 
 
@@ -104,19 +106,18 @@ public class CanvasUtil{
     }
 
     public void clear(){
-        graphicsContext.beginPath();
-        graphicsContext.clearRect(0, 0, canvasId.getWidth(), canvasId.getHeight());
+        this.getGraphicsContext().clearRect(0, 0, canvasId.getWidth(), canvasId.getHeight());
     }
 
     public void reset(){
-        graphicsContext.beginPath();
         this.clear();
         this.moveTo(0,0);
         this.moveX = 0;
         this.moveY = 0;
+        this.penColor =Color.BLACK;
     }
 
-   public static final String saveToFile_COMMAND = "saveToFile <filepath>";
+
 
     public boolean saveToFile(String command, String program) {
         List<String> param = Util.getAllParameterFromCommand(command);
@@ -136,4 +137,10 @@ public class CanvasUtil{
         }
         return false;
     }
+
+    public void setPenColor(String command){
+        List<String> param = Util.getAllParameterFromCommand(command);
+        this.penColor = Color.valueOf(param.get(0));
+    }
+
 }

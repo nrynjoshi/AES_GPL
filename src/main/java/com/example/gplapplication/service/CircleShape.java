@@ -35,6 +35,5 @@ public class CircleShape  extends DrawShape{
         canvasUtil.getGraphicsContext().setFill(Color.RED);
 
         canvasUtil.getGraphicsContext().strokeOval(moveX, moveY, radius, radius);
-        canvasUtil.getGraphicsContext().stroke();
     }
 }

@@ -1,8 +1,11 @@
 clear
+pen red
 moveTo 5,5
 rectangle 150,100
+pen gray
 moveTo 100,100
 circle 50
+pen yellow
 moveTo 50, 50
 triangle 100,100,100
 saveToFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt

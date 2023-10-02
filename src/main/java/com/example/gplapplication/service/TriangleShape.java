@@ -38,6 +38,5 @@ public class TriangleShape  extends DrawShape{
         double[] x = { moveX, base, moveX };
         double[] y = { moveY, adj, adj };
         canvasUtil.getGraphicsContext().strokePolygon(x, y , 3);
-        canvasUtil.getGraphicsContext().stroke();
     }
 }
