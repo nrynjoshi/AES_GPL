@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TriangleShape  extends DrawShape{
 
-    public final static String COMMAND="triangle <base>,<adjacent>,<hypotenuse>";
+    public final static String COMMAND="triangle <base>,<adjacent>";//,<hypotenuse>
 
     public TriangleShape(CanvasUtil canvasUtil){
         super(canvasUtil);
@@ -32,7 +32,7 @@ public class TriangleShape  extends DrawShape{
 
         double base = Float.parseFloat(params.get(0))+ moveX;
         double adj = Float.parseFloat(params.get(1))+ moveY;
-        double hyp = Float.parseFloat(params.get(2))+ moveY;
+//        double hyp = Float.parseFloat(params.get(2))+ moveY;
 
 
         double[] x = { moveX, base, moveX };

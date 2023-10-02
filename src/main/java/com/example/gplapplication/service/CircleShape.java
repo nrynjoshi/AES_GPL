@@ -28,7 +28,7 @@ public class CircleShape  extends DrawShape{
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
-        double radius = Float.parseFloat(params.get(0))+ moveX;
+        double radius = Float.parseFloat(params.get(0));
 
         // Set the stroke and fill color.
         canvasUtil.getGraphicsContext().setStroke(Color.BLUE);

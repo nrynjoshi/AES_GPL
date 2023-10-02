@@ -7,5 +7,5 @@ moveTo 100,100
 circle 50
 pen yellow
 moveTo 50, 50
-triangle 100,100,100
+triangle 100,100
 saveToFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
