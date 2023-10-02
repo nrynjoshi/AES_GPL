@@ -32,10 +32,6 @@ public class CommandParser {
         }
     }
 
-    List<String> commands = Arrays.asList("drawTo <x>,<y>", "moveTo <x>,<y>", "lineTo <x>,<y>"
-            ,"rectangle <x>,<y>", "triangle <x>,<y>", "circle <x>,<y>"
-    );
-
     private void process(String command){
         String[] commandSplit = command.split("\n");
         CanvasUtil canvasUtil= new CanvasUtil(canvasId);
