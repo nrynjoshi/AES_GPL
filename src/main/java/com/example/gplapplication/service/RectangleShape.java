@@ -1,6 +1,7 @@
 package com.example.gplapplication.service;
 
 import com.example.gplapplication.CanvasUtil;
+import com.example.gplapplication.CommandEnum;
 import com.example.gplapplication.Util;
 import javafx.fxml.FXML;
 
@@ -10,7 +11,7 @@ public class RectangleShape extends DrawShape{
 
     private int width, height;
 
-    public final static String COMMAND="rectangle <width>,<height>";
+    public final static String COMMAND= CommandEnum.RECTANGLE.getCommand();
 
     public RectangleShape(CanvasUtil canvasUtil){
         super(canvasUtil);

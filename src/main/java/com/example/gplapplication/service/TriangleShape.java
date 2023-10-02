@@ -1,6 +1,7 @@
 package com.example.gplapplication.service;
 
 import com.example.gplapplication.CanvasUtil;
+import com.example.gplapplication.CommandEnum;
 import com.example.gplapplication.Util;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class TriangleShape  extends DrawShape{
 
-    public final static String COMMAND="triangle <base>,<adjacent>";//,<hypotenuse>
+    public final static String COMMAND= CommandEnum.RECTANGLE.getCommand();//,<hypotenuse>
 
     public TriangleShape(CanvasUtil canvasUtil){
         super(canvasUtil);

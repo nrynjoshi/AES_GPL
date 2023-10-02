@@ -1,6 +1,7 @@
 package com.example.gplapplication.service;
 
 import com.example.gplapplication.CanvasUtil;
+import com.example.gplapplication.CommandEnum;
 import com.example.gplapplication.Util;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class CircleShape  extends DrawShape{
 
-    public final static String COMMAND="circle <radius>";
+    public final static String COMMAND= CommandEnum.CIRCLE.getCommand();
 
     public CircleShape(CanvasUtil canvasUtil){
         super(canvasUtil);

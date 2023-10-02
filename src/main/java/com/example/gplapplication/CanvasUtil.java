@@ -15,9 +15,6 @@ import java.util.List;
 
 public class CanvasUtil{
 
-    public static final String saveToFile_COMMAND = "saveToFile <filepath>";
-    public static final String PEN_COMMAND = "pen <color>";
-
     protected Canvas canvasId;
     protected GraphicsContext graphicsContext;
 
@@ -62,7 +59,7 @@ public class CanvasUtil{
 
     public void moveTo(String command){
 
-        Util.validateCommand(command, "moveTo <x>,<y>");
+        Util.validateCommand(command, CommandEnum.MOVE_TO.getCommand());
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));
@@ -80,7 +77,7 @@ public class CanvasUtil{
 
 
     public void lineTo(String command){
-        Util.validateCommand(command, "lineTo");
+        Util.validateCommand(command, CommandEnum.LINE_TO.getCommand());
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));
@@ -96,7 +93,7 @@ public class CanvasUtil{
 
 
     public void drawTo(String command){
-        Util.validateCommand(command, "drawTo");
+        Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double height = Float.parseFloat(params.get(1));

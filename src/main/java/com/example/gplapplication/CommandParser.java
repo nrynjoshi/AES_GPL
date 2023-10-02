@@ -39,27 +39,27 @@ public class CommandParser {
             String chunkCommand = commandSplit[i];
             System.out.println("===> "+i+" :"+ chunkCommand);
             DrawShapeIfc drawShape = new DrawShape(canvasUtil);
-            if(Util.startWithIgnoreCase(chunkCommand, "//")){
+            if(Util.startWithIgnoreCase(chunkCommand, CommandEnum.COMMENT.getCommand())){
                 System.out.println("comment line so ignore");
-            }else if(Util.startWithIgnoreCase(chunkCommand, "drawTo")){
+            }else if(Util.startWithIgnoreCase(chunkCommand, CommandEnum.DRAW_TO.getCommand())){
                 System.out.println("drawTo command found.");
                 canvasUtil.drawTo(chunkCommand);
-            }else if(Util.startWithIgnoreCase(chunkCommand,"moveTo")){
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.MOVE_TO.getCommand())){
                 System.out.println("moveTo command found.");
                 canvasUtil.moveTo(chunkCommand);
-            }else if(Util.startWithIgnoreCase(chunkCommand,"lineTo")){
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.LINE_TO.getCommand())){
                 System.out.println("lineTo command found.");
                 canvasUtil.lineTo(chunkCommand);
-            }else if(Util.startWithIgnoreCase(chunkCommand,"clear")){
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.CLEAR.getCommand())){
                 System.out.println("clear command found.");
                 canvasUtil.clear();
-            }else if(Util.startWithIgnoreCase(chunkCommand,"reset")){
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.LINE_TO.getCommand())){
                 System.out.println("clear command found.");
                 canvasUtil.reset();
-            }else if(Util.startWithIgnoreCase(chunkCommand,canvasUtil.PEN_COMMAND)){
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.PEN.getCommand())){
                 System.out.println("pen command found.");
                 canvasUtil.setPenColor(chunkCommand);
-            }else if(Util.startWithIgnoreCase(chunkCommand,canvasUtil.saveToFile_COMMAND)){
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.SAVE_TO_FILE.getCommand())){
                 System.out.println("saveToFile command found.");
                 canvasUtil.saveToFile(chunkCommand, command);
             }else if(false){
