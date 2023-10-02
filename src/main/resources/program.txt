@@ -4,4 +4,5 @@ rectangle 150,100
 moveTo 100,100
 circle 50
 moveTo 50, 50
-triangle 100,100
+triangle 100,100,100
+saveToFile C:/Users/USLEGAL/ASE_PROGRAM.txt
