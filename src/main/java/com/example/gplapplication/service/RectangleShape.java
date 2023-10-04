@@ -24,16 +24,9 @@ public class RectangleShape extends DrawShape{
         Util.validateCommand(command, this.COMMAND);
         List<String> params = Util.getAllParameterFromCommand(command);
 
-        double moveX = canvasUtil.getMoveX();
-        double moveY = canvasUtil.getMoveY();
+        double width = Float.parseFloat(params.get(0));
+        double height = Float.parseFloat(params.get(1));
 
-        double width = Float.parseFloat(params.get(0))+ moveX;
-        double height = Float.parseFloat(params.get(1))+ moveY;
-
-        canvasUtil.lineTo(width, moveY);
-        canvasUtil.lineTo(width, height);
-        canvasUtil.lineTo(moveX, height);
-        canvasUtil.lineTo(moveX, moveY);
-        canvasUtil.getGraphicsContext().stroke();
+        canvasUtil.getGraphicsContext().strokeRect(canvasUtil.getMoveX(), canvasUtil.getMoveY(), width,height);
     }
 }
