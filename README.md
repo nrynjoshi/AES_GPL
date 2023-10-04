@@ -11,10 +11,24 @@ With the wide range of language available, I have selected java to develops this
 3. JavaFX :- used for graphical represent of the application
 
 # Run instruction
----
+```
     java -jar GPLApplication-1.0-SNAPSHOT.jar
----
+```
 you will find GPLApplication-1.0-SNAPSHOT.jar under target folder
+
+# Sample Command For Testing Basic Operation
+```
+  clear
+  pen red
+  moveTo 5,5
+  rectangle 150,100
+  pen gray
+  moveTo 100,100
+  circle 50
+  pen yellow
+  moveTo 50, 50
+  triangle 100,100
+```
 
 # Doc File
  you will find
