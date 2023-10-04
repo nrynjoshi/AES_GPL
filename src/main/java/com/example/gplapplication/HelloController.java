@@ -38,16 +38,7 @@ public class HelloController {
 
         CommandParser commandParser= new CommandParser(canvasId, commandSingle, commandMultiple);
 
-        try{
-            commandParser.run();
-
-
-
-        }catch (CommandNotFound x){
-//            welcomeText.setText("ERROR: " +x.getMessage());
-        }
-
-
+        commandParser.run();
     }
 
     @FXML

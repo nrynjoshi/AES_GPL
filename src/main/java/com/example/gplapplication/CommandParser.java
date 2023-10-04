@@ -24,7 +24,7 @@ public class CommandParser {
         this.commandMultiple = commandMultiple;
     }
 
-    public void run(Label messageBox){
+    public void run(){
 
         //clear messageBox
         CanvasUtil canvasUtil= new CanvasUtil(canvasId);
