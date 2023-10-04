@@ -43,7 +43,12 @@ public class HelloController {
 
     @FXML
     protected void onSyntaxButtonClick() {
-//        welcomeText.setText("Syntax Button Clicked");
+
+        String commandSingle = inputSingleCodeText.getText();
+        String commandMultiple = inputMultipleCodeText.getText();
+
+        CommandParser commandParser= new CommandParser(canvasId, commandSingle, commandMultiple);
+        commandParser.syntax();
     }
 
 

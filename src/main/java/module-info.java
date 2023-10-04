@@ -12,4 +12,6 @@ module com.example.gplapplication {
     exports com.example.gplapplication;
     exports com.example.gplapplication.service;
     opens com.example.gplapplication.service to javafx.fxml;
+    exports com.example.gplapplication.service.command;
+    opens com.example.gplapplication.service.command to javafx.fxml;
 }

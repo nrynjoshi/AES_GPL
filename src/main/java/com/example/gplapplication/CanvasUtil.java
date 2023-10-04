@@ -1,5 +1,7 @@
 package com.example.gplapplication;
 
+import com.example.gplapplication.service.command.ClearCommand;
+import com.example.gplapplication.service.command.MoveToCommand;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -21,7 +23,9 @@ public class CanvasUtil{
     private double moveX;
     private double moveY;
 
-    private Color penColor = Color.BLACK;
+    private boolean isRun = true;
+
+    private String userInputCommands=null;
 
     public CanvasUtil(Canvas canvasId){
         this.canvasId= canvasId;
@@ -29,12 +33,18 @@ public class CanvasUtil{
         this.graphicsContext.beginPath();
     }
 
+    public CanvasUtil(Canvas canvasId, boolean isRun){
+        this.canvasId= canvasId;
+        this.graphicsContext = canvasId.getGraphicsContext2D();
+        this.graphicsContext.beginPath();
+        this.isRun = false;
+    }
+
     public Canvas getCanvasId() {
         return canvasId;
     }
 
     public GraphicsContext getGraphicsContext() {
-        this.graphicsContext.setStroke(penColor);
         return graphicsContext;
     }
 
@@ -55,105 +65,15 @@ public class CanvasUtil{
     }
 
 
-
-
-    public void moveTo(String command){
-
-        Util.validateCommand(command, CommandEnum.MOVE_TO.getCommand());
-        List<String> params = Util.getAllParameterFromCommand(command);
-
-        double x = Float.parseFloat(params.get(0));
-        double y = Float.parseFloat(params.get(1));
-
-        this.moveTo(x, y);
+    public boolean isRun() {
+        return this.isRun;
     }
 
-
-    public void moveTo(double x, double y){
-        this.moveX = x;
-        this.moveY = y;
-        this.getGraphicsContext().moveTo(x, y);
+    public String getUserInputCommands() {
+        return userInputCommands;
     }
 
-
-    public void drawTo(String command){
-        Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
-        List<String> params = Util.getAllParameterFromCommand(command);
-
-        double x = Float.parseFloat(params.get(0));
-        double y = Float.parseFloat(params.get(1));
-
-        this.drawTo(x, y);
+    public void setUserInputCommands(String userInputCommands) {
+        this.userInputCommands = userInputCommands;
     }
-
-
-    public void drawTo(double x, double y){
-        this.getGraphicsContext().strokeLine(moveX, moveY, x, y);
-        this.getGraphicsContext().stroke();
-    }
-
-    public void clear(){
-        this.getGraphicsContext().clearRect(0, 0, canvasId.getWidth(), canvasId.getHeight());
-    }
-
-    public void setFill(String command){
-        List<String> params = Util.getAllParameterFromCommand(command);
-        String param1 = params.get(0);
-        throw new CommandNotFound("Fill command not implemented yet..", 2);
-    }
-
-
-    public void reset(){
-        this.clear();
-        this.moveTo(0,0);
-        this.moveX = 0;
-        this.moveY = 0;
-        this.penColor =Color.BLACK;
-    }
-
-
-
-    public boolean saveToFile(String command, String program) {
-        List<String> param = Util.getAllParameterFromCommand(command);
-
-        Path path = Paths.get(param.get(0));
-
-        File file= path.toFile();
-        if(file !=null){
-            file.delete();
-        }
-
-        try{
-            Files.write(path, program.getBytes(StandardCharsets.UTF_8));
-            return true;
-        }catch (IOException x){
-            x.printStackTrace();
-        }
-        return false;
-    }
-
-    public void setPenColor(String command){
-        List<String> param = Util.getAllParameterFromCommand(command);
-        this.penColor = Color.valueOf(param.get(0));
-    }
-
-    public String readFromFile(String command) {
-
-        List<String> param = Util.getAllParameterFromCommand(command);
-
-        Path path = Path.of(param.get(0));
-        File file = path.toFile();
-        if(!file.exists()){
-            throw new CommandNotFound("File not found.", 0);
-        }
-        // Now calling Files.readString() method to
-        // read the file
-        try{
-            return Files.readString(path);
-        }catch (IOException x){
-            throw new CommandNotFound("File can not read.", 0);
-        }
-
-    }
-
 }

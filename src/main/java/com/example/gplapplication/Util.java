@@ -68,7 +68,7 @@ public class Util {
         return inputCommand.equalsIgnoreCase(validCommand);
     }
 
-    public static boolean startWithIgnoreCase(String inputCommand, String validCommand){
+    public static boolean validateForCommand(String inputCommand, String validCommand){
         String inputCommandSplit = inputCommand.toLowerCase().split("\\s+")[0];
         String validCommandSplit = validCommand.toLowerCase().split("\\s+")[0];
         return inputCommandSplit.startsWith(validCommandSplit);

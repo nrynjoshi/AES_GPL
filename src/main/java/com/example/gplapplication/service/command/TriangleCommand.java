@@ -1,28 +1,28 @@
-package com.example.gplapplication.service;
+package com.example.gplapplication.service.command;
 
 import com.example.gplapplication.CanvasUtil;
 import com.example.gplapplication.CommandEnum;
 import com.example.gplapplication.Util;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
+import com.example.gplapplication.service.RootCommand;
 
 import java.util.List;
 
-public class TriangleShape  extends DrawShape{
+public class TriangleCommand extends RootCommand {
 
-    public final static String COMMAND= CommandEnum.TRIANGLE.getCommand();//,<hypotenuse>
-
-    public TriangleShape(CanvasUtil canvasUtil){
-        super(canvasUtil);
+    public TriangleCommand(CanvasUtil canvasUtil){
+        super(canvasUtil, CommandEnum.TRIANGLE);
     }
 
+    @Override
+    public void validate(String command) {
+        Util.validateCommand(command, this.COMMAND);
+    }
 
     @Override
     public void draw(String command) {
 
-        Util.validateCommand(command, this.COMMAND);
+        this.validate(command);
+
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double moveX = canvasUtil.getMoveX();

@@ -1,27 +1,29 @@
-package com.example.gplapplication.service;
+package com.example.gplapplication.service.command;
 
 import com.example.gplapplication.CanvasUtil;
 import com.example.gplapplication.CommandEnum;
 import com.example.gplapplication.Util;
+import com.example.gplapplication.service.RootCommand;
 import javafx.fxml.FXML;
 
 import java.util.List;
 
-public class RectangleShape extends DrawShape{
+public class RectangleCommand extends RootCommand {
 
-    private int width, height;
-
-    public final static String COMMAND= CommandEnum.RECTANGLE.getCommand();
-
-    public RectangleShape(CanvasUtil canvasUtil){
-        super(canvasUtil);
+    public RectangleCommand(CanvasUtil canvasUtil){
+        super(canvasUtil, CommandEnum.RECTANGLE);
     }
 
     @Override
-    @FXML
+    public void validate(String command) {
+        Util.validateCommand(command, this.COMMAND);
+    }
+
+    @Override
     public void draw(String command) {
 
-        Util.validateCommand(command, this.COMMAND);
+        this.validate(command);
+
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double width = Float.parseFloat(params.get(0));

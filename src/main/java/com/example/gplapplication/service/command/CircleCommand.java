@@ -1,26 +1,29 @@
-package com.example.gplapplication.service;
+package com.example.gplapplication.service.command;
 
 import com.example.gplapplication.CanvasUtil;
 import com.example.gplapplication.CommandEnum;
 import com.example.gplapplication.Util;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import com.example.gplapplication.service.RootCommand;
 import javafx.scene.paint.Color;
 
 import java.util.List;
 
-public class CircleShape  extends DrawShape{
+public class CircleCommand extends RootCommand {
 
-    public final static String COMMAND= CommandEnum.CIRCLE.getCommand();
-
-    public CircleShape(CanvasUtil canvasUtil){
-        super(canvasUtil);
+    public CircleCommand(CanvasUtil canvasUtil){
+        super(canvasUtil, CommandEnum.CIRCLE);
     }
 
+    @Override
+    public void validate(String command) {
+        Util.validateCommand(command, this.COMMAND);
+    }
 
     @Override
     public void draw(String command) {
-        Util.validateCommand(command, this.COMMAND);
+
+        this.validate(command);
+
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double moveX = canvasUtil.getMoveX();
