@@ -77,7 +77,7 @@ public class CanvasUtil{
 
 
     public void lineTo(String command){
-        Util.validateCommand(command, CommandEnum.LINE_TO.getCommand());
+        Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));
@@ -88,18 +88,13 @@ public class CanvasUtil{
 
 
     public void lineTo(double x, double y){
-        this.getGraphicsContext().lineTo( x, y);
+        this.getGraphicsContext().lineTo(x, y);
+        this.getGraphicsContext().stroke();
     }
 
 
     public void drawTo(String command){
-        Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
-        List<String> params = Util.getAllParameterFromCommand(command);
-
-        double height = Float.parseFloat(params.get(1));
-        double width = Float.parseFloat(params.get(0));
-
-        //unknown about drawTo functionalities
+        this.lineTo(command);
     }
 
     public void clear(){
