@@ -69,9 +69,10 @@ public class CommandParser {
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.SAVE_TO_FILE.getCommand())){
                 canvasUtil.saveToFile(chunkCommand, command);
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.READ_FROM_FILE.getCommand())){
-                throw new CommandNotFound("Command not implemented yet..", 2);
+                String savedCommand = canvasUtil.readFromFile(chunkCommand);
+                process(savedCommand, canvasUtil);
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.FILL.getCommand())){
-                throw new CommandNotFound("Fill command not implemented yet..", 2);
+                canvasUtil.setFill(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand, RectangleShape.COMMAND)){
                 drawShape= new RectangleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
