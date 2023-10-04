@@ -76,30 +76,32 @@ public class CanvasUtil{
     }
 
 
-    public void lineTo(String command){
+    public void drawTo(String command){
         Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));
         double y = Float.parseFloat(params.get(1));
 
-        this.lineTo(x, y);
+        this.drawTo(x, y);
     }
 
 
-    public void lineTo(double x, double y){
-        this.getGraphicsContext().lineTo(x, y);
+    public void drawTo(double x, double y){
+        this.getGraphicsContext().strokeLine(moveX, moveY, x, y);
         this.getGraphicsContext().stroke();
-    }
-
-
-    public void drawTo(String command){
-        this.lineTo(command);
     }
 
     public void clear(){
         this.getGraphicsContext().clearRect(0, 0, canvasId.getWidth(), canvasId.getHeight());
     }
+
+    public void setFill(String command){
+        List<String> params = Util.getAllParameterFromCommand(command);
+        String param1 = params.get(0);
+        throw new CommandNotFound("Fill command not implemented yet..", 2);
+    }
+
 
     public void reset(){
         this.clear();
@@ -133,6 +135,25 @@ public class CanvasUtil{
     public void setPenColor(String command){
         List<String> param = Util.getAllParameterFromCommand(command);
         this.penColor = Color.valueOf(param.get(0));
+    }
+
+    public String readFromFile(String command) {
+
+        List<String> param = Util.getAllParameterFromCommand(command);
+
+        Path path = Path.of(param.get(0));
+        File file = path.toFile();
+        if(!file.exists()){
+            throw new CommandNotFound("File not found.", 0);
+        }
+        // Now calling Files.readString() method to
+        // read the file
+        try{
+            return Files.readString(path);
+        }catch (IOException x){
+            throw new CommandNotFound("File can not read.", 0);
+        }
+
     }
 
 }
