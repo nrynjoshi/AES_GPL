@@ -23,9 +23,6 @@ public class CircleShape  extends DrawShape{
         Util.validateCommand(command, this.COMMAND);
         List<String> params = Util.getAllParameterFromCommand(command);
 
-        System.out.println("Circle shape draw area.");
-        // Below lines are for shaping Triangle
-
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 

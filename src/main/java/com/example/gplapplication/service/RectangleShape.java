@@ -24,8 +24,6 @@ public class RectangleShape extends DrawShape{
         Util.validateCommand(command, this.COMMAND);
         List<String> params = Util.getAllParameterFromCommand(command);
 
-        System.out.println("Rectangle shape draw area.");
-
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
