@@ -27,7 +27,7 @@ public class Util {
         List<String> actualParamValue = getAllParameterFromCommand(inputCommand);
 
         if(validCommandParamCount != actualParamValue.size()){
-            throw new CommandNotFound("Command is not valid or parameter is not defined properly.");
+            throw new CommandNotFound( String.format("%s command parameter is not defined properly.", validCommand), -1);
         }
 
     }

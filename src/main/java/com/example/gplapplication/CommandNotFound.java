@@ -1,7 +1,19 @@
 package com.example.gplapplication;
 
 public class CommandNotFound extends RuntimeException {
-    public CommandNotFound(String s) {
+
+
+    private int code = 0;
+    public CommandNotFound(String s, int code) {
         super(s);
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

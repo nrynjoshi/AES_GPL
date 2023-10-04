@@ -22,7 +22,7 @@ public class DrawShape implements DrawShapeIfc {
 
     @Override
     public void draw(String command) {
-       throw new CommandNotFound("Implementation not done yet");
+       throw new CommandNotFound("Implementation not done yet", 1);
     }
 
 
