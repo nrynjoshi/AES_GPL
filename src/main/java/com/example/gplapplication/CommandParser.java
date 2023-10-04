@@ -2,7 +2,12 @@ package com.example.gplapplication;
 
 
 import com.example.gplapplication.service.*;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,65 +24,65 @@ public class CommandParser {
         this.commandMultiple = commandMultiple;
     }
 
-    public void run(){
-        boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
-        if(isRunSingleLineCommand){
-            //run single line command
-            System.out.println(commandSingle);
-            process(commandSingle);
-        }else{
-            //run multiline command
-            System.out.println(commandMultiple);
-            process(commandMultiple);
+    public void run(Label messageBox){
+
+        //clear messageBox
+        CanvasUtil canvasUtil= new CanvasUtil(canvasId);
+        try{
+            boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
+            if(isRunSingleLineCommand){
+                process(commandSingle, canvasUtil);
+            }else{
+                process(commandMultiple, canvasUtil);
+            }
+            Notifications.create().title("Success ").text("Operation Perform successfully").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
+        }catch (CommandNotFound x){
+            x.printStackTrace();
+            if(x.getCode() == -1){
+                Notifications.create().title("Error ").text(x.getMessage()).position(Pos.TOP_RIGHT).hideAfter(Duration.millis(6000)).showError();
+            }else{
+                Notifications.create().title("Info ").text(x.getMessage()).position(Pos.TOP_RIGHT).hideAfter(Duration.millis(4000)).showInformation();
+            }
         }
+
+
     }
 
-    private void process(String command){
+    private void process(String command, CanvasUtil canvasUtil){
         String[] commandSplit = command.split("\n");
-        CanvasUtil canvasUtil= new CanvasUtil(canvasId);
+
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
-            System.out.println("===> "+i+" :"+ chunkCommand);
             DrawShapeIfc drawShape = new DrawShape(canvasUtil);
-            if(Util.startWithIgnoreCase(chunkCommand, CommandEnum.COMMENT.getCommand())){
-                System.out.println("comment line so ignore");
+            if(Util.startWithIgnoreCase(chunkCommand, CommandEnum.COMMENT.getCommand()) || !Util.isNotEmpty(chunkCommand)){
+                //ignore this line of code
             }else if(Util.startWithIgnoreCase(chunkCommand, CommandEnum.DRAW_TO.getCommand())){
-                System.out.println("drawTo command found.");
                 canvasUtil.drawTo(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.MOVE_TO.getCommand())){
-                System.out.println("moveTo command found.");
                 canvasUtil.moveTo(chunkCommand);
-            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.LINE_TO.getCommand())){
-                System.out.println("lineTo command found.");
-                canvasUtil.lineTo(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.CLEAR.getCommand())){
-                System.out.println("clear command found.");
                 canvasUtil.clear();
-            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.LINE_TO.getCommand())){
-                System.out.println("clear command found.");
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.RESET.getCommand())){
                 canvasUtil.reset();
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.PEN.getCommand())){
-                System.out.println("pen command found.");
                 canvasUtil.setPenColor(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.SAVE_TO_FILE.getCommand())){
-                System.out.println("saveToFile command found.");
                 canvasUtil.saveToFile(chunkCommand, command);
-            }else if(false){
-                System.out.println("loadFromFile command found.");
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.READ_FROM_FILE.getCommand())){
+                throw new CommandNotFound("Command not implemented yet..", 2);
+            }else if(Util.startWithIgnoreCase(chunkCommand,CommandEnum.FILL.getCommand())){
+                throw new CommandNotFound("Fill command not implemented yet..", 2);
             }else if(Util.startWithIgnoreCase(chunkCommand, RectangleShape.COMMAND)){
-                System.out.println("rectangle command found.");
                 drawShape= new RectangleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand, TriangleShape.COMMAND)){
-                System.out.println("triangle command found.");
                 drawShape= new TriangleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
             }else if(Util.startWithIgnoreCase(chunkCommand, CircleShape.COMMAND)){
-                System.out.println("circle command found.");
                 drawShape= new CircleShape(canvasUtil);
                 drawShape.draw(chunkCommand);
             }else {
-                System.out.println("not condition detected...");
+                throw new CommandNotFound(String.format("%s command does not exist.", chunkCommand), -1);
             }
         }
     }
@@ -88,7 +93,7 @@ public class CommandParser {
         }else if(Util.isNotEmpty(commandMultiple)){
             return false;
         }
-        throw new CommandNotFound("No command has been passed.");
+        throw new CommandNotFound("No command has been passed.", 1);
     }
 
 
