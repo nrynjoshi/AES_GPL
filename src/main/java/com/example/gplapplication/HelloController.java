@@ -31,7 +31,7 @@ public class HelloController {
 
 
     @FXML
-    protected void onRunButtonClick() throws IOException {
+    protected void onRunButtonClick() {
 
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();

@@ -15,13 +15,9 @@ import java.util.List;
 
 public class ReadFromFileCommand  extends RootCommand {
 
-    public ReadFromFileCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.READ_FROM_FILE);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

@@ -16,13 +16,11 @@ import java.util.List;
 
 public class SaveToFileCommand  extends RootCommand {
 
-    public SaveToFileCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.SAVE_TO_FILE);
-    }
+
 
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

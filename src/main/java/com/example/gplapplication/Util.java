@@ -10,24 +10,26 @@ import java.util.stream.Collectors;
 
 public class Util {
 
-    public static void validateCommand(String inputCommand, String validCommand){
+    public static void validateCommand(String inputCommand, String validCommand, String validParam){
 
         if(!checkBothCommandStartWithSameWord(inputCommand, validCommand)){
             return;
         }
 
         //split into multiple command
-        String regex = "<[^>]+>";
-        Matcher validCommandMatcher = Pattern.compile(regex).matcher(validCommand);
         int validCommandParamCount = 0;
-        while (validCommandMatcher.find()) {
-            validCommandParamCount++;
+        if(validParam !=null && validParam.length()>0){
+            String regex = "<[^>]+>";
+            Matcher validCommandMatcher = Pattern.compile(regex).matcher(validParam);
+            while (validCommandMatcher.find()) {
+                validCommandParamCount++;
+            }
         }
 
         List<String> actualParamValue = getAllParameterFromCommand(inputCommand);
 
         if(validCommandParamCount != actualParamValue.size()){
-            throw new CommandNotFound( String.format("%s command parameter is not defined properly.", validCommand), -1);
+            throw new CommandNotFound( String.format("%s command parameter is not defined properly.", validCommand +" "+validParam), -1);
         }
 
     }
@@ -54,19 +56,15 @@ public class Util {
     public static boolean checkBothCommandStartWithSameWord(String command1, String command2) {
         // Split the strings into words
         String[] words1 = command1.split("\\s+");
-        String[] words2 = command2.split("\\s+");
 
         // Check if both arrays have at least one word and if the first words are the same
-        return (words1.length > 0 && words2.length > 0 && words1[0].equals(words2[0]));
+        return (words1.length > 0 && !command2.isEmpty() && words1[0].equals(command2));
     }
 
     public static boolean isNotEmpty(String content){
         return content != null && !content.trim().isEmpty();
     }
 
-    public static boolean equalsIgnoreCase(String inputCommand, String validCommand){
-        return inputCommand.equalsIgnoreCase(validCommand);
-    }
 
     public static boolean validateForCommand(String inputCommand, String validCommand){
         String inputCommandSplit = inputCommand.toLowerCase().split("\\s+")[0];
@@ -74,4 +72,12 @@ public class Util {
         return inputCommandSplit.startsWith(validCommandSplit);
     }
 
+    public static CommandEnum getCommandOperation(String chunkCommand){
+        for(CommandEnum commandEnum : CommandEnum.values()){
+            if((Util.validateForCommand(chunkCommand, commandEnum.getCommand()) || !Util.isNotEmpty(chunkCommand))){
+                return commandEnum;
+            }
+        }
+        return null;
+    }
 }

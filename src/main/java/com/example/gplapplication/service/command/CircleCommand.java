@@ -10,13 +10,10 @@ import java.util.List;
 
 public class CircleCommand extends RootCommand {
 
-    public CircleCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.CIRCLE);
-    }
 
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

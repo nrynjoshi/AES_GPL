@@ -9,18 +9,14 @@ import java.util.List;
 
 public class DrawToCommand extends RootCommand {
 
-    public DrawToCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.DRAW_TO);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override
     public void draw(String command) {
-        Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
+        this.validate(command);
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));

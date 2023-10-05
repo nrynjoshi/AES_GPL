@@ -12,11 +12,16 @@ public class RootCommand implements RootCommandIfc {
 
     protected CanvasUtil canvasUtil;
 
-    public static String COMMAND;
+    public String command;
+    public String param;
 
-    public RootCommand(CanvasUtil canvasUtil, CommandEnum commandEnum){
+    public RootCommand(){
+    }
+
+    public void init(CanvasUtil canvasUtil, String command, String param){
         this.canvasUtil= canvasUtil;
-        this.COMMAND = commandEnum.getCommand();
+        this.command = command;
+        this.param = param;
     }
 
     @Override
@@ -25,7 +30,7 @@ public class RootCommand implements RootCommandIfc {
     }
 
     @Override
-    public void validate(String command) {
+    public void validate(String inputCommand) {
         throw new CommandNotFound("Implementation not done yet", 1);
     }
 

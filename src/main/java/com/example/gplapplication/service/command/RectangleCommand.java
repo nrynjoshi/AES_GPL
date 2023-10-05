@@ -10,13 +10,9 @@ import java.util.List;
 
 public class RectangleCommand extends RootCommand {
 
-    public RectangleCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.RECTANGLE);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

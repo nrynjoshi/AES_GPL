@@ -64,43 +64,19 @@ public class CommandParser {
 
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
-            RootCommandIfc gplEngine = null;
-            if(Util.validateForCommand(chunkCommand, CommandEnum.COMMENT.getCommand()) || !Util.isNotEmpty(chunkCommand)){
-                gplEngine = new CommentCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand, CommandEnum.DRAW_TO.getCommand())){
-                gplEngine = new DrawToCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.MOVE_TO.getCommand())){
-                gplEngine = new MoveToCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.CLEAR.getCommand())){
-                gplEngine = new ClearCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.RESET.getCommand())){
-                gplEngine = new ResetCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.PEN.getCommand())){
-                gplEngine = new PenCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.SAVE_TO_FILE.getCommand())){
-                new SaveToFileCommand(canvasUtil);
-                continue;
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.READ_FROM_FILE.getCommand())){
-                new ReadFromFileCommand(canvasUtil);
-                continue;
-            }else if(Util.validateForCommand(chunkCommand,CommandEnum.FILL.getCommand())){
-                gplEngine = new FillCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand, CommandEnum.RECTANGLE.getCommand())){
-                gplEngine= new RectangleCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand, CommandEnum.TRIANGLE.getCommand())){
-                gplEngine= new TriangleCommand(canvasUtil);
-            }else if(Util.validateForCommand(chunkCommand, CommandEnum.CIRCLE.getCommand())){
-                gplEngine= new CircleCommand(canvasUtil);
-            }else {
+
+            CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
+            if(commandEnum==null){
                 throw new CommandNotFound(String.format("%s command does not exist.", chunkCommand), -1);
             }
+            RootCommandIfc gplEngine = commandEnum.getCommandInstance();
+            gplEngine.init(canvasUtil, commandEnum.getCommand(), commandEnum.getParam());
 
             gplEngine.validate(chunkCommand);
 
             if (canvasUtil.isRun()) {
                 gplEngine.draw(chunkCommand);
             }
-
         }
     }
 

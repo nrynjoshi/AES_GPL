@@ -7,13 +7,9 @@ import com.example.gplapplication.service.RootCommand;
 import javafx.fxml.FXML;
 
 public class CommentCommand extends RootCommand {
-    public CommentCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.COMMENT);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

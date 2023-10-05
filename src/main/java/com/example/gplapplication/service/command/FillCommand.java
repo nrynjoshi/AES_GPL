@@ -10,18 +10,14 @@ import java.util.List;
 
 public class FillCommand extends RootCommand {
 
-    public FillCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.FILL);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override
     public void draw(String command) {
-        Util.validateCommand(command, CommandEnum.DRAW_TO.getCommand());
+        this.validate(command);
 
         List<String> params = Util.getAllParameterFromCommand(command);
         String param1 = params.get(0);

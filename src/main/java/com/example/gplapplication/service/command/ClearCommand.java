@@ -8,13 +8,9 @@ import javafx.fxml.FXML;
 
 public class ClearCommand extends RootCommand {
 
-    public ClearCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.CLEAR);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

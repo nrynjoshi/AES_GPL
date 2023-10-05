@@ -15,13 +15,9 @@ public class PenCommand extends RootCommand {
     public static final List<Color> pen_colors= Arrays.asList(Color.RED, Color.BLACK, Color.YELLOW, Color.GREEN, Color.GRAY);
 
 
-    public PenCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.PEN);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override

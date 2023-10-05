@@ -10,19 +10,15 @@ import java.util.List;
 
 public class MoveToCommand extends RootCommand {
 
-    public MoveToCommand(CanvasUtil canvasUtil){
-        super(canvasUtil, CommandEnum.MOVE_TO);
-    }
-
     @Override
     public void validate(String command) {
-        Util.validateCommand(command, this.COMMAND);
+        Util.validateCommand(command, this.command, this.param);
     }
 
     @Override
     @FXML
     public void draw(String command) {
-        Util.validateCommand(command, CommandEnum.MOVE_TO.getCommand());
+        this.validate(command);
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));
