@@ -1,10 +1,7 @@
-package com.example.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command;
 
-import com.example.gplapplication.CanvasUtil;
-import com.example.gplapplication.CommandEnum;
-import com.example.gplapplication.Util;
-import com.example.gplapplication.service.RootCommand;
-import javafx.fxml.FXML;
+import com.narayanjoshi.gplapplication.Util;
+import com.narayanjoshi.gplapplication.service.RootCommand;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +12,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class SaveToFileCommand  extends RootCommand {
-
-
 
     @Override
     public void validate(String command) {

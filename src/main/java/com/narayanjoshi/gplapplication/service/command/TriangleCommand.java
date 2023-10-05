@@ -1,9 +1,7 @@
-package com.example.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command;
 
-import com.example.gplapplication.CanvasUtil;
-import com.example.gplapplication.CommandEnum;
-import com.example.gplapplication.Util;
-import com.example.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.Util;
+import com.narayanjoshi.gplapplication.service.RootCommand;
 
 import java.util.List;
 
@@ -13,8 +11,6 @@ public class TriangleCommand extends RootCommand {
     public void validate(String command) {
         Util.validateCommand(command, this.command, this.param);
     }
-
-
     @Override
     public void draw(String command) {
 

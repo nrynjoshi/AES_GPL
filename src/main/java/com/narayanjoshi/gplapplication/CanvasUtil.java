@@ -1,19 +1,7 @@
-package com.example.gplapplication;
+package com.narayanjoshi.gplapplication;
 
-import com.example.gplapplication.service.command.ClearCommand;
-import com.example.gplapplication.service.command.MoveToCommand;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class CanvasUtil{
 

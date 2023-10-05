@@ -1,30 +1,46 @@
-package com.example.gplapplication;
+package com.narayanjoshi.gplapplication;
 
-import com.example.gplapplication.service.RootCommandIfc;
-import com.example.gplapplication.service.command.*;
-import javafx.scene.shape.Circle;
+import com.narayanjoshi.gplapplication.service.RootCommandIfc;
+import com.narayanjoshi.gplapplication.service.command.*;
 
 /**
- * GPL Commands
+ * GPL Commands List
  * */
 public enum CommandEnum {
 
-    /**
-     * saveToFile filepath
-     *
-     *  filepath will be java full path including filename
-     */
     SAVE_TO_FILE("saveToFile","<filepath>", new SaveToFileCommand()),
+    /**
+     * */
     READ_FROM_FILE("readFromFile","<filepath>", new ReadFromFileCommand()),
+    /**
+     * */
     MOVE_TO("moveTo","<x>,<y>", new MoveToCommand()),
+    /**
+     * */
     CIRCLE("circle","<radius>", new CircleCommand()),
+    /**
+     * */
     RECTANGLE("rectangle","<width>,<height>", new RectangleCommand()),
+    /**
+     * */
     TRIANGLE("triangle","<base>,<adjacent>", new TriangleCommand()),
+    /**
+     * */
     DRAW_TO("drawTo","<x>,<y>", new DrawToCommand()),
+    /**
+     * */
     COMMENT("//", null, new CommentCommand()),
+    /**
+     * */
     CLEAR("clear", null, new ClearCommand()),
+    /**
+     * */
     RESET("reset", null, new ResetCommand()),
+    /**
+     * */
     PEN("pen","<color>", new PenCommand()),
+    /**
+     * */
     FILL("fill","<boolean>", new FillCommand())
     ;
 

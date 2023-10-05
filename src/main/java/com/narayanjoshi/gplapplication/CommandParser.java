@@ -1,8 +1,6 @@
-package com.example.gplapplication;
+package com.narayanjoshi.gplapplication;
 
-
-import com.example.gplapplication.service.*;
-import com.example.gplapplication.service.command.*;
+import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.util.Duration;

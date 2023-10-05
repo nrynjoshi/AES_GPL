@@ -1,4 +1,4 @@
-package com.example.gplapplication;
+package com.narayanjoshi.gplapplication;
 
 public class CommandNotFound extends RuntimeException {
 

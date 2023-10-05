@@ -1,9 +1,7 @@
-package com.example.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command;
 
-import com.example.gplapplication.CanvasUtil;
-import com.example.gplapplication.CommandEnum;
-import com.example.gplapplication.Util;
-import com.example.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.Util;
+import com.narayanjoshi.gplapplication.service.RootCommand;
 import javafx.fxml.FXML;
 
 import java.util.List;

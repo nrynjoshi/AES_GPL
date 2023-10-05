@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="599.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gplapplication.HelloController">
+<GridPane prefHeight="599.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.narayanjoshi.gplapplication.GPLController">
 
 
    <HBox prefHeight="144.0" prefWidth="800.0" style="-fx-padding: 2;" GridPane.rowIndex="1">

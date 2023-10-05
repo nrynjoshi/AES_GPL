@@ -1,12 +1,7 @@
-package com.example.gplapplication.service;
+package com.narayanjoshi.gplapplication.service;
 
-import com.example.gplapplication.CanvasUtil;
-import com.example.gplapplication.CommandEnum;
-import com.example.gplapplication.CommandNotFound;
-import javafx.scene.paint.Color;
-
-import java.util.Arrays;
-import java.util.List;
+import com.narayanjoshi.gplapplication.CanvasUtil;
+import com.narayanjoshi.gplapplication.CommandNotFound;
 
 public class RootCommand implements RootCommandIfc {
 

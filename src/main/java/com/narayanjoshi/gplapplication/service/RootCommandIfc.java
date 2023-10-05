@@ -1,6 +1,6 @@
-package com.example.gplapplication.service;
+package com.narayanjoshi.gplapplication.service;
 
-import com.example.gplapplication.CanvasUtil;
+import com.narayanjoshi.gplapplication.CanvasUtil;
 
 public interface RootCommandIfc {
     void init(CanvasUtil canvasUtil, String command, String param);

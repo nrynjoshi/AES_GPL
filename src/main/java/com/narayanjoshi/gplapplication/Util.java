@@ -1,8 +1,7 @@
-package com.example.gplapplication;
+package com.narayanjoshi.gplapplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,7 +73,7 @@ public class Util {
 
     public static CommandEnum getCommandOperation(String chunkCommand){
         for(CommandEnum commandEnum : CommandEnum.values()){
-            if((Util.validateForCommand(chunkCommand, commandEnum.getCommand()) || !Util.isNotEmpty(chunkCommand))){
+            if((Util.validateForCommand(chunkCommand, commandEnum.getCommand()) && Util.isNotEmpty(chunkCommand))){
                 return commandEnum;
             }
         }

@@ -8,10 +8,10 @@ module com.example.gplapplication {
     requires junit;
     requires testng;
 
-    opens com.example.gplapplication to javafx.fxml;
-    exports com.example.gplapplication;
-    exports com.example.gplapplication.service;
-    opens com.example.gplapplication.service to javafx.fxml;
-    exports com.example.gplapplication.service.command;
-    opens com.example.gplapplication.service.command to javafx.fxml;
+    opens com.narayanjoshi.gplapplication to javafx.fxml;
+    exports com.narayanjoshi.gplapplication;
+    exports com.narayanjoshi.gplapplication.service;
+    opens com.narayanjoshi.gplapplication.service to javafx.fxml;
+    exports com.narayanjoshi.gplapplication.service.command;
+    opens com.narayanjoshi.gplapplication.service.command to javafx.fxml;
 }
