@@ -2,6 +2,7 @@ package com.narayanjoshi.gplapplication.service;
 
 import com.narayanjoshi.gplapplication.CanvasUtil;
 import com.narayanjoshi.gplapplication.CommandNotFound;
+import com.narayanjoshi.gplapplication.Util;
 
 public class RootCommand implements RootCommandIfc {
 
@@ -26,7 +27,7 @@ public class RootCommand implements RootCommandIfc {
 
     @Override
     public void validate(String inputCommand) {
-        throw new CommandNotFound("Implementation not done yet", 1);
+        Util.validateCommand(inputCommand, this.command, this.param);
     }
 
 }

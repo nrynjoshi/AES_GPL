@@ -7,11 +7,6 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
 public class ResetCommand extends RootCommand {
 
     @Override
-    public void validate(String command) {
-        Util.validateCommand(command, this.command, this.param);
-    }
-
-    @Override
     public void draw(String command) {
         this.validate(command);
         ClearCommand clearCommand = new ClearCommand();

@@ -9,11 +9,6 @@ import java.util.List;
 public class MoveToCommand extends RootCommand {
 
     @Override
-    public void validate(String command) {
-        Util.validateCommand(command, this.command, this.param);
-    }
-
-    @Override
     @FXML
     public void draw(String command) {
         this.validate(command);
