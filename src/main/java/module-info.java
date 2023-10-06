@@ -1,4 +1,4 @@
-module com.example.gplapplication {
+module com.narayanjoshi.gplapplication {
     requires javafx.controls;
     requires javafx.fxml;
 
