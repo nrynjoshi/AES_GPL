@@ -12,7 +12,7 @@ public class CommandParser {
     private final String commandMultiple;
     public Canvas canvasId;
 
-    CommandParser(Canvas canvasId, String commandSingle, String commandMultiple){
+    public CommandParser(Canvas canvasId, String commandSingle, String commandMultiple){
         this.canvasId = canvasId;
         this.commandSingle= commandSingle;
         this.commandMultiple = commandMultiple;

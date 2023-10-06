@@ -1,6 +1,7 @@
 package com.narayanjoshi.gplapplication.service.command;
 
 import com.narayanjoshi.gplapplication.CommandNotFound;
+import com.narayanjoshi.gplapplication.CommandParser;
 import com.narayanjoshi.gplapplication.Util;
 import com.narayanjoshi.gplapplication.service.RootCommand;
 
@@ -24,10 +25,11 @@ public class ReadFromFileCommand  extends RootCommand {
         if(!file.exists()){
             throw new CommandNotFound("File not found.", 0);
         }
-        // Now calling Files.readString() method to
         // read the file
         try{
             String readCommand = Files.readString(path);
+            CommandParser commandParser= new CommandParser(canvasUtil.getCanvasId(), null, readCommand);
+            commandParser.run();
         }catch (IOException x){
             throw new CommandNotFound("File can not read.", 0);
         }
