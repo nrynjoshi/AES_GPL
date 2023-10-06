@@ -16,7 +16,10 @@ public class RectangleCommand extends RootCommand {
 
         double width = Float.parseFloat(params.get(0));
         double height = Float.parseFloat(params.get(1));
-
-        canvasUtil.getGraphicsContext().strokeRect(canvasUtil.getMoveX(), canvasUtil.getMoveY(), width,height);
-    }
+        if(canvasUtil.isFillOn()){
+            canvasUtil.getGraphicsContext().fillRect(canvasUtil.getMoveX(), canvasUtil.getMoveY(), width,height);
+        }else{
+            canvasUtil.getGraphicsContext().strokeRect(canvasUtil.getMoveX(), canvasUtil.getMoveY(), width,height);
+        }
+            }
 }

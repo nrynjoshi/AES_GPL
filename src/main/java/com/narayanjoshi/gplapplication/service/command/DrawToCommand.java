@@ -15,7 +15,11 @@ public class DrawToCommand extends RootCommand {
         double x = Float.parseFloat(params.get(0));
         double y = Float.parseFloat(params.get(1));
 
-        canvasUtil.getGraphicsContext().strokeLine(canvasUtil.getMoveX(), canvasUtil.getMoveY(), x, y);
-        canvasUtil.getGraphicsContext().stroke();
+        if(canvasUtil.isFillOn()){
+            canvasUtil.getGraphicsContext().strokeLine(canvasUtil.getMoveX(), canvasUtil.getMoveY(), x, y);
+        }else{
+            canvasUtil.getGraphicsContext().strokeLine(canvasUtil.getMoveX(), canvasUtil.getMoveY(), x, y);
+        }
+
     }
 }

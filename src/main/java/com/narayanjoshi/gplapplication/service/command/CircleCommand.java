@@ -19,6 +19,12 @@ public class CircleCommand extends RootCommand {
 
         double radius = Float.parseFloat(params.get(0));
 
-        canvasUtil.getGraphicsContext().strokeOval(moveX, moveY, radius, radius);
+        if(canvasUtil.isFillOn()){
+            canvasUtil.getGraphicsContext().fillOval(moveX, moveY, radius, radius);
+        }else{
+            canvasUtil.getGraphicsContext().strokeOval(moveX, moveY, radius, radius);
+        }
+
+
     }
 }

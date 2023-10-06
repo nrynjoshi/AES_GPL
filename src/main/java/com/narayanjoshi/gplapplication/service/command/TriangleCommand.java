@@ -2,6 +2,7 @@ package com.narayanjoshi.gplapplication.service.command;
 
 import com.narayanjoshi.gplapplication.Util;
 import com.narayanjoshi.gplapplication.service.RootCommand;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class TriangleCommand extends RootCommand {
 
         double[] x = { moveX, base, moveX };
         double[] y = { moveY, adj, adj };
-        canvasUtil.getGraphicsContext().strokePolygon(x, y , 3);
+
+        if(canvasUtil.isFillOn()){
+            canvasUtil.getGraphicsContext().fillPolygon(x, y , 3);
+        }else{
+            canvasUtil.getGraphicsContext().strokePolygon(x, y , 3);
+        }
     }
 }

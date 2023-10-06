@@ -2,6 +2,7 @@ package com.narayanjoshi.gplapplication;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class CanvasUtil{
 
@@ -12,6 +13,10 @@ public class CanvasUtil{
     private double moveY;
 
     private boolean isRun = true;
+
+    private boolean isFillOn = false;
+
+    private Color penColor = Color.BLACK;
 
     private String userInputCommands=null;
 
@@ -64,4 +69,21 @@ public class CanvasUtil{
     public void setUserInputCommands(String userInputCommands) {
         this.userInputCommands = userInputCommands;
     }
+
+    public void setFillOn(boolean fillOn) {
+        isFillOn = fillOn;
+    }
+
+    public boolean isFillOn() {
+        return isFillOn;
+    }
+
+    public void setPenColor(Color penColor) {
+        this.penColor = penColor;
+    }
+
+    public Color getPenColor() {
+        return penColor;
+    }
+
 }
