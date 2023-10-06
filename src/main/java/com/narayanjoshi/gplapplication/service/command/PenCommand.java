@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PenCommand extends RootCommand {
 
-    public static final List<Color> pen_colors= Arrays.asList(Color.RED, Color.BLACK, Color.YELLOW, Color.GREEN, Color.GRAY);
+    public static final List<Color> pen_colors= Arrays.asList(Color.RED, Color.BLUE, Color.BLACK, Color.YELLOW, Color.GREEN, Color.GRAY);
 
 
     @Override
@@ -29,6 +29,11 @@ public class PenCommand extends RootCommand {
         this.validate(command);
         List<String> param = Util.getAllParameterFromCommand(command);
         Color color = Color.valueOf(param.get(0));
-        canvasUtil.getGraphicsContext().setStroke(color);
+        canvasUtil.setPenColor(color);
+        if(canvasUtil.isFillOn()){
+            canvasUtil.getGraphicsContext().setFill(canvasUtil.getPenColor());
+        }else{
+            canvasUtil.getGraphicsContext().setStroke(canvasUtil.getPenColor());
+        }
     }
 }
