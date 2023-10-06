@@ -8,50 +8,53 @@ import com.narayanjoshi.gplapplication.service.command.*;
  * */
 public enum CommandEnum {
 
-    SAVE_TO_FILE("saveToFile","<filepath>", new SaveToFileCommand()),
+    SAVE_TO_FILE("saveToFile","<filepath>", new SaveToFileCommand(),"descrition goes here"),
     /**
      * */
-    READ_FROM_FILE("readFromFile","<filepath>", new ReadFromFileCommand()),
+    READ_FROM_FILE("readFromFile","<filepath>", new ReadFromFileCommand(),"descrition goes here"),
     /**
      * */
-    MOVE_TO("moveTo","<x>,<y>", new MoveToCommand()),
+    MOVE_TO("moveTo","<x>,<y>", new MoveToCommand(),"description goes here"),
     /**
      * */
-    CIRCLE("circle","<radius>", new CircleCommand()),
+    CIRCLE("circle","<radius>", new CircleCommand(),"description goes here"),
     /**
      * */
-    RECTANGLE("rectangle","<width>,<height>", new RectangleCommand()),
+    RECTANGLE("rectangle","<width>,<height>", new RectangleCommand(),"description goes here"),
     /**
      * */
-    TRIANGLE("triangle","<base>,<adjacent>", new TriangleCommand()),
+    TRIANGLE("triangle","<base>,<adjacent>", new TriangleCommand(),"description goes here"),
     /**
      * */
-    DRAW_TO("drawTo","<x>,<y>", new DrawToCommand()),
+    DRAW_TO("drawTo","<x>,<y>", new DrawToCommand(),"description goes here"),
     /**
      * */
-    COMMENT("//", null, new CommentCommand()),
+    COMMENT("//", null, new CommentCommand(),"description goes here"),
     /**
      * */
-    CLEAR("clear", null, new ClearCommand()),
+    CLEAR("clear", null, new ClearCommand(),"description goes here"),
     /**
      * */
-    RESET("reset", null, new ResetCommand()),
+    RESET("reset", null, new ResetCommand(),"description goes here"),
     /**
      * */
-    PEN("pen","<color>", new PenCommand()),
+    PEN("pen","<color>", new PenCommand(),"description goes here"),
     /**
      * */
-    FILL("fill","<boolean>", new FillCommand())
+    FILL("fill","<boolean>", new FillCommand(),"description goes here")
     ;
 
     public final String command;
 
     public final String param;
+
+    public final String description;
     public final RootCommandIfc commandIfc;
-    CommandEnum(String command, String param, RootCommandIfc commandIfc) {
+    CommandEnum(String command, String param, RootCommandIfc commandIfc, String description) {
         this.command = command;
         this.param = param;
         this.commandIfc = commandIfc;
+        this.description = description;
     }
 
     public String getCommand(){
@@ -66,4 +69,7 @@ public enum CommandEnum {
         return this.commandIfc;
     }
 
+    public String getDescription() {
+        return description;
+    }
 }
