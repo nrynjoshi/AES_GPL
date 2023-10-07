@@ -39,10 +39,10 @@ public class CommandParser {
                 process(commandMultiple, canvasUtil);
             }
             if(!canvasUtil.isRun()){
-                Notifications.create().title("Build Success ").text("There is no error on given code.").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
-
+                Notifications.create().title("Build Success ").text("There are no error on given code.").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
+            }else{
+                Notifications.create().title("Success ").text("Run successfully").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
             }
-            Notifications.create().title("Success ").text("Operation Perform successfully").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
         }catch (CommandNotFound x){
             x.printStackTrace();
             if(x.getCode() == -1){
@@ -58,7 +58,7 @@ public class CommandParser {
     public void process(String command, CanvasUtil canvasUtil){
 
         if(Util.isEmpty(command)){
-            throw new CommandNotFound(String.format("%s command has not passed.", command), -1);
+            throw new CommandNotFound("Command has not passed.\nPlease write your command on console and press Run button.", -1);
 
         }
 
@@ -75,7 +75,7 @@ public class CommandParser {
 
             CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
             if(commandEnum==null){
-                throw new CommandNotFound(String.format("%s command does not exist.", chunkCommand), -1);
+                throw new CommandNotFound(String.format("'%s' command does not exist.\nPlease check doc file for more information.", chunkCommand), -1);
             }
             RootCommandIfc gplEngine = commandEnum.getCommandInstance();
             gplEngine.init(canvasUtil, commandEnum.getCommand(), commandEnum.getParam());
@@ -94,7 +94,8 @@ public class CommandParser {
         }else if(Util.isNotEmpty(commandMultiple)){
             return false;
         }
-        throw new CommandNotFound("No command has been passed.", 1);
+        throw new CommandNotFound("Command has not passed.\nPlease write your command on console and press Run button.", 1);
+
     }
 
 

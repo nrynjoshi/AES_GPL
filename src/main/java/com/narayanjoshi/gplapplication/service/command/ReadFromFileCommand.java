@@ -23,7 +23,7 @@ public class ReadFromFileCommand  extends RootCommand {
         Path path = Path.of(param.get(0));
         File file = path.toFile();
         if(!file.exists()){
-            throw new CommandNotFound("File not found.", 0);
+            throw new CommandNotFound(String.format("'%s' command file path does not exists or file not found.\nError on '%s'.",this.command, command), -1);
         }
         // read the file
         try{
@@ -31,7 +31,7 @@ public class ReadFromFileCommand  extends RootCommand {
             CommandParser commandParser= new CommandParser(canvasUtil.getCanvasId(), null, readCommand);
             commandParser.process(readCommand, canvasUtil);
         }catch (IOException x){
-            throw new CommandNotFound("File can not read.", 0);
+            throw new CommandNotFound(String.format("'%s' command file can not be accessed.\nError on '%s'.",this.command, command), -1);
         }
 
     }

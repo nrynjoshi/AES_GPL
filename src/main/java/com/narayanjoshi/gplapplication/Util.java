@@ -13,7 +13,7 @@ public class Util {
     public static void validateCommand(String inputCommand, String validCommand, String validParam){
 
         if(!checkBothCommandStartWithSameWord(inputCommand, validCommand)){
-            throw new CommandNotFound( String.format("%s command is not defined.", validCommand +" "+validParam), -1);
+            throw new CommandNotFound( String.format("'%s' command has not defined", inputCommand), -1);
         }
 
         //split into multiple command
@@ -29,7 +29,7 @@ public class Util {
         List<String> actualParamValue = getAllParameterFromCommand(inputCommand);
 
         if(validCommandParamCount != actualParamValue.size()){
-            throw new CommandNotFound( String.format("%s command parameter is not defined properly.", validCommand +" "+validParam), -1);
+            throw new CommandNotFound( String.format("'%s %s' command paramater does not match.\nError on '%s'",validCommand, isEmpty(validParam)?"":validParam, inputCommand), -1);
         }
 
     }

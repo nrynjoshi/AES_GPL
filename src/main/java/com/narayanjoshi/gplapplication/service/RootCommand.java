@@ -22,7 +22,7 @@ public class RootCommand implements RootCommandIfc {
 
     @Override
     public void draw(String command) {
-       throw new CommandNotFound("Implementation not done yet", 1);
+       throw new CommandNotFound(String.format("'%s' command has not been implemented yet.\nError on '%s'.",this.command, command), -1);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication.service.command;
 
+import com.narayanjoshi.gplapplication.CommandNotFound;
 import com.narayanjoshi.gplapplication.Util;
 import com.narayanjoshi.gplapplication.service.RootCommand;
 
@@ -31,6 +32,8 @@ public class SaveToFileCommand  extends RootCommand {
             Files.write(path, this.canvasUtil.getUserInputCommands().getBytes(StandardCharsets.UTF_8));
         }catch (IOException x){
             x.printStackTrace();
+            throw new CommandNotFound(String.format("'%s' command filepath can not be created.\nError on '%s'.",this.command, command), -1);
+
         }
     }
 }

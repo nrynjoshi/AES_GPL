@@ -17,7 +17,7 @@ public class PenCommand extends RootCommand {
         try{
             Color.valueOf(color);
         }catch (IllegalArgumentException e){
-            throw new CommandNotFound(String.format("'%s' pen parameter color is not valid one. Please check docs",command), -1);
+            throw new CommandNotFound(String.format("'%s' command attribute values does not exist.\nError on '%s'.",this.command, command), -1);
         }
 
 
