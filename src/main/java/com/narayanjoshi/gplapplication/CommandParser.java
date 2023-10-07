@@ -62,7 +62,7 @@ public class CommandParser {
 
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
-            if(!Util.isNotEmpty(chunkCommand)){
+            if(Util.isEmpty(chunkCommand)){
                 //ignore this as a new line
                 continue;
             }
