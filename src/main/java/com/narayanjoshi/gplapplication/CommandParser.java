@@ -55,13 +55,17 @@ public class CommandParser {
 
     }
 
-    private void process(String command, CanvasUtil canvasUtil){
+    public void process(String command, CanvasUtil canvasUtil){
         String[] commandSplit = command.split("\n");
 
         canvasUtil.setUserInputCommands(command);
 
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
+            if(!Util.isNotEmpty(chunkCommand)){
+                //ignore this as a new line
+                continue;
+            }
 
             CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
             if(commandEnum==null){
