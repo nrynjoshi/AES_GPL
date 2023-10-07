@@ -56,6 +56,12 @@ public class CommandParser {
     }
 
     public void process(String command, CanvasUtil canvasUtil){
+
+        if(Util.isEmpty(command)){
+            throw new CommandNotFound(String.format("%s command has not passed.", command), -1);
+
+        }
+
         String[] commandSplit = command.split("\n");
 
         canvasUtil.setUserInputCommands(command);
