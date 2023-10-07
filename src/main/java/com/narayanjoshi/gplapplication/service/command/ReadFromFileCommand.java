@@ -29,7 +29,7 @@ public class ReadFromFileCommand  extends RootCommand {
         try{
             String readCommand = Files.readString(path);
             CommandParser commandParser= new CommandParser(canvasUtil.getCanvasId(), null, readCommand);
-            commandParser.run();
+            commandParser.process(readCommand, canvasUtil);
         }catch (IOException x){
             throw new CommandNotFound("File can not read.", 0);
         }
