@@ -18,5 +18,6 @@ public class ResetCommand extends RootCommand {
         PenCommand penCommand = new PenCommand();
         penCommand.init(canvasUtil, CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam());
         penCommand.draw(CommandEnum.PEN.getCommand()+" black");
+        canvasUtil.setFillOn(false);
     }
 }
