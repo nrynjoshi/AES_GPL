@@ -3,9 +3,19 @@ pen red
 moveTo 5,5
 rectangle 150,100
 pen gray
-moveTo 100,100
+moveTo 150,100
 circle 50
 pen yellow
 moveTo 50, 50
+fill on
 triangle 100,100
-saveToFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
+//new
+fill off
+pen blue
+moveto 0, 200
+rectangle 80,80
+circle 80
+moveto 25,205
+triangle 50,50
+//saveToFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
+//readFromFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
