@@ -21,16 +21,21 @@ public class CanvasUtil{
     private String userInputCommands=null;
 
     public CanvasUtil(Canvas canvasId){
-        this.canvasId= canvasId;
-        this.graphicsContext = canvasId.getGraphicsContext2D();
-        this.graphicsContext.beginPath();
+        init(canvasId, true);
     }
 
     public CanvasUtil(Canvas canvasId, boolean isRun){
+        init(canvasId, isRun);
+    }
+
+    private void init(Canvas canvasId, boolean isRun){
+        if(canvasId ==null){
+            throw new IllegalArgumentException("Canvas cannot be null.");
+        }
         this.canvasId= canvasId;
         this.graphicsContext = canvasId.getGraphicsContext2D();
         this.graphicsContext.beginPath();
-        this.isRun = false;
+        this.isRun = isRun;
     }
 
     public Canvas getCanvasId() {
