@@ -12,10 +12,10 @@ import java.io.IOException;
  * We have all desktop frame configuration to view for our GPL.
  * For other view part you will look at  hello-view.fxml file for more details of UI.
  */
-public class GPLApplicationRunner extends Application {
+public class GPLApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GPLApplicationRunner.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GPLApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), 1000, 600);
         stage.setTitle("Graphical Programming Language");
         stage.setScene(scene);
