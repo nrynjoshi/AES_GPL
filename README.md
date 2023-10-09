@@ -10,24 +10,38 @@ With the wide range of language available, I have selected java to develops this
 2. Maven - used to manage project
 3. JavaFX :- used for graphical represent of the application
 
+#Required installed application before running GPL application
+1. JRE 20
+2. JAVAFX
+
 # Run instruction
+Open your command prompt on this application folder and run below command to access application.
 ```
-    java -jar GPLApplication-1.0-SNAPSHOT.jar
+    java -jar app\gplapplication-1.0.jar
 ```
-you will find GPLApplication-1.0-SNAPSHOT.jar under target folder
 
 # Sample Command For Testing Basic Operation
 ```
-  clear
-  pen red
-  moveTo 5,5
-  rectangle 150,100
-  pen gray
-  moveTo 100,100
-  circle 50
-  pen yellow
-  moveTo 50, 50
-  triangle 100,100
+	clear
+	pen red
+	moveTo 5,5
+	rectangle 150,100
+	pen gray
+	moveTo 150,100
+	circle 50
+	pen yellow
+	moveTo 50, 50
+	fill on
+	triangle 100,100
+	
+	//few more command
+	fill off
+	pen blue
+	moveto 0, 200
+	rectangle 80,80
+	circle 80
+	moveto 25,205
+	triangle 50,50
 ```
 
 # Doc File
