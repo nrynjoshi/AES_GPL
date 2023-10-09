@@ -64,7 +64,7 @@ public class Util {
         String[] words1 = command1.split("\\s+");
 
         // Check if both arrays have at least one word and if the first words are the same
-        return (words1.length > 0 && !command2.isEmpty() && words1[0].equals(command2));
+        return (words1.length > 0 && !command2.isEmpty() && words1[0].toLowerCase().trim().equals(command2.toLowerCase().trim()));
     }
 
     public static boolean isEmpty(String content){
