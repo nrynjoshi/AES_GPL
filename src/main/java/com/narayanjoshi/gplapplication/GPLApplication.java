@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class GPLApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GPLApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), 1000, 600);
         stage.setTitle("Graphical Programming Language");
+        stage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("icon.png")));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
