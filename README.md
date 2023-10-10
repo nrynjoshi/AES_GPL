@@ -90,3 +90,6 @@ Open your command prompt on this application folder and run below command to acc
 # Doc File
  you will find
  <a href="https://github.com/nrynjoshi/AES_GPL/blob/main/README.md">doc file link</a>.
+ 
+# Class Diagram 
+<img src="./src/main/resources/UML_diagram.png"/>
