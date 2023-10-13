@@ -8,11 +8,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * The {@code Util} class is a utility to support GPL application to perform work.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class Util {
 
-    public static void validateCommand(String inputCommand, String validCommand, String validParam){
+    /**
+     * validate the input command and param with system defined command and param
+     *
+     * @throws CommandNotFound for any invalid result form comparison
+     *launch
+     * @param inputCommand This param consist of command with param given from user input
+     * @param validCommandOnly This param consist of command only which is predefined by system.
+     * @param validParam This param consist of pattern parameters with  number of parameter
+     *                   required by predefined command.
+     * */
+    public static void validateCommand(String inputCommand, String validCommandOnly, String validParam){
 
-        if(!checkBothCommandStartWithSameWord(inputCommand, validCommand)){
+        if(!checkBothCommandStartWithSameWord(inputCommand, validCommandOnly)){
             throw new CommandNotFound( String.format("'%s' command has not defined", inputCommand), -1);
         }
 
@@ -29,11 +45,18 @@ public class Util {
         List<String> actualParamValue = getAllParameterFromCommand(inputCommand);
 
         if(validCommandParamCount != actualParamValue.size()){
-            throw new CommandNotFound( String.format("'%s %s' command paramater does not match.\nError on '%s'",validCommand, isEmpty(validParam)?"":validParam, inputCommand), -1);
+            throw new CommandNotFound( String.format("'%s %s' command parameter does not match.\nError on '%s'",validCommandOnly, isEmpty(validParam)?"":validParam, inputCommand), -1);
         }
 
     }
 
+    /**
+     * get all parameter values from user input command
+     *
+     * @param inputCommand This param consist of command with param given from user input
+     *
+     * @return this will return list with input command parameter values in the given order
+     */
     public static List<String> getAllParameterFromCommand(String inputCommand){
 
         if(isEmpty(inputCommand)){
@@ -59,6 +82,14 @@ public class Util {
         return actualParamValue;
     }
 
+    /**
+     * check input and predefined command has same word
+     *
+     * @param command1 This param consist of command with param given from user input
+     * @param command2 This param consist of command with param given from user input
+     *
+     * @return boolean value, true if match and false if not match
+     */
     private static boolean checkBothCommandStartWithSameWord(String command1, String command2) {
         // Split the strings into words
         String[] words1 = command1.split("\\s+");
@@ -67,21 +98,49 @@ public class Util {
         return (words1.length > 0 && !command2.isEmpty() && words1[0].toLowerCase().trim().equals(command2.toLowerCase().trim()));
     }
 
+    /**
+     * check pass value is empty or not
+     *
+     * @param content this is the string value
+     *
+     * @return boolean value, true if match and false if not match
+     */
     public static boolean isEmpty(String content){
         return !isNotEmpty(content);
     }
 
+    /**
+     * check pass value is not empty
+     *
+     * @param content this is the string value
+     *
+     * @return boolean value, true if match and false if not match
+     */
     public static boolean isNotEmpty(String content){
         return content != null && !content.trim().isEmpty();
     }
 
-
+    /**
+     * check pass value is validated and compare with lowercase
+     *
+     * @param inputCommand this is the string value
+     * @param validCommand this is the string value
+     *
+     * @return boolean value, true if match and false if not match
+     */
     private static boolean validateForCommand(String inputCommand, String validCommand){
         String inputCommandSplit = inputCommand.toLowerCase().split("\\s+")[0];
         String validCommandSplit = validCommand.toLowerCase().split("\\s+")[0];
         return inputCommandSplit.startsWith(validCommandSplit);
     }
 
+    /**
+     * get process instance from the given command
+     *
+     * @param chunkCommand user input command to fetch the process instance {@link CommandEnum}
+     *
+     * @return {@link CommandEnum} enum value with contain command, param pattern, process instance
+     */
     public static CommandEnum getCommandOperation(String chunkCommand){
         for(CommandEnum commandEnum : CommandEnum.values()){
             try {

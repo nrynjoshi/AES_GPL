@@ -4,43 +4,35 @@ import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import com.narayanjoshi.gplapplication.service.command.*;
 
 /**
- * GPL Commands List
+ * The {@code CommandEnum} class represents all command, parameter, and its process instance.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
  * */
 public enum CommandEnum {
 
     SAVE_TO_FILE("saveToFile","<filepath>", new SaveToFileCommand(),"descrition goes here"),
-    /**
-     * */
+
     READ_FROM_FILE("readFromFile","<filepath>", new ReadFromFileCommand(),"descrition goes here"),
-    /**
-     * */
+
     MOVE_TO("moveTo","<x>,<y>", new MoveToCommand(),"description goes here"),
-    /**
-     * */
+
     CIRCLE("circle","<radius>", new CircleCommand(),"description goes here"),
-    /**
-     * */
+
     RECTANGLE("rectangle","<width>,<height>", new RectangleCommand(),"description goes here"),
-    /**
-     * */
+
     TRIANGLE("triangle","<base>,<adjacent>", new TriangleCommand(),"description goes here"),
-    /**
-     * */
+
     DRAW_TO("drawTo","<x>,<y>", new DrawToCommand(),"description goes here"),
-    /**
-     * */
+
     COMMENT("//", null, new CommentCommand(),"description goes here"),
-    /**
-     * */
+
     CLEAR("clear", null, new ClearCommand(),"description goes here"),
-    /**
-     * */
+
     RESET("reset", null, new ResetCommand(),"description goes here"),
-    /**
-     * */
+
     PEN("pen","<color>", new PenCommand(),"description goes here"),
-    /**
-     * */
+
     FILL("fill","<boolean>", new FillCommand(),"description goes here")
     ;
 

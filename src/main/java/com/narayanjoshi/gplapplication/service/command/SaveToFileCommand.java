@@ -12,12 +12,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * The {@code SaveToFileCommand} class represents validation of command and
+ * performing save operation of all command passed from console on given
+ * filepath based on defined instruction.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class SaveToFileCommand  extends RootCommand {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void draw(String command) {
-
-        this.validate(command);
 
         List<String> param = Util.getAllParameterFromCommand(command);
 

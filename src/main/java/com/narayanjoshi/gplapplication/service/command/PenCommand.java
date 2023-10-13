@@ -8,8 +8,20 @@ import javafx.scene.paint.Color;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The {@code PenCommand} class represents validation of command and
+ * performing pen color operation i.e. proving color based on defined instruction.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class PenCommand extends RootCommand {
 
+    /**
+     * {@inheritDoc}
+     * this will validate the color param passed by user.
+     * @throws CommandNotFound if param color is not defined or valid.
+     */
     @Override
     public void validate(String command) {
         Util.validateCommand(command, this.command, this.param);
@@ -23,9 +35,11 @@ public class PenCommand extends RootCommand {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void draw(String command) {
-        this.validate(command);
         List<String> param = Util.getAllParameterFromCommand(command);
         Color color = Color.valueOf(param.get(0));
         canvasUtil.setPenColor(color);

@@ -8,13 +8,22 @@ import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+/**
+ * The {@code FillCommand} class represents validation of command and
+ * performing fill operation of pen based on defined instruction.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 import java.util.List;
 
 public class FillCommand extends RootCommand {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void draw(String command) {
-        this.validate(command);
 
         List<String> params = Util.getAllParameterFromCommand(command);
         String param1 = params.get(0);

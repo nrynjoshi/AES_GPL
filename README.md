@@ -87,9 +87,9 @@ Open your command prompt on this application folder and run below command to acc
 	triangle 50,50
 ```
 
-# Doc File
+# Code Documentation File
  you will find
- <a href="https://github.com/nrynjoshi/AES_GPL/blob/main/README.md">doc file link</a>.
+ <a href="https://github.com/nrynjoshi/AES_GPL/blob/main/README.md">code documentation file link</a>.
  
 # Class Diagram 
 <img src="./src/main/resources/UML_diagram.png"/>

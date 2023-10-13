@@ -11,12 +11,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * The {@code ReadFromFileCommand} class represents validation of command and
+ * performing read operation from given file path based on defined instruction.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class ReadFromFileCommand  extends RootCommand {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void draw(String command) {
-
-        this.validate(command);
 
         List<String> param = Util.getAllParameterFromCommand(command);
 

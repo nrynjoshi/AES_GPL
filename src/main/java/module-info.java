@@ -1,3 +1,9 @@
+/**
+ * This is the module information for GPL application
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 module com.narayanjoshi.gplapplication {
     requires javafx.controls;
     requires javafx.fxml;

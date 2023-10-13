@@ -6,12 +6,20 @@ import javafx.fxml.FXML;
 
 import java.util.List;
 
+/**
+ * The {@code MoveToCommand} class represents validation of command and
+ * define pen position by moving to particular position based on defined instruction.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class MoveToCommand extends RootCommand {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    @FXML
     public void draw(String command) {
-        this.validate(command);
         List<String> params = Util.getAllParameterFromCommand(command);
 
         double x = Float.parseFloat(params.get(0));

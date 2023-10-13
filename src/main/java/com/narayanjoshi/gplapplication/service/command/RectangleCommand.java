@@ -5,12 +5,21 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
 
 import java.util.List;
 
+/**
+ * The {@code RectangleCommand} class represents validation of command and
+ * performing draw operation of rectangle based on defined instruction.
+ * Rectangle is draw based on pen position and by using width and height.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class RectangleCommand extends RootCommand {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void draw(String command) {
-
-        this.validate(command);
 
         List<String> params = Util.getAllParameterFromCommand(command);
 
