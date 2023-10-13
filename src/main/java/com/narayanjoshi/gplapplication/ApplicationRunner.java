@@ -13,7 +13,7 @@ public class ApplicationRunner {
      * @param args please ignore this one because it is not used within the system, but it's a structure to write.
      * */
     public static void main(String args[]){
-        GPLApplication.launch();
+        GPLApplication.main(args);
     }
 
 }
