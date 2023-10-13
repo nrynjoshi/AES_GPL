@@ -31,13 +31,13 @@ Every event occured within this application has alert message on top right secti
 With the wide range of language available, I have selected java to develops this application because of my past and future career as  a software engineer in java.
 
 # Technologies Used
-1. Java - JDK20
+1. Java - JDK21
 2. Maven - used to manage project
-3. JavaFX - used for graphical represent of the application
+3. JavaFX 20 - used for graphical represent of the application
 
 # To Run Standalone Jar File
 We need these below library to run GPL jar file. So, if not configure in your system please download and install these library along with environment variable config of the system.
-1. JRE 20
+1. JRE 21
 2. JAVAFX
 
 # Run Instruction
