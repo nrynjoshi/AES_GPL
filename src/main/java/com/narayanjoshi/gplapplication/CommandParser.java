@@ -46,6 +46,11 @@ public class CommandParser {
      * this will process the run operation of command
      * */
     public void run() {
+        //this will run validate for run event
+        CanvasUtil canvasUtilValidate = new CanvasUtil(canvasId, false);
+        run(canvasUtilValidate);
+
+        //this will run drawing for run event
         CanvasUtil canvasUtil = new CanvasUtil(canvasId);
         run(canvasUtil);
     }
@@ -55,8 +60,8 @@ public class CommandParser {
      * */
     public void syntax(){
         CanvasUtil canvasUtil = new CanvasUtil(canvasId, false);
+        canvasUtil.setRunEvent(false);
         run(canvasUtil);
-
     }
 
     /**
@@ -72,9 +77,9 @@ public class CommandParser {
             }else{
                 process(commandMultiple, canvasUtil);
             }
-            if(!canvasUtil.isRun()){
+            if(!canvasUtil.isRunEvent()){
                 Notifications.create().title("Build Success ").text("There are no error on given code.").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
-            }else{
+            } else if(canvasUtil.isRun()){
                 Notifications.create().title("Success ").text("Run successfully").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
             }
         }catch (CommandNotFound x){
@@ -84,6 +89,7 @@ public class CommandParser {
             }else{
                 Notifications.create().title("Info ").text(x.getMessage()).position(Pos.TOP_RIGHT).hideAfter(Duration.millis(4000)).showInformation();
             }
+            throw x;
         }
 
 

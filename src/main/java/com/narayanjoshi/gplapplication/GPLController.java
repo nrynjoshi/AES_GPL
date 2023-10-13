@@ -45,8 +45,6 @@ public class GPLController {
         String commandMultiple = inputMultipleCodeText.getText();
 
         CommandParser commandParser= new CommandParser(canvasId, commandSingle, commandMultiple);
-
-        commandParser.syntax();
         commandParser.run();
     }
 

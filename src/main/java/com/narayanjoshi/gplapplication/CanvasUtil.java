@@ -32,6 +32,12 @@ public class CanvasUtil{
      * if true run the command else just syntax check of the particular instruction
      * */
     private boolean isRun = true;
+
+    /**
+     * if true when user called run event otherwise false for syntax check
+     * */
+    private boolean isRunEvent = true;
+
     /**
      * if true fill the drawing shape else just draw using outline or stroke
      * */
@@ -122,4 +128,11 @@ public class CanvasUtil{
         return penColor;
     }
 
+    public boolean isRunEvent() {
+        return isRunEvent;
+    }
+
+    public void setRunEvent(boolean runEvent) {
+        isRunEvent = runEvent;
+    }
 }
