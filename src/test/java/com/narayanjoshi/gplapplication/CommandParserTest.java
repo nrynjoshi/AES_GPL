@@ -30,18 +30,32 @@ public class CommandParserTest {
     @Test
     public void testWithNull_process(){
         String command = null;
-        this.commandParser.process(command, this.canvasUtil);
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> this.commandParser.process(command, this.canvasUtil),
+                "Please write your command on console and press Run button."
+        );
     }
     @Test
     public void testWithEmptyString_process(){
         String command = "";
-        this.commandParser.process(command, this.canvasUtil);
+
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> this.commandParser.process(command, this.canvasUtil),
+                "Please write your command on console and press Run button."
+        );
     }
 
     @Test
     public void testWithSpaceInString_process(){
         String command = "   ";
-        this.commandParser.process(command, this.canvasUtil);
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> this.commandParser.process(command, this.canvasUtil),
+                "Please write your command on console and press Run button."
+        );
+
     }
 
     @Test
@@ -59,6 +73,12 @@ public class CommandParserTest {
     @Test
     public void testWithInValidCommandAndParam_process(){
         String command = "rectangles 100,200";
-        this.commandParser.process(command, this.canvasUtil);
+
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> this.commandParser.process(command, this.canvasUtil),
+                "'rectangles 100,200' command has not defined"
+        );
+
     }
 }
