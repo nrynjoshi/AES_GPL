@@ -71,6 +71,18 @@ public class CommandParserTest {
     }
 
     @Test
+    public void testWithValidCommandAndParamWithMixCase_process(){
+        String command = "pEn blue";
+        this.commandParser.process(command, this.canvasUtil);
+    }
+
+    @Test
+    public void testWithValidCommentCmd_process(){
+        String command = "// comment_here";
+        this.commandParser.process(command, this.canvasUtil);
+    }
+
+    @Test
     public void testWithInValidCommandAndParam_process(){
         String command = "rectangles 100,200";
 
