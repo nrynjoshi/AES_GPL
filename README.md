@@ -48,20 +48,20 @@ Open your command prompt on this application folder and run below command to acc
 
 # Basic Overview On Available Command
 
-| S.N | Command                      | Description                                                                                                              |
-|-----|------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| 1   | saveToFile \<filepath>       | This command save program to a filepath as given in parameter. filepath should be absolute path (i.e. c:/abc/abc.txt).   |
-| 2   | readFromFile \<filepath>     | This command read program from a given filepath and execute.                                                             |
-| 3   | moveTo \<x>,\<y>             | This command move the pen or cursor to the given x and y axis.                                                           |
-| 4   | circle \<radius>             | This command draw a circle with a given radius.                                                                          |
-| 5   | rectangle \<width>,\<height> | This command draw a rectangle with given width and height.                                                               |
-| 6   | triangle \<base>,\<adjacent> | This command draw a triangle with given base and adjacent.                                                               |
-| 7   | drawTo \<x>,\<y>             | This command draw a line to particular x and y axis from the pen position.                                               |
-| 8   | //                           | This command is comment purpose to ignore some code from execution like other programming language.                      |
-| 9   | clear                        | This command clear the output box but does not move pen position or reset pen color.                                     |
-| 10  | reset                        | This command trigger the clear command along with reset all set parameter i.e pen position or pen color and others.      |
-| 11  | pen \<color>                 | This command set the pen color to draw any shape and by default black is set. Values accepted are all valid color names. |
-| 12  | fill \<boolean>              | This command fill the shape if set true. Values accepted are true,false.                                                 |
+| S.N | Command                      | Description                                                                                                                                                                                       |
+|-----|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | saveToFile \<filepath>       | This command save program to a filepath as given in parameter. filepath should be absolute path (i.e. c:/abc/abc.txt).                                                                            |
+| 2   | readFromFile \<filepath>     | This command read program from a given filepath and execute.                                                                                                                                      |
+| 3   | moveTo \<x>,\<y>             | This command move the pen or cursor to the given x and y axis.                                                                                                                                    |
+| 4   | circle \<radius>             | This command draw a circle with a given radius.                                                                                                                                                   |
+| 5   | rectangle \<width>,\<height> | This command draw a rectangle with given width and height.                                                                                                                                        |
+| 6   | triangle \<base>,\<adjacent> | This command draw a triangle with given base and adjacent.                                                                                                                                        |
+| 7   | drawTo \<x>,\<y>             | This command draw a line to particular x and y axis from the pen position.                                                                                                                        |
+| 8   | //                           | This command is comment purpose to ignore some code from execution like other programming language. Note: please make sure // has one space before your words in between example // your_comments |
+| 9   | clear                        | This command clear the output box but does not move pen position or reset pen color.                                                                                                              |
+| 10  | reset                        | This command trigger the clear command along with reset all set parameter i.e pen position or pen color and others.                                                                               |
+| 11  | pen \<color>                 | This command set the pen color to draw any shape and by default black is set. Values accepted are all valid color names.                                                                          |
+| 12  | fill \<boolean>              | This command fill the shape if set true. Values accepted are true,false.                                                                                                                          |
 
 # Sample Command For Testing Basic Operation
 ```
@@ -77,7 +77,7 @@ Open your command prompt on this application folder and run below command to acc
 	fill on
 	triangle 100,100
 	
-	//few more command
+	// few more command
 	fill off
 	pen blue
 	moveto 0, 200
