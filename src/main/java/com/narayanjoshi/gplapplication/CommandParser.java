@@ -118,6 +118,8 @@ public class CommandParser {
                 continue;
             }
 
+            chunkCommand = chunkCommand.trim();
+
             CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
             if(commandEnum==null){
                 throw new CommandNotFound(String.format("'%s' command does not exist.\nPlease check doc file for more information.", chunkCommand), -1);

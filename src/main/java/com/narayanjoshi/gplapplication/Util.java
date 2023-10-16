@@ -32,6 +32,12 @@ public class Util {
             throw new CommandNotFound( String.format("'%s' command has not defined", inputCommand), -1);
         }
 
+        //if command validation passed and that valid command is comment
+        // then no need to check parameter
+        if(CommandEnum.COMMENT.getCommand().equalsIgnoreCase(validCommandOnly)){
+            return;
+        }
+
         //split into multiple command
         int validCommandParamCount = 0;
         if(validParam !=null && validParam.length()>0){
