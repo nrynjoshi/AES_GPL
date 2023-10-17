@@ -168,7 +168,7 @@ public class Util {
     }
 
     /**
-     * get process instance from the given command
+     * read content from file
      *
      * @param filePath file path where file is located with filename and extension
      *
@@ -191,7 +191,7 @@ public class Util {
     }
 
     /**
-     * get process instance from the given command
+     * save content or command to file
      *
      * @param filePath file path where file will be saved with filename and extension
      * @param content instruction/command passed by user
