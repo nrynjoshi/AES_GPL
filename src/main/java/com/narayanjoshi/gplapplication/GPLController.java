@@ -1,9 +1,18 @@
 package com.narayanjoshi.gplapplication;
 
+import com.narayanjoshi.gplapplication.service.command.ReadFromFileCommand;
+import com.narayanjoshi.gplapplication.service.command.SaveToFileCommand;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 /**
  * The {@code GPLController} class is a controller to handle all type of
@@ -61,5 +70,44 @@ public class GPLController {
         commandParser.syntax();
     }
 
+    /**
+     * The save command button form GLP application will save the given instruction to a file path.
+     * */
+    @FXML
+    protected void onSaveCommandButtonClick() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("C:/"));
+
+        File file = fileChooser.showSaveDialog(new Stage());
+
+        String commandSingle = inputSingleCodeText.getText();
+        String commandMultiple = inputMultipleCodeText.getText();
+
+        Util.saveContentToFile(file.getAbsolutePath(), commandSingle+"\n"+commandMultiple);
+
+    }
+
+    /**
+     * The open file button form GLP application will open file and read all instruction from particular file.
+     * */
+    @FXML
+    protected void onOpenFileButtonClick() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("C:/"));
+
+        File file = fileChooser.showOpenDialog(new Stage());
+
+        String readCommand = Util.readFromFile(file.getAbsolutePath());
+        inputMultipleCodeText.setText(readCommand);
+    }
+
+    /**
+     * The close button form GLP application will close the application.
+     * */
+    @FXML
+    public void doExit(ActionEvent event) {
+        Platform.exit();
+        System.exit(0);
+    }
 
 }

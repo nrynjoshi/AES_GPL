@@ -30,19 +30,6 @@ public class SaveToFileCommand  extends RootCommand {
 
         List<String> param = Util.getAllParameterFromCommand(command);
 
-        Path path = Paths.get(param.get(0));
-
-        File file= path.toFile();
-        if(file !=null){
-            file.delete();
-        }
-
-        try{
-            Files.write(path, this.canvasUtil.getUserInputCommands().getBytes(StandardCharsets.UTF_8));
-        }catch (IOException x){
-            x.printStackTrace();
-            throw new CommandNotFound(String.format("'%s' command filepath can not be created.\nError on '%s'.",this.command, command), -1);
-
-        }
+        Util.saveContentToFile(param.get(0), this.canvasUtil.getUserInputCommands());
     }
 }

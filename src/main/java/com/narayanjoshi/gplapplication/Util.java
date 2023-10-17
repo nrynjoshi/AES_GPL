@@ -1,5 +1,11 @@
 package com.narayanjoshi.gplapplication;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -159,5 +165,52 @@ public class Util {
 
         }
         return null;
+    }
+
+    /**
+     * get process instance from the given command
+     *
+     * @param filePath file path where file is located with filename and extension
+     *
+     * @return {@link String} content from particular file path
+     */
+    public static String readFromFile(String filePath){
+        Path path = Path.of(filePath);
+        File file = path.toFile();
+        if(!file.exists()){
+            throw new CommandNotFound(String.format("'%s' file path does not exists or file not found.", filePath), -1);
+        }
+        // read the file
+        String readCommand = null;
+        try{
+            readCommand = Files.readString(path);
+            return readCommand;
+        }catch (IOException x){
+            throw new CommandNotFound(String.format("'%s' file can not be accessed.",filePath), -1);
+        }
+    }
+
+    /**
+     * get process instance from the given command
+     *
+     * @param filePath file path where file will be saved with filename and extension
+     * @param content instruction/command passed by user
+     *
+     */
+    public static void saveContentToFile(String filePath, String content){
+        Path path = Paths.get(filePath);
+
+        File file= path.toFile();
+        if(file !=null){
+            file.delete();
+        }
+
+        try{
+            Files.write(path, content.getBytes(StandardCharsets.UTF_8));
+        }catch (IOException x){
+            x.printStackTrace();
+            throw new CommandNotFound(String.format("'%s' filepath can not be created.",filePath), -1);
+
+        }
     }
 }
