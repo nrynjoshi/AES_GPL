@@ -12,22 +12,24 @@ This application is based on producing a simple programming language and environ
 # GPL Desktop View
 <img src="./src/main/resources/desktop-application-view.png" width="600"/>
 
-1. Multiple Line Program textarea:
-   This section allows develope to write multiline code at once's to perform display operation.
-2. Output Display:
+1. Menu Section:
+   This section allows developer to open existing code from file and to save written command to file from section 2 and section 4.
+2. Multiple Line Program textarea:
+   This section allows developer to write multiline code at once's to perform display operation.
+3. Output Display:
    This section display all the output as per the given command or instruction on section 1 or 3.
-3. Single Line Command text field:
+4. Single Line Command text field:
    This section allows developer to write single line code to perform display operation.
-4. Run button:
+5. Run button:
    This button run the command or program given on section 1 and 3 and display output on output box. This also validate syntax of the programming.
    And this application always give priority to section 3 (single line code first) and if there is no single line code then it will go for section 1 (multiline code program).
-5. Syntax button:
+6. Syntax button:
    This button checks all syntax error and compile program.
 
-Every event occured within this application has alert message on top right section of the screen for better understanding of event.
+Every event occurred within this application has alert message on top right section of the screen for better understanding of event.
 <img src="./src/main/resources/alert.png" width="400"/>
 
-# Language Used To Develope
+# Language Used To Develop
 With the wide range of language available, I have selected java to develops this application because of my past and future career as  a software engineer in java.
 
 # Technologies Used
