@@ -79,7 +79,7 @@ Open your command prompt on this application folder and run below command to acc
 	fill on
 	triangle 100,100
 	
-	// few more command
+	// few more command for testing
 	fill off
 	pen blue
 	moveto 0, 200
