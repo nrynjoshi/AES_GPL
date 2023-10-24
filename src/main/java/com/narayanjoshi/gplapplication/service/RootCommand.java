@@ -12,7 +12,7 @@ import com.narayanjoshi.gplapplication.Util;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class RootCommand implements RootCommandIfc {
+public abstract class RootCommand implements RootCommandIfc {
 
     /**
      *  This instance holds all the required information for performing operation
@@ -49,9 +49,7 @@ public class RootCommand implements RootCommandIfc {
      * {@inheritDoc}
      */
      @Override
-      public void draw(String command) {
-       throw new CommandNotFound(String.format("'%s' command has not been implemented yet.\nError on '%s'.",this.command, command), -1);
-    }
+     public abstract void draw(String command);
 
     /**
      * {@inheritDoc}
