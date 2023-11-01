@@ -48,11 +48,11 @@ public class CommandParser {
     public void run() {
         //this will run validate for run event
         CanvasUtil canvasUtilValidate = new CanvasUtil(canvasId, false);
-        run(canvasUtilValidate);
+        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtilValidate);
 
         //this will run drawing for run event
         CanvasUtil canvasUtil = new CanvasUtil(canvasId);
-        run(canvasUtil);
+        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil);
     }
 
     /**
@@ -61,21 +61,21 @@ public class CommandParser {
     public void syntax(){
         CanvasUtil canvasUtil = new CanvasUtil(canvasId, false);
         canvasUtil.setRunEvent(false);
-        run(canvasUtil);
+        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil);
     }
 
     /**
      * This method check the single or multiple line of code and gives priority
      * to single line of code over multiple line of code.
      * */
-    public void run( CanvasUtil canvasUtil){
+    public void checkSingleOrMultiLineCodeAndProcessAccordingly( CanvasUtil canvasUtil){
 
         try{
             boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
             if(isRunSingleLineCommand){
-                process(commandSingle, canvasUtil);
+                processTheGivenInstruction(commandSingle, canvasUtil);
             }else{
-                process(commandMultiple, canvasUtil);
+                processTheGivenInstruction(commandMultiple, canvasUtil);
             }
             if(!canvasUtil.isRunEvent()){
                 Notifications.create().title("Build Success ").text("There are no error on given code.").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
@@ -100,7 +100,7 @@ public class CommandParser {
      * {@link CommandEnum} to perform operation of particular command. And validate the code
      * syntax and process it as per the event generate by the GPL application.
      * */
-    public void process(String command, CanvasUtil canvasUtil){
+    public void processTheGivenInstruction(String command, CanvasUtil canvasUtil){
 
         if(Util.isEmpty(command)){
             throw new CommandNotFound("Command has not passed.\nPlease write your command on console and press Run button.", -1);

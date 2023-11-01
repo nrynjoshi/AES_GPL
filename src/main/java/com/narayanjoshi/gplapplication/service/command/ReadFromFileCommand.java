@@ -31,7 +31,7 @@ public class ReadFromFileCommand  extends RootCommand {
         String readCommand = Util.readFromFile(param.get(0));
 
         CommandParser commandParser= new CommandParser(canvasUtil.getCanvasId(), null, readCommand);
-        commandParser.process(readCommand, canvasUtil);
+        commandParser.processTheGivenInstruction(readCommand, canvasUtil);
 
     }
 }
