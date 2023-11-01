@@ -9,7 +9,7 @@ pen yellow
 moveTo 50, 50
 fill on
 triangle 100,100
-//new
+// new
 fill off
 pen blue
 moveto 0, 200
