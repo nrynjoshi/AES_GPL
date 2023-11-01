@@ -11,19 +11,19 @@ import com.narayanjoshi.gplapplication.service.command.*;
  * */
 public enum CommandEnum {
 
-    SAVE_TO_FILE("saveToFile","<filepath>", new SaveToFileCommand(),"descrition goes here"),
+    SAVE_TO_FILE("saveToFile","<filepath_string>", new SaveToFileCommand(),"description goes here"),
 
-    READ_FROM_FILE("readFromFile","<filepath>", new ReadFromFileCommand(),"descrition goes here"),
+    READ_FROM_FILE("readFromFile","<filepath_string>", new ReadFromFileCommand(),"description goes here"),
 
-    MOVE_TO("moveTo","<x>,<y>", new MoveToCommand(),"description goes here"),
+    MOVE_TO("moveTo","<x_float>,<y_float>", new MoveToCommand(),"description goes here"),
 
-    CIRCLE("circle","<radius>", new CircleCommand(),"description goes here"),
+    CIRCLE("circle","<radius_float>", new CircleCommand(),"description goes here"),
 
-    RECTANGLE("rectangle","<width>,<height>", new RectangleCommand(),"description goes here"),
+    RECTANGLE("rectangle","<width_float>,<height_float>", new RectangleCommand(),"description goes here"),
 
-    TRIANGLE("triangle","<base>,<adjacent>", new TriangleCommand(),"description goes here"),
+    TRIANGLE("triangle","<base_float>,<adjacent_float>", new TriangleCommand(),"description goes here"),
 
-    DRAW_TO("drawTo","<x>,<y>", new DrawToCommand(),"description goes here"),
+    DRAW_TO("drawTo","<x_float>,<y_float>", new DrawToCommand(),"description goes here"),
 
     COMMENT("//", null, new CommentCommand(),"description goes here"),
 
@@ -31,9 +31,9 @@ public enum CommandEnum {
 
     RESET("reset", null, new ResetCommand(),"description goes here"),
 
-    PEN("pen","<color>", new PenCommand(),"description goes here"),
+    PEN("pen","<color_string>", new PenCommand(),"description goes here"),
 
-    FILL("fill","<boolean>", new FillCommand(),"description goes here")
+    FILL("fill","<flag_boolean>", new FillCommand(),"description goes here")
     ;
 
     public final String command;
