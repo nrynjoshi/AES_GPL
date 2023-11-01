@@ -12,7 +12,6 @@ module com.narayanjoshi.gplapplication {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires junit;
-    requires testng;
 
     opens com.narayanjoshi.gplapplication to javafx.fxml;
     exports com.narayanjoshi.gplapplication;
