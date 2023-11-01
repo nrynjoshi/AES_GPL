@@ -1,10 +1,13 @@
 package com.narayanjoshi.gplapplication;
 
+
 import com.narayanjoshi.gplapplication.service.command.CircleCommand;
 import com.narayanjoshi.gplapplication.service.command.ResetCommand;
+
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.testng.annotations.ExpectedExceptions;
+
 
 import java.util.List;
 
@@ -33,29 +36,29 @@ public class UtilTest {
     public void testWithInvalidUserCommandAndNoArgs_validateCommand(){
         Assertions.assertThrows(
                 CommandNotFound.class,
-                () -> Util.validateCommand("pen12","pen", "<colorName>"),
+                () -> Util.validateCommand("pen12",CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam()),
                 "pen <colorName> command is not defined."
         );
     }
 
     @Test
     public void testWithValidUserCommandAndArgs_validateCommand(){
-        Util.validateCommand("pen red","pen", "<colorName>");
+        Util.validateCommand("pen red",CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam());
     }
 
     @Test
     public void testWithValidateCommand_emptyArgsDefined_validateCommand(){
-        Util.validateCommand("pen  ","pen", "");
+        Util.validateCommand("pen  ",CommandEnum.PEN.getCommand(), "");
     }
 
     @Test
     public void testWithValidateCommand_noArgsDefinedButSpace_validateCommand(){
-        Util.validateCommand("pen","pen", "  ");
+        Util.validateCommand("pen",CommandEnum.PEN.getCommand(), "  ");
     }
 
     @Test
     public void testWithValidateCommand_nullArgsDefined_validateCommand(){
-        Util.validateCommand("pen","pen", null);
+        Util.validateCommand("pen",CommandEnum.PEN.getCommand(), null);
     }
 
     //--------------------------isNotEmpty-------------

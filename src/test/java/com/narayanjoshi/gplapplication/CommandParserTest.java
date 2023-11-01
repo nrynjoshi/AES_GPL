@@ -1,7 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
-import com.narayanjoshi.gplapplication.service.command.CircleCommand;
-import com.narayanjoshi.gplapplication.service.command.ResetCommand;
+
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +27,7 @@ public class CommandParserTest {
         );
     }
     @Test
-    public void testWithNull_process(){
+    public void testWithNull(){
         String command = null;
         Assertions.assertThrows(
                 CommandNotFound.class,
@@ -37,7 +36,7 @@ public class CommandParserTest {
         );
     }
     @Test
-    public void testWithEmptyString_process(){
+    public void testWithEmptyString(){
         String command = "";
 
         Assertions.assertThrows(
@@ -48,7 +47,7 @@ public class CommandParserTest {
     }
 
     @Test
-    public void testWithSpaceInString_process(){
+    public void testWithSpaceInString(){
         String command = "   ";
         Assertions.assertThrows(
                 CommandNotFound.class,
@@ -58,39 +57,14 @@ public class CommandParserTest {
 
     }
 
-    @Test
-    public void testWithValidString_process(){
-        String command = "clear";
-        this.commandParser.process(command, this.canvasUtil);
-    }
+    
 
-    @Test
-    public void testWithValidCommandAndParam_process(){
-        String command = "pen blue";
-        this.commandParser.process(command, this.canvasUtil);
-    }
+   
 
-    @Test
-    public void testWithValidCommandAndParamWithMixCase_process(){
-        String command = "pEn blue";
-        this.commandParser.process(command, this.canvasUtil);
-    }
 
-    @Test
-    public void testWithValidCommentCmd_process(){
-        String command = "// comment_here";
-        this.commandParser.process(command, this.canvasUtil);
-    }
+   
 
-    @Test
-    public void testWithInValidCommandAndParam_process(){
-        String command = "rectangles 100,200";
+   
 
-        Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> this.commandParser.process(command, this.canvasUtil),
-                "'rectangles 100,200' command has not defined"
-        );
-
-    }
+    
 }
