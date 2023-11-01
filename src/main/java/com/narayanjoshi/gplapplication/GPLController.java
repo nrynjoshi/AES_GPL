@@ -77,8 +77,14 @@ public class GPLController {
     protected void onSaveCommandButtonClick() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("C:/"));
+        fileChooser.setTitle("Save your command to file");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        fileChooser.setInitialFileName("gpl_application_command");
 
         File file = fileChooser.showSaveDialog(new Stage());
+        if (file == null) {
+            throw new CommandNotFound( "File has not saved.", -5);
+        }
 
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
@@ -94,9 +100,14 @@ public class GPLController {
     protected void onOpenFileButtonClick() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("C:/"));
+        fileChooser.setTitle("Load your saved command from file");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+
 
         File file = fileChooser.showOpenDialog(new Stage());
-
+        if (file == null) {
+            throw new CommandNotFound( "File has not selected or cancled.", -5);
+        }
         String readCommand = Util.readFromFile(file.getAbsolutePath());
         inputMultipleCodeText.setText(readCommand);
     }
