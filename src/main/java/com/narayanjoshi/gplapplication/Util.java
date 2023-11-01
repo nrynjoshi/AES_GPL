@@ -45,11 +45,14 @@ public class Util {
         }
 
         //split into multiple command
+        List<String> type= new ArrayList<>();
         int validCommandParamCount = 0;
         if(validParam !=null && validParam.length()>0){
             String regex = "<[^>]+>";
             Matcher validCommandMatcher = Pattern.compile(regex).matcher(validParam);
             while (validCommandMatcher.find()) {
+                String param_value = validCommandMatcher.group(0);
+                type.add(param_value.substring(param_value.lastIndexOf("_")+1, param_value.lastIndexOf(">")));
                 validCommandParamCount++;
             }
         }
@@ -60,6 +63,26 @@ public class Util {
             throw new CommandNotFound( String.format("'%s %s' command parameter does not match.\nError on '%s'",validCommandOnly, isEmpty(validParam)?"":validParam, inputCommand), -1);
         }
 
+        //check for data type
+        List<String> errorParamValue = new ArrayList<>();
+        for (int i = 0; i < actualParamValue.size(); i++) {
+            String actualVal = actualParamValue.get(i);
+            String typeForActualVal = type.get(i);
+
+            boolean isNum = isNumeric(actualVal);
+            boolean isString = typeForActualVal.equals("string") && !isNum;
+            boolean isFloat = typeForActualVal.equals("float") && isNum;
+            boolean isBoolean = typeForActualVal.equals("boolean") && (actualVal.equalsIgnoreCase("on") || actualVal.equalsIgnoreCase("off"));
+           if( !isString && !isFloat && !isBoolean) {
+               errorParamValue.add(actualVal + " is not a " + typeForActualVal);
+           }
+
+        }
+
+        String errorMsg  = errorParamValue.stream().collect(Collectors.joining(", "));
+        if(!errorMsg.isEmpty()){
+            throw new CommandNotFound(validCommandOnly+" does not have a valid param type. Param Values Errors: "+errorMsg+".", -1);
+        }
     }
 
     /**
@@ -212,5 +235,13 @@ public class Util {
             throw new CommandNotFound(String.format("'%s' filepath can not be created.",filePath), -1);
 
         }
+    }
+
+    static Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        return pattern.matcher(strNum).matches();
     }
 }
