@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication.service.command;
 
+import com.narayanjoshi.gplapplication.CommandEnum;
 import com.narayanjoshi.gplapplication.Util;
 import com.narayanjoshi.gplapplication.service.RootCommand;
 
@@ -16,6 +17,8 @@ public class CircleCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will draw a circle by taking user input command. 
+     * This will read radius from parameter of that particular command and draw a circle.
      */
     @Override
     public void draw(String command) {
