@@ -52,8 +52,8 @@ Open your command prompt on this application folder and run below command to acc
 
 | S.N | Command                      | Description                                                                                                                                                                                       |
 |-----|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | saveToFile \<filepath>       | This command save program to a filepath as given in parameter. filepath should be absolute path (i.e. c:/abc/abc.txt).                                                                            |
-| 2   | readFromFile \<filepath>     | This command read program from a given filepath and execute.                                                                                                                                      |
+| 1   | saveToFile \<filepath>       | This command save program to a filepath as given in parameter. filepath should be absolute path (i.e. c:/abc/abc.txt). You can also save file using file menu and then clicked on save menu.      |
+| 2   | readFromFile \<filepath>     | This command read program from a given filepath and execute. You can also open file using file menu and then clicked on open menu.                                                                |
 | 3   | moveTo \<x>,\<y>             | This command move the pen or cursor to the given x and y axis.                                                                                                                                    |
 | 4   | circle \<radius>             | This command draw a circle with a given radius.                                                                                                                                                   |
 | 5   | rectangle \<width>,\<height> | This command draw a rectangle with given width and height.                                                                                                                                        |
@@ -63,7 +63,7 @@ Open your command prompt on this application folder and run below command to acc
 | 9   | clear                        | This command clear the output box but does not move pen position or reset pen color.                                                                                                              |
 | 10  | reset                        | This command trigger the clear command along with reset all set parameter i.e pen position or pen color and others.                                                                               |
 | 11  | pen \<color>                 | This command set the pen color to draw any shape and by default black is set. Values accepted are all valid color names.                                                                          |
-| 12  | fill \<boolean>              | This command fill the shape if set true. Values accepted are true,false.                                                                                                                          |
+| 12  | fill \<boolean>              | This command fill the shape if set on. Values accepted are on,off.                                                                                                                                |
 
 # Sample Command For Testing Basic Operation
 ```
