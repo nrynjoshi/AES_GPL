@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
+import com.narayanjoshi.gplapplication.service.GPLShowMessage;
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -78,16 +79,16 @@ public class CommandParser {
                 processTheGivenInstruction(commandMultiple, canvasUtil);
             }
             if(!canvasUtil.isRunEvent()){
-                Notifications.create().title("Build Success ").text("There are no error on given code.").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
+                GPLShowMessage.showBuildSuccess("Code compiles successfully.");
             } else if(canvasUtil.isRun()){
-                Notifications.create().title("Success ").text("Run successfully").position(Pos.TOP_RIGHT).hideAfter(Duration.millis(2000)).show();
+                GPLShowMessage.showSuccess("Code run successfully.");
             }
         }catch (CommandNotFound x){
             x.printStackTrace();
             if(x.getCode() == -1){
-                Notifications.create().title("Error ").text(x.getMessage()).position(Pos.TOP_RIGHT).hideAfter(Duration.millis(6000)).showError();
+                GPLShowMessage.showError(x.getMessage());
             }else{
-                Notifications.create().title("Info ").text(x.getMessage()).position(Pos.TOP_RIGHT).hideAfter(Duration.millis(4000)).showInformation();
+                GPLShowMessage.showInfo(x.getMessage());
             }
             throw x;
         }
@@ -114,16 +115,14 @@ public class CommandParser {
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
             if(Util.isEmpty(chunkCommand)){
-                //ignore this as a new line
+                //ignore this as a new empty line
                 continue;
             }
 
             chunkCommand = chunkCommand.trim();
 
             CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
-            if(commandEnum==null){
-                throw new CommandNotFound(String.format("'%s' command does not exist.\nPlease check doc file for more information.", chunkCommand), -1);
-            }
+
             RootCommandIfc gplEngine = commandEnum.getCommandInstance();
             gplEngine.init(canvasUtil, commandEnum);
 
