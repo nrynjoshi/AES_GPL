@@ -17,6 +17,8 @@ public class MoveToCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will move the pen position to one location to another for drawing shapes.
+     * This will read x and y position from parameter of that particular command and move the pen position to that x and y position.
      */
     @Override
     public void draw(String command) {
