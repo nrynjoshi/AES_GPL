@@ -76,63 +76,63 @@ public class CanvasUtil{
     }
 
     public Canvas getCanvasId() {
-        return canvasId;
+        return CanvasUtil.canvasId;
     }
 
     public GraphicsContext getGraphicsContext() {
-        return graphicsContext;
+        return this.graphicsContext;
     }
 
     public double getMoveX() {
-        return moveX;
+        return CanvasUtil.moveX;
     }
 
     public void setMoveX(double moveX) {
-        this.moveX = moveX;
+        CanvasUtil.moveX = moveX;
     }
 
     public double getMoveY() {
-        return moveY;
+        return CanvasUtil.moveY;
     }
 
     public void setMoveY(double moveY) {
-        this.moveY = moveY;
+        CanvasUtil.moveY = moveY;
     }
 
 
     public boolean isRun() {
-        return this.isRun;
+        return CanvasUtil.isRun;
     }
 
     public String getUserInputCommands() {
-        return userInputCommands;
+        return CanvasUtil.userInputCommands;
     }
 
     public void setUserInputCommands(String userInputCommands) {
-        this.userInputCommands = userInputCommands;
+        CanvasUtil.userInputCommands = userInputCommands;
     }
 
     public void setFillOn(boolean fillOn) {
-        isFillOn = fillOn;
+        CanvasUtil.isFillOn = fillOn;
     }
 
     public boolean isFillOn() {
-        return isFillOn;
+        return CanvasUtil.isFillOn;
     }
 
     public void setPenColor(Color penColor) {
-        this.penColor = penColor;
+        CanvasUtil.penColor = penColor;
     }
 
     public Color getPenColor() {
-        return penColor;
+        return CanvasUtil.penColor;
     }
 
     public boolean isRunEvent() {
-        return isRunEvent;
+        return CanvasUtil.isRunEvent;
     }
 
     public void setRunEvent(boolean runEvent) {
-        isRunEvent = runEvent;
+        CanvasUtil.isRunEvent = runEvent;
     }
 }
