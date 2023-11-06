@@ -69,7 +69,7 @@ public class CommandParser {
      * This method check the single or multiple line of code and gives priority
      * to single line of code over multiple line of code.
      * */
-    public void checkSingleOrMultiLineCodeAndProcessAccordingly( CanvasUtil canvasUtil){
+    public void checkSingleOrMultiLineCodeAndProcessAccordingly(CanvasUtil canvasUtil){
 
         try{
             boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
@@ -78,10 +78,12 @@ public class CommandParser {
             }else{
                 processTheGivenInstruction(commandMultiple, canvasUtil);
             }
+
+            String messagePrefix = isRunSingleLineCommand?"Single line code":"Multiple line code";
             if(!canvasUtil.isRunEvent()){
-                GPLShowMessage.showBuildSuccess("Code compiles successfully.");
+                GPLShowMessage.showBuildSuccess(messagePrefix+" compiles successfully.");
             } else if(canvasUtil.isRun()){
-                GPLShowMessage.showSuccess("Code run successfully.");
+                GPLShowMessage.showSuccess(messagePrefix+" run successfully.");
             }
         }catch (CommandNotFound x){
             x.printStackTrace();
