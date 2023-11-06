@@ -14,6 +14,7 @@ public class ClearCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will clear the drawing area but does not move the pen position.
      */
     @Override
     public void draw(String command) {
