@@ -14,6 +14,9 @@ public class CommentCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will ignore this particular line for commenting code.
+     * Nothing can be happened just no operation
+
      */
     @Override
     public void draw(String command) {
