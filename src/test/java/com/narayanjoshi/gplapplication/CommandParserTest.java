@@ -31,7 +31,7 @@ public class CommandParserTest {
         String command = null;
         Assertions.assertThrows(
                 CommandNotFound.class,
-                () -> this.commandParser.process(command, this.canvasUtil),
+                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
                 "Please write your command on console and press Run button."
         );
     }
@@ -41,7 +41,7 @@ public class CommandParserTest {
 
         Assertions.assertThrows(
                 CommandNotFound.class,
-                () -> this.commandParser.process(command, this.canvasUtil),
+                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
                 "Please write your command on console and press Run button."
         );
     }
@@ -51,7 +51,7 @@ public class CommandParserTest {
         String command = "   ";
         Assertions.assertThrows(
                 CommandNotFound.class,
-                () -> this.commandParser.process(command, this.canvasUtil),
+                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
                 "Please write your command on console and press Run button."
         );
 

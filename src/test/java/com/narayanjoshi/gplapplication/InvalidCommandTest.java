@@ -22,7 +22,7 @@ public class InvalidCommandTest {
 	        String command = "pEn 10";
 	        Assertions.assertThrows(
 	                CommandNotFound.class,
-	                () -> this.commandParser.process(command, this.canvasUtil),
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
 	                "pen does not have a valid param type. Param Values Errors: 10 is not a string."
 	        );
 
@@ -34,7 +34,7 @@ public class InvalidCommandTest {
 
 	        Assertions.assertThrows(
 	                CommandNotFound.class,
-	                () -> this.commandParser.process(command, this.canvasUtil),
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
 	                "'rectangles 100,200' command has not defined"
 	        );
 
@@ -43,12 +43,23 @@ public class InvalidCommandTest {
 	 @Test
 	    public void testWithFillInvalidCommandCommentCmd(){
 	        String command = "fill true";
-	        this.commandParser.process(command, this.canvasUtil);
+	        
+	        Assertions.assertThrows(
+	                CommandNotFound.class,
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+	                "fill does not have a valid param type. Param Values Errors: true is not a boolean."
+	        );
 	    }
 	 
 	 @Test
 	    public void testWithTriangleInvalidCommand_three_param(){
 	        String command = "triangle 50,100,100";
-	        this.commandParser.process(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        Assertions.assertThrows(
+	                CommandNotFound.class,
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+	                "'triangle <base_float>,<adjacent_float>' command parameter does not match.\n"
+	                + "Error on 'triangle 50,100,100'"
+	        );
 	    }
 }

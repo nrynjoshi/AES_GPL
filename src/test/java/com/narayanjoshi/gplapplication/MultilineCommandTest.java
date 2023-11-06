@@ -21,7 +21,7 @@ public class MultilineCommandTest {
 	        String command = "pen blue \n" +
 	                "circle 50 \n" +
 	                "rectangle 80,40";
-	        this.commandParser.process(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
 	    }
 	 
 	 @Test
@@ -29,6 +29,6 @@ public class MultilineCommandTest {
 	        String command = "clear \n pen bLue \n" +
 	                "ciRcle 50 \n" +
 	                "rectAngle 80,40";
-	        this.commandParser.process(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
 	    }
 }
