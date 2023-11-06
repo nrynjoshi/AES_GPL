@@ -17,6 +17,8 @@ public class RectangleCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will draw a rectangle by taking user input command. 
+     * This will read width and height of the rectangle from parameter of that particular command and draw a rectangle.
      */
     @Override
     public void draw(String command) {
