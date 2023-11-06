@@ -21,6 +21,8 @@ public class FillCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will draw fill the pen with given colour.
+     * @see CommandEnum
      */
     @Override
     public void draw(String command) {
