@@ -16,6 +16,8 @@ public class ResetCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+      * This method will reset the drawing area but does not move the pen position.
+      * This is reset everything like pen position, pen colour, drawing from the output area.
      */
     @Override
     public void draw(String command) {
