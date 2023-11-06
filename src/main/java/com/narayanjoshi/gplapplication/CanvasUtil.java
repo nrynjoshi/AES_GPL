@@ -13,10 +13,12 @@ import javafx.scene.paint.Color;
 public class CanvasUtil{
 
     /**
+     * This will hold the Canvas instance for processing.
      * @see Canvas
      * */
     protected static Canvas canvasId;
     /**
+     * This will hold graphicsContext of canvas to perform draw operation of shapes.
      * @see GraphicsContext
      * */
     protected GraphicsContext graphicsContext;
@@ -52,18 +54,23 @@ public class CanvasUtil{
     private static String userInputCommands=null;
     /**
      * this contractor will run the instruction by default
+     * @param canvasId canvas instance
      * */
     public  CanvasUtil(Canvas canvasId){
         init(canvasId, true);
     }
     /**
      * this constructor will run or validate syntax as per the @see isRun boolean flag
+     * @param canvasId canvas instance
+     * @param isRun indicator to run the program or just validate syntax
      * */
     public CanvasUtil(Canvas canvasId, boolean isRun){
         init(canvasId, isRun);
     }
     /**
      * initialize the canvas, graphics and other basic flag to operation drawing and related command
+     * @param canvasId canvas instance
+     * @param isRun indicator to run the program or just validate syntax
      * */
     private void init(Canvas canvasId, boolean isRun){
         if(canvasId ==null){

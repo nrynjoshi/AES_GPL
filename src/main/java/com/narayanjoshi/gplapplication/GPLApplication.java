@@ -23,7 +23,6 @@ public class GPLApplication extends Application {
      * This method is representing to start the application
      * @param stage hold all desktop connection and build UI for GPL application.
      *
-     * @apiNote
      * This will use xml file where configuration is located to build desktop
      * application and set basic operation activities like setting frame size, resizing
      * application window, and setting fav icon.
