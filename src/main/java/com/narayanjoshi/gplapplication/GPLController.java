@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
+import com.narayanjoshi.gplapplication.service.GPLShowMessage;
 import com.narayanjoshi.gplapplication.service.command.ReadFromFileCommand;
 import com.narayanjoshi.gplapplication.service.command.SaveToFileCommand;
 import javafx.application.Platform;
@@ -82,6 +83,7 @@ public class GPLController {
         fileChooser.setInitialFileName("gpl_application_command");
 
         File file = fileChooser.showSaveDialog(new Stage());
+        //cancel the file chooser without saving file
         if (file == null) {
             throw new CommandNotFound( "File has not saved.", -5);
         }
@@ -90,6 +92,7 @@ public class GPLController {
         String commandMultiple = inputMultipleCodeText.getText();
 
         Util.saveContentToFile(file.getAbsolutePath(), commandSingle+"\n"+commandMultiple);
+        GPLShowMessage.showSuccess("File saved successfully.");
 
     }
 
@@ -105,11 +108,13 @@ public class GPLController {
 
 
         File file = fileChooser.showOpenDialog(new Stage());
+        //cancel the file chooser without saving file
         if (file == null) {
-            throw new CommandNotFound( "File has not selected or cancled.", -5);
+            throw new CommandNotFound( "File has not selected or canceled.", -5);
         }
         String readCommand = Util.readFromFile(file.getAbsolutePath());
         inputMultipleCodeText.setText(readCommand);
+        GPLShowMessage.showSuccess("File read successfully.");
     }
 
     /**
