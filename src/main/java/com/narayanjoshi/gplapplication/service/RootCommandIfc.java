@@ -24,6 +24,7 @@ public interface RootCommandIfc {
     /**
      * This method is responsible to perform draw operation of all types of shapes and command process.
      * @param command represent the user input instruction with consist of command and param
+     * @see CommandEnum for command syntax
      * */
     void draw(String command);
 
