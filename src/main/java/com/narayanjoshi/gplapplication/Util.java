@@ -187,7 +187,7 @@ public class Util {
             }
 
         }
-        return null;
+        throw new CommandNotFound(String.format("'%s' command does not exist.\nPlease check doc file for more information.", chunkCommand), -1);
     }
 
     /**
