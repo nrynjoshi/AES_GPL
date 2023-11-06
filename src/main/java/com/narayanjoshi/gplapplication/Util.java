@@ -238,6 +238,13 @@ public class Util {
     }
 
     static Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+    /**
+     * This method check for numeric value or not a numeric value from a given string value
+     *
+     * @param strNum accept all value to check numeric or not
+     * @return boolean value if given string is number otherwise false
+     * */
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
