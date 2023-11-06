@@ -22,8 +22,10 @@ import java.util.List;
  * */
 public class SaveToFileCommand  extends RootCommand {
 
+
     /**
      * {@inheritDoc}
+     * This method will save a command to a file path given by user in command param.  
      */
     @Override
     public void draw(String command) {
