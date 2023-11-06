@@ -22,6 +22,7 @@ public class ReadFromFileCommand  extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will read a file and execute it from a user given file path. 
      */
     @Override
     public void draw(String command) {
