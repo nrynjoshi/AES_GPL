@@ -54,12 +54,11 @@ public class InvalidCommandTest {
 	 @Test
 	    public void testWithTriangleInvalidCommand_three_param(){
 	        String command = "triangle 50,100,100";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
 	        Assertions.assertThrows(
 	                CommandNotFound.class,
 	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
-	                "'triangle <base_float>,<adjacent_float>' command parameter does not match.\n"
-	                + "Error on 'triangle 50,100,100'"
+	                "'triangle <base_float>,<adjacent_float>' command parameter does not match.\n" +
+							"Error on 'triangle 50,100,100'"
 	        );
 	    }
 }

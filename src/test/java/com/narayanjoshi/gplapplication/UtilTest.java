@@ -132,19 +132,32 @@ public class UtilTest {
     //--------------------------getCommandOperation-------------
     @Test
     public void testWithNull_getCommandOperation(){
-        CommandEnum commandOperation = Util.getCommandOperation(null);
-        Assertions.assertNull(commandOperation);
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> Util.getCommandOperation(null),
+                "'null' command does not exist.\n" +
+                        "Please check doc file for more information."
+        );
+
     }
     @Test
     public void testWithEmptyString_getCommandOperation(){
-        CommandEnum commandOperation = Util.getCommandOperation("");
-        Assertions.assertNull(commandOperation);
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> Util.getCommandOperation(""),
+                "'' command does not exist.\n" +
+                        "Please check doc file for more information."
+        );
     }
 
     @Test
     public void testWithSpaceInString_getCommandOperation(){
-        CommandEnum commandOperation = Util.getCommandOperation("  ");
-        Assertions.assertNull(commandOperation);
+        Assertions.assertThrows(
+                CommandNotFound.class,
+                () -> Util.getCommandOperation("  "),
+                "'  ' command does not exist.\n" +
+                        "Please check doc file for more information."
+        );
     }
 
     @Test
