@@ -118,7 +118,8 @@ public class GPLController {
     }
 
     /**
-     * The close button form GLP application will close the application.
+     * This method is trigger when the close button form GLP application trigger and will close the application.
+     * @param event event object passed from UI menu with addition information of event
      * */
     @FXML
     public void doExit(ActionEvent event) {
