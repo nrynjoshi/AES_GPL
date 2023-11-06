@@ -15,7 +15,7 @@ public class CanvasUtil{
     /**
      * @see Canvas
      * */
-    protected Canvas canvasId;
+    protected static Canvas canvasId;
     /**
      * @see GraphicsContext
      * */
@@ -23,37 +23,37 @@ public class CanvasUtil{
     /**
      * hold pen X position for drawing
      * */
-    private double moveX;
+    private static double moveX;
     /**
      * hold pen Y position for drawing
      * */
-    private double moveY;
+    private static double moveY;
     /**
      * if true run the command else just syntax check of the particular instruction
      * */
-    private boolean isRun = true;
+    private static boolean isRun = true;
 
     /**
      * if true when user called run event otherwise false for syntax check
      * */
-    private boolean isRunEvent = true;
+    private static boolean isRunEvent = true;
 
     /**
      * if true fill the drawing shape else just draw using outline or stroke
      * */
-    private boolean isFillOn = false;
+    private static boolean isFillOn = false;
     /**
      * holds the pen color for drawing and by default it will be set as black
      * */
-    private Color penColor = Color.BLACK;
+    private static Color penColor = Color.BLACK;
     /**
      * holds the user submit instruction
      * */
-    private String userInputCommands=null;
+    private static String userInputCommands=null;
     /**
      * this contractor will run the instruction by default
      * */
-    public CanvasUtil(Canvas canvasId){
+    public  CanvasUtil(Canvas canvasId){
         init(canvasId, true);
     }
     /**
@@ -69,10 +69,10 @@ public class CanvasUtil{
         if(canvasId ==null){
             throw new IllegalArgumentException("Canvas cannot be null.");
         }
-        this.canvasId= canvasId;
+        CanvasUtil.canvasId= canvasId;
         this.graphicsContext = canvasId.getGraphicsContext2D();
         this.graphicsContext.beginPath();
-        this.isRun = isRun;
+        CanvasUtil.isRun = isRun;
     }
 
     public Canvas getCanvasId() {
