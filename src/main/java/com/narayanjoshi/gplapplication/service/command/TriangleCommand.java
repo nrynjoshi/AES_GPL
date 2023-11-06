@@ -18,6 +18,8 @@ public class TriangleCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will draw a triangle by taking user input command. 
+     * This will read base and adjacent of the triangle from parameter of that particular command and draw a triangle. 
      */
     @Override
     public void draw(String command) {
