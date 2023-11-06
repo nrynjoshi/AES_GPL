@@ -16,6 +16,8 @@ public class DrawToCommand extends RootCommand {
 
     /**
      * {@inheritDoc}
+     * This method will draw a line by taking user input command. 
+     * This will read line  X and Y coordinate of the ending point of the line from the user input command.
      */
     @Override
     public void draw(String command) {
