@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+/**
+ * utility class code test
+ * */
 public class UtilTest {
 
     //-----------------------------validateCommand---------------------
