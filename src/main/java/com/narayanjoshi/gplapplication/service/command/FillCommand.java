@@ -31,7 +31,7 @@ public class FillCommand extends RootCommand {
         String param1 = params.get(0);
         canvasUtil.setFillOn(param1.equalsIgnoreCase("on"));
 
-        RootCommandIfc penCommand = CommandEnum.PEN.getCommandInstance();;
-        penCommand.draw(CommandEnum.PEN.getCommand()+" "+canvasUtil.getPenColor());
+//        RootCommandIfc penCommand = CommandEnum.PEN.getCommandInstance();;
+//        penCommand.draw(CommandEnum.PEN.getCommand()+" "+canvasUtil.getPenColor());
     }
 }
