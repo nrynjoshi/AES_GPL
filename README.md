@@ -17,12 +17,12 @@ This application is based on producing a simple programming language and environ
 2. Multiple Line Program textarea:
    This section allows developer to write multiline code at once's to perform display operation.
 3. Output Display:
-   This section display all the output as per the given command or instruction on section 1 or 3.
+   This section display all the output as per the given command or instruction on section 2 or 4.
 4. Single Line Command text field:
    This section allows developer to write single line code to perform display operation.
 5. Run button:
-   This button run the command or program given on section 1 and 3 and display output on output box. This also validate syntax of the programming.
-   And this application always give priority to section 3 (single line code first) and if there is no single line code then it will go for section 1 (multiline code program).
+   This button run the command or program given on section 2 and 4 and display output on output box. This also validate syntax of the programming.
+   And this application always give priority to section 4 (single line code first) and if there is no single line code then it will go for section 2 (multiline code program).
 6. Syntax button:
    This button checks all syntax error and compile program.
 
