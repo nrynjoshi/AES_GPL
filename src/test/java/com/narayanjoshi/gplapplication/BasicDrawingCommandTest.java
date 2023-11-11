@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class BasicDrawingCommandTest {
 
+    /**
+     * The test will run moveto command and check if values set as expected for processing.
+     * It will also check for instance to processed particular moveto command has been invoke or not
+     * */
     @Test
     public void moveTo() {
         String command = "moveto 100,150";
