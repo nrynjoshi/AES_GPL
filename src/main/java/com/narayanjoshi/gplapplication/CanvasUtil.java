@@ -16,7 +16,7 @@ public class CanvasUtil{
      * This will hold the Canvas instance for processing.
      * @see Canvas
      * */
-    protected static Canvas canvasId;
+    protected Canvas canvasId;
     /**
      * This will hold graphicsContext of canvas to perform draw operation of shapes.
      * @see GraphicsContext
@@ -25,38 +25,38 @@ public class CanvasUtil{
     /**
      * hold pen X position for drawing
      * */
-    private static double moveX;
+    private double moveX;
     /**
      * hold pen Y position for drawing
      * */
-    private static double moveY;
+    private double moveY;
     /**
      * if true run the command else just syntax check of the particular instruction
      * */
-    private static boolean isRun = true;
+    private boolean isRun = true;
 
     /**
      * if true when user called run event otherwise false for syntax check
      * */
-    private static boolean isRunEvent = true;
+    private boolean isRunEvent = true;
 
     /**
      * if true fill the drawing shape else just draw using outline or stroke
      * */
-    private static boolean isFillOn = false;
+    private boolean isFillOn = false;
     /**
      * holds the pen color for drawing and by default it will be set as black
      * */
-    private static Color penColor = Color.BLACK;
+    private Color penColor = Color.BLACK;
     /**
      * holds the user submit instruction
      * */
-    private static String userInputCommands=null;
+    private String userInputCommands=null;
     /**
      * this contractor will run the instruction by default
      * @param canvasId canvas instance
      * */
-    public  CanvasUtil(Canvas canvasId){
+    public CanvasUtil(Canvas canvasId){
         init(canvasId, true);
     }
     /**
@@ -64,7 +64,7 @@ public class CanvasUtil{
      * @param canvasId canvas instance
      * @param isRun indicator to run the program or just validate syntax
      * */
-    public CanvasUtil(Canvas canvasId, boolean isRun){
+    public CanvasUtil(Canvas canvasId,boolean isRun){
         init(canvasId, isRun);
     }
     /**
@@ -76,14 +76,14 @@ public class CanvasUtil{
         if(canvasId ==null){
             throw new IllegalArgumentException("Canvas cannot be null.");
         }
-        CanvasUtil.canvasId= canvasId;
+        this.canvasId= canvasId;
         this.graphicsContext = canvasId.getGraphicsContext2D();
         this.graphicsContext.beginPath();
-        CanvasUtil.isRun = isRun;
+        this.isRun = isRun;
     }
 
     public Canvas getCanvasId() {
-        return CanvasUtil.canvasId;
+        return this.canvasId;
     }
 
     public GraphicsContext getGraphicsContext() {
@@ -91,55 +91,55 @@ public class CanvasUtil{
     }
 
     public double getMoveX() {
-        return CanvasUtil.moveX;
+        return this.moveX;
     }
 
     public void setMoveX(double moveX) {
-        CanvasUtil.moveX = moveX;
+        this.moveX = moveX;
     }
 
     public double getMoveY() {
-        return CanvasUtil.moveY;
+        return this.moveY;
     }
 
     public void setMoveY(double moveY) {
-        CanvasUtil.moveY = moveY;
+        this.moveY = moveY;
     }
 
 
     public boolean isRun() {
-        return CanvasUtil.isRun;
+        return this.isRun;
     }
 
     public String getUserInputCommands() {
-        return CanvasUtil.userInputCommands;
+        return this.userInputCommands;
     }
 
     public void setUserInputCommands(String userInputCommands) {
-        CanvasUtil.userInputCommands = userInputCommands;
+        this.userInputCommands = userInputCommands;
     }
 
     public void setFillOn(boolean fillOn) {
-        CanvasUtil.isFillOn = fillOn;
+        this.isFillOn = fillOn;
     }
 
     public boolean isFillOn() {
-        return CanvasUtil.isFillOn;
+        return this.isFillOn;
     }
 
     public void setPenColor(Color penColor) {
-        CanvasUtil.penColor = penColor;
+        this.penColor = penColor;
     }
 
     public Color getPenColor() {
-        return CanvasUtil.penColor;
+        return this.penColor;
     }
 
     public boolean isRunEvent() {
-        return CanvasUtil.isRunEvent;
+        return this.isRunEvent;
     }
 
     public void setRunEvent(boolean runEvent) {
-        CanvasUtil.isRunEvent = runEvent;
+        this.isRunEvent = runEvent;
     }
 }
