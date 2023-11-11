@@ -184,8 +184,8 @@ public class BasicDrawingCommandTest {
     }
 
     /**
-     * The test will run triangle command and check if values for moveto is 0,0.
-     * It will also check for instance to processed particular triangle command has been invoked or not
+     * The test will run pen command.
+     * It will also check for instance to processed particular pen command has been invoked or not
      * */
     @Test
     public void pen() {
