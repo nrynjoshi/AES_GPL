@@ -146,6 +146,23 @@ public class BasicDrawingCommandTest {
 
     }
 
+    /**
+     * The test will run circle command and check if values for moveto is 0,0.
+     * It will also check for instance to processed particular circle command has been invoked or not
+     * */
+    @Test
+    public void circle() {
+        String command = "Circle 50";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+        Assertions.assertEquals(0, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
+        Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+
+        Assertions.assertEquals(CircleCommand.class, commandIfc.getClass(), "circle command parser class not invoke.");
+
+    }
 
     private RootCommandIfc drawMock(String command, CanvasUtil canvasUtil){
         CommandEnum commandEnum=Util.getCommandOperation(command);
