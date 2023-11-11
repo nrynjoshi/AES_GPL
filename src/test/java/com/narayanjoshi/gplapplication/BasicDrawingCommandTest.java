@@ -4,6 +4,7 @@ import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import com.narayanjoshi.gplapplication.service.command.ClearCommand;
 import com.narayanjoshi.gplapplication.service.command.DrawToCommand;
 import com.narayanjoshi.gplapplication.service.command.MoveToCommand;
+import com.narayanjoshi.gplapplication.service.command.ResetCommand;
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -80,10 +81,52 @@ public class BasicDrawingCommandTest {
         String clearcommand_2 = "clear";
         RootCommandIfc commandIfc_2 = drawMock(clearcommand_2, canvasUtil);
 
-        Assertions.assertEquals(80, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
-        Assertions.assertEquals(100, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+        Assertions.assertEquals(80, canvasUtil.getMoveX(), "move first param should be 80.");
+        Assertions.assertEquals(100, canvasUtil.getMoveY(), "move second param should be 100.");
 
         Assertions.assertEquals(ClearCommand.class, commandIfc_2.getClass(), "clear command parser class not invoke.");
+
+
+    }
+
+    /**
+     * The test will run clear command and check if values for moveto has set as per expected after clear.
+     * It will also check for instance to processed particular clear command has been invoked or not
+     * */
+    @Test
+    public void reset() {
+
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        //draw something first
+        String drawcommand = "drawto 200,200";
+        drawMock(drawcommand, canvasUtil);
+
+        //clear after draw complete
+        String command = "reset";
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+        Assertions.assertEquals(0, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
+        Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+
+        Assertions.assertEquals(ResetCommand.class, commandIfc.getClass(), "reset command parser class not invoke.");
+
+        //move pen something first
+        String movecommand = "moveto 80,100";
+        drawMock(movecommand, canvasUtil);
+
+        //draw something after move
+        String drawcommand_2 = "drawto 200,200";
+        drawMock(drawcommand_2, canvasUtil);
+
+        //clear after draw complete
+        String clearcommand_2 = "reset";
+        RootCommandIfc commandIfc_2 = drawMock(clearcommand_2, canvasUtil);
+
+        Assertions.assertEquals(0, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
+        Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+
+        Assertions.assertEquals(ResetCommand.class, commandIfc_2.getClass(), "reset command parser class not invoke.");
 
 
     }
