@@ -164,6 +164,24 @@ public class BasicDrawingCommandTest {
 
     }
 
+    /**
+     * The test will run triangle command and check if values for moveto is 0,0.
+     * It will also check for instance to processed particular triangle command has been invoked or not
+     * */
+    @Test
+    public void triangle() {
+        String command = "triangle 50,100";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+        Assertions.assertEquals(0, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
+        Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+
+        Assertions.assertEquals(TriangleCommand.class, commandIfc.getClass(), "triangle command parser class not invoke.");
+
+    }
+
     private RootCommandIfc drawMock(String command, CanvasUtil canvasUtil){
         CommandEnum commandEnum=Util.getCommandOperation(command);
 
