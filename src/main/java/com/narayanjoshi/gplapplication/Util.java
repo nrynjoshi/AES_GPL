@@ -44,7 +44,7 @@ public class Util {
             return;
         }
 
-        //split into multiple command
+        //split into multiple param
         List<String> type= new ArrayList<>();
         int validCommandParamCount = 0;
         if(validParam !=null && validParam.length()>0){
