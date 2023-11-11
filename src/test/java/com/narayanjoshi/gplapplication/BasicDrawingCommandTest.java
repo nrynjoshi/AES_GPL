@@ -200,6 +200,23 @@ public class BasicDrawingCommandTest {
 
     }
 
+    /**
+     * The test will run fill command.
+     * It will also check for instance to processed particular fill command has been invoked or not
+     * */
+    @Test
+    public void fill() {
+        String command = "fill on";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+        Assertions.assertTrue(canvasUtil.isFillOn(), "fill should be on.");
+
+        Assertions.assertEquals(FillCommand.class, commandIfc.getClass(), "fill command parser class not invoke.");
+
+    }
+
     private RootCommandIfc drawMock(String command, CanvasUtil canvasUtil){
         CommandEnum commandEnum=Util.getCommandOperation(command);
 
