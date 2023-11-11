@@ -1,6 +1,7 @@
 package com.narayanjoshi.gplapplication;
 
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
+import com.narayanjoshi.gplapplication.service.command.DrawToCommand;
 import com.narayanjoshi.gplapplication.service.command.MoveToCommand;
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.Assertions;
@@ -10,7 +11,7 @@ public class BasicDrawingCommandTest {
 
     /**
      * The test will run moveto command and check if values set as expected for processing.
-     * It will also check for instance to processed particular moveto command has been invoke or not
+     * It will also check for instance to processed particular moveto command has been invoked or not
      * */
     @Test
     public void moveTo() {
@@ -23,6 +24,24 @@ public class BasicDrawingCommandTest {
         Assertions.assertEquals(150, canvasUtil.getMoveY(), "move second param not set properly.");
 
         Assertions.assertEquals(MoveToCommand.class, commandIfc.getClass(), "moveto command parser class not invoke.");
+
+    }
+
+    /**
+     * The test will run drawto command and check if values for moveto is 0,0.
+     * It will also check for instance to processed particular drawto command has been invoked or not
+     * */
+    @Test
+    public void drawto() {
+        String command = "drawto 200,200";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+        Assertions.assertEquals(0, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
+        Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+
+        Assertions.assertEquals(DrawToCommand.class, commandIfc.getClass(), "drawto command parser class not invoke.");
 
     }
 
