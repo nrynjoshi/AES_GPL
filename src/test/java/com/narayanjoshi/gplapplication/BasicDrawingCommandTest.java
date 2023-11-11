@@ -1,10 +1,7 @@
 package com.narayanjoshi.gplapplication;
 
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
-import com.narayanjoshi.gplapplication.service.command.ClearCommand;
-import com.narayanjoshi.gplapplication.service.command.DrawToCommand;
-import com.narayanjoshi.gplapplication.service.command.MoveToCommand;
-import com.narayanjoshi.gplapplication.service.command.ResetCommand;
+import com.narayanjoshi.gplapplication.service.command.*;
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -130,6 +127,25 @@ public class BasicDrawingCommandTest {
 
 
     }
+
+    /**
+     * The test will run rectangle command and check if values for moveto is 0,0.
+     * It will also check for instance to processed particular rectangle command has been invoked or not
+     * */
+    @Test
+    public void rectangle() {
+        String command = "rectangle 50,100";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+        Assertions.assertEquals(0, canvasUtil.getMoveX(), "move first param should be initial i.e. 0.");
+        Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
+
+        Assertions.assertEquals(RectangleCommand.class, commandIfc.getClass(), "rectangle command parser class not invoke.");
+
+    }
+
 
     private RootCommandIfc drawMock(String command, CanvasUtil canvasUtil){
         CommandEnum commandEnum=Util.getCommandOperation(command);
