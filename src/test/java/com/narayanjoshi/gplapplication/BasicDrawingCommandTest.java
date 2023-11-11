@@ -3,6 +3,7 @@ package com.narayanjoshi.gplapplication;
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import com.narayanjoshi.gplapplication.service.command.*;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -179,6 +180,23 @@ public class BasicDrawingCommandTest {
         Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param should be initial i.e. 0");
 
         Assertions.assertEquals(TriangleCommand.class, commandIfc.getClass(), "triangle command parser class not invoke.");
+
+    }
+
+    /**
+     * The test will run triangle command and check if values for moveto is 0,0.
+     * It will also check for instance to processed particular triangle command has been invoked or not
+     * */
+    @Test
+    public void pen() {
+        String command = "pen red";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        RootCommandIfc commandIfc = drawMock(command, canvasUtil);
+
+         Assertions.assertEquals(Color.RED, canvasUtil.getPenColor(), "pen color should be red.");
+
+        Assertions.assertEquals(PenCommand.class, commandIfc.getClass(), "pen command parser class not invoke.");
 
     }
 
