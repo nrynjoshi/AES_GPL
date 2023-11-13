@@ -1,4 +1,4 @@
-package com.narayanjoshi.gplapplication.service;
+package com.narayanjoshi.gplapplication.util;
 
 import javafx.geometry.Pos;
 import javafx.util.Duration;

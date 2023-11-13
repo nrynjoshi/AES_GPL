@@ -1,12 +1,8 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.CommandEnum;
-import com.narayanjoshi.gplapplication.CommandNotFound;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
+import com.narayanjoshi.gplapplication.util.Util;
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 /**
  * The {@code FillCommand} class represents validation of command and
@@ -17,7 +13,7 @@ import javafx.scene.paint.Paint;
  * */
 import java.util.List;
 
-public class FillCommand extends RootCommand {
+public class FillCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -34,6 +30,6 @@ public class FillCommand extends RootCommand {
         //call this code portion to set color for fill or stock for pen
         RootCommandIfc penCommand = CommandEnum.PEN.getCommandInstance();
         penCommand.init(canvasUtil, CommandEnum.PEN);
-        penCommand.draw(CommandEnum.PEN.getCommand()+" "+canvasUtil.getPenColor());
+        penCommand.execute(CommandEnum.PEN.getCommand()+" "+canvasUtil.getPenColor());
     }
 }

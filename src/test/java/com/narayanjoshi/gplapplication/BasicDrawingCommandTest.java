@@ -1,7 +1,10 @@
 package com.narayanjoshi.gplapplication;
 
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
-import com.narayanjoshi.gplapplication.service.command.*;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
+import com.narayanjoshi.gplapplication.service.command.draw.*;
+import com.narayanjoshi.gplapplication.util.CanvasUtil;
+import com.narayanjoshi.gplapplication.util.Util;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Assertions;
@@ -218,7 +221,7 @@ public class BasicDrawingCommandTest {
     }
 
     private RootCommandIfc drawMock(String command, CanvasUtil canvasUtil){
-        CommandEnum commandEnum=Util.getCommandOperation(command);
+        CommandEnum commandEnum= Util.getCommandOperation(command);
 
         RootCommandIfc gplEngine = commandEnum.getCommandInstance();
         gplEngine.init(canvasUtil, commandEnum);

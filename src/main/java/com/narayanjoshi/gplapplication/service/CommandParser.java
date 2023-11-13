@@ -1,11 +1,11 @@
-package com.narayanjoshi.gplapplication;
+package com.narayanjoshi.gplapplication.service;
 
-import com.narayanjoshi.gplapplication.service.GPLShowMessage;
-import com.narayanjoshi.gplapplication.service.RootCommandIfc;
-import javafx.geometry.Pos;
+import com.narayanjoshi.gplapplication.util.Util;
+import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
+import com.narayanjoshi.gplapplication.util.CanvasUtil;
+import com.narayanjoshi.gplapplication.util.GPLShowMessage;
 import javafx.scene.canvas.Canvas;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 
 /**
  * The {@code CommandParser} class is responsible to perform all operation like 
@@ -131,7 +131,7 @@ public class CommandParser {
             gplEngine.validate(chunkCommand);
 
             if (canvasUtil.isRun()) {
-                gplEngine.draw(chunkCommand);
+                gplEngine.execute(chunkCommand);
             }
         }
     }

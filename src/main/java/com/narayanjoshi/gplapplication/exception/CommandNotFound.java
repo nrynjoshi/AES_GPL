@@ -1,4 +1,4 @@
-package com.narayanjoshi.gplapplication;
+package com.narayanjoshi.gplapplication.exception;
 
 /**
  * The {@code CommandNotFound} class represents exception generate by GPL application.

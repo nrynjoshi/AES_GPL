@@ -1,5 +1,7 @@
 package com.narayanjoshi.gplapplication;
 
+import com.narayanjoshi.gplapplication.service.CommandParser;
+import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

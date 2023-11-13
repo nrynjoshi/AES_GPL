@@ -1,7 +1,10 @@
-package com.narayanjoshi.gplapplication;
+package com.narayanjoshi.gplapplication.service.command;
 
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
-import com.narayanjoshi.gplapplication.service.command.*;
+import com.narayanjoshi.gplapplication.service.command.draw.*;
+import com.narayanjoshi.gplapplication.service.command.programming.CommentCommand;
+import com.narayanjoshi.gplapplication.service.command.programming.ReadFromFileCommand;
+import com.narayanjoshi.gplapplication.service.command.programming.SaveToFileCommand;
 
 /**
  * The {@code CommandEnum} class represents all command, parameter, and its process instance.

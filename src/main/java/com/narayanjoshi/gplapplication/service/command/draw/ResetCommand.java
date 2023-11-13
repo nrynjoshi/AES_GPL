@@ -1,8 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.CommandEnum;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
 
 /**
  * The {@code ResetCommand} class represents validation of command and
@@ -12,7 +10,7 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class ResetCommand extends RootCommand {
+public class ResetCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -24,7 +22,7 @@ public class ResetCommand extends RootCommand {
         ClearCommand clearCommand = new ClearCommand();
         clearCommand.init(canvasUtil, CommandEnum.CLEAR);
         clearCommand.draw(CommandEnum.CLEAR.getCommand());
-        MoveToCommand moveToCommand = new MoveToCommand();
+        MoveToCommand moveToCommand  = new MoveToCommand();
         moveToCommand.init(canvasUtil, CommandEnum.MOVE_TO);
         moveToCommand.draw(CommandEnum.MOVE_TO.getCommand()+" 0,0");
         PenCommand penCommand = new PenCommand();

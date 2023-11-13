@@ -1,15 +1,8 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.programming;
 
-import com.narayanjoshi.gplapplication.CommandNotFound;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.util.Util;
+import com.narayanjoshi.gplapplication.service.command.draw.DrawRootCommand;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -20,7 +13,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class SaveToFileCommand  extends RootCommand {
+public class SaveToFileCommand  extends DrawRootCommand {
 
 
     /**

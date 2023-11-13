@@ -1,19 +1,10 @@
 package com.narayanjoshi.gplapplication.service;
 
-import com.narayanjoshi.gplapplication.CanvasUtil;
-import com.narayanjoshi.gplapplication.CommandEnum;
-import com.narayanjoshi.gplapplication.CommandNotFound;
-import com.narayanjoshi.gplapplication.Util;
+import com.narayanjoshi.gplapplication.util.CanvasUtil;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
+import com.narayanjoshi.gplapplication.util.Util;
 
-/**
- * The {@code FillCommand} class represents validation of command and
- * performing fill operation of pen based on defined instruction.
- *
- * @author Narayan Joshi
- * @since v1.0
- * */
-public abstract class RootCommand implements RootCommandIfc {
-
+public abstract class RootCommand implements RootCommandIfc{
     /**
      *  This instance holds all the required information for performing operation
      * @see CanvasUtil
@@ -31,12 +22,6 @@ public abstract class RootCommand implements RootCommandIfc {
     public String param;
 
     /**
-     * protected constructor
-     * */
-    protected RootCommand(){
-    }
-
-    /**
      * {@inheritDoc}
      */
     public void init(CanvasUtil canvasUtil, CommandEnum commandEnum){
@@ -48,15 +33,10 @@ public abstract class RootCommand implements RootCommandIfc {
     /**
      * {@inheritDoc}
      */
-     @Override
-     public abstract void draw(String command);
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void validate(String inputCommand) {
         Util.validateCommand(inputCommand, this.command, this.param);
     }
+
 
 }

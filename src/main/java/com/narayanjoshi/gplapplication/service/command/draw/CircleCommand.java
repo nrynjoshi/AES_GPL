@@ -1,8 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.CommandEnum;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class CircleCommand extends RootCommand {
+public class CircleCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}

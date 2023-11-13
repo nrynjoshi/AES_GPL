@@ -1,10 +1,13 @@
 package com.narayanjoshi.gplapplication;
 
 
-import com.narayanjoshi.gplapplication.service.command.CircleCommand;
-import com.narayanjoshi.gplapplication.service.command.ResetCommand;
+import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
+import com.narayanjoshi.gplapplication.service.command.draw.CircleCommand;
+import com.narayanjoshi.gplapplication.service.command.draw.ResetCommand;
 
 
+import com.narayanjoshi.gplapplication.util.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +58,7 @@ public class UtilTest {
     public void testWithInvalidUserCommandAndNoArgs_validateCommand(){
         Assertions.assertThrows(
                 CommandNotFound.class,
-                () -> Util.validateCommand("pen12",CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam()),
+                () -> Util.validateCommand("pen12", CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam()),
                 "pen <colorName> command is not defined."
         );
     }

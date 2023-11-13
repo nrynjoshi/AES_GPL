@@ -1,11 +1,9 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.CommandNotFound;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.util.Util;
 import javafx.scene.paint.Color;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,7 +13,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class PenCommand extends RootCommand {
+public class PenCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}

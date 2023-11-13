@@ -1,4 +1,4 @@
-package com.narayanjoshi.gplapplication;
+package com.narayanjoshi.gplapplication.util;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

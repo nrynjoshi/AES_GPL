@@ -1,8 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
-import javafx.scene.paint.Color;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class TriangleCommand extends RootCommand {
+public class TriangleCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
