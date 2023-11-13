@@ -8,7 +8,6 @@ This application is based on producing a simple programming language and environ
 </p>
 
 
-
 # GPL Desktop View
 <img src="./src/main/resources/desktop-application-view.png" width="600"/>
 
