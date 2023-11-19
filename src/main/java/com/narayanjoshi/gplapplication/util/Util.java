@@ -1,6 +1,6 @@
 package com.narayanjoshi.gplapplication.util;
 
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
 
 import java.io.File;
@@ -9,10 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -28,17 +25,18 @@ public class Util {
     /**
      * validate the input command and param with system defined command and param
      *
-     * @throws CommandNotFound for any invalid result form comparison
+     * @throws CommandNotFoundException for any invalid result form comparison
      *launch
      * @param inputCommand This param consist of command with param given from user input
-     * @param validCommandOnly This param consist of command only which is predefined by system.
-     * @param validParam This param consist of pattern parameters with  number of parameter
-     *                   required by predefined command.
-     * */
-    public static void validateCommand(String inputCommand, String validCommandOnly, String validParam){
+     * @param commandEnum This param consist of command and param consist of pattern parameters with  number of parameter which is predefined by system.
+     * @param actualParamValue This param consist of user passed arguments value
 
+     * */
+    public static void validateCommand(String inputCommand, List<String> actualParamValue, CommandEnum commandEnum){
+        String validCommandOnly = commandEnum.getCommand();
+        String validParam =commandEnum.getParam();
         if(!checkBothCommandStartWithSameWord(inputCommand, validCommandOnly)){
-            throw new CommandNotFound( String.format("'%s' command has not defined", inputCommand), -1);
+            throw new CommandNotFoundException( String.format("'%s' command has not defined", inputCommand), -1);
         }
 
         //if command validation passed and that valid command is comment
@@ -60,10 +58,8 @@ public class Util {
             }
         }
 
-        List<String> actualParamValue = getAllParameterFromCommand(inputCommand);
-
         if(validCommandParamCount != actualParamValue.size()){
-            throw new CommandNotFound( String.format("'%s %s' command parameter does not match.\nError on '%s'",validCommandOnly, isEmpty(validParam)?"":validParam, inputCommand), -1);
+            throw new CommandNotFoundException( String.format("'%s %s' command parameter does not match.\nError on '%s'",validCommandOnly, isEmpty(validParam)?"":validParam, inputCommand), -1);
         }
 
         //check for data type
@@ -84,7 +80,7 @@ public class Util {
 
         String errorMsg  = errorParamValue.stream().collect(Collectors.joining(", "));
         if(!errorMsg.isEmpty()){
-            throw new CommandNotFound(validCommandOnly+" does not have a valid param type. Param Values Errors: "+errorMsg+".", -1);
+            throw new CommandNotFoundException(validCommandOnly+" does not have a valid param type. Param Values Errors: "+errorMsg+".", -1);
         }
     }
 
@@ -190,7 +186,7 @@ public class Util {
             }
 
         }
-        throw new CommandNotFound(String.format("'%s' command does not exist.\nPlease check doc file for more information.", chunkCommand), -1);
+        throw new CommandNotFoundException(String.format("'%s' command does not exist.\nPlease check doc file for more information.", chunkCommand), -1);
     }
 
     /**
@@ -204,7 +200,7 @@ public class Util {
         Path path = Path.of(filePath);
         File file = path.toFile();
         if(!file.exists()){
-            throw new CommandNotFound(String.format("'%s' file path does not exists or file not found.", filePath), -1);
+            throw new CommandNotFoundException(String.format("'%s' file path does not exists or file not found.", filePath), -1);
         }
         // read the file
         String readCommand = null;
@@ -212,7 +208,7 @@ public class Util {
             readCommand = Files.readString(path);
             return readCommand;
         }catch (IOException x){
-            throw new CommandNotFound(String.format("'%s' file can not be accessed.",filePath), -1);
+            throw new CommandNotFoundException(String.format("'%s' file can not be accessed.",filePath), -1);
         }
     }
 
@@ -235,7 +231,7 @@ public class Util {
             Files.write(path, content.getBytes(StandardCharsets.UTF_8));
         }catch (IOException x){
             x.printStackTrace();
-            throw new CommandNotFound(String.format("'%s' filepath can not be created.",filePath), -1);
+            throw new CommandNotFoundException(String.format("'%s' filepath can not be created.",filePath), -1);
 
         }
     }
@@ -254,4 +250,24 @@ public class Util {
         }
         return pattern.matcher(strNum).matches();
     }
+
+    public static List<String> checkForVariableAndReplaceWithValue(CanvasUtil canvasUtil, List<String> paramList){
+        List<String> parsedParamList = new ArrayList<>();
+        for (String paramVal: paramList) {
+
+            parsedParamList.add(checkForVariableAndExtractActualValue(canvasUtil, paramVal));
+
+        }
+        return parsedParamList;
+    }
+
+    public static String checkForVariableAndExtractActualValue(CanvasUtil canvasUtil, String paramVal) {
+        Map<String, String> variableAndValues = canvasUtil.getVariableAndValues();
+        if(!Util.isNumeric(paramVal) && variableAndValues.containsKey(paramVal)){
+            return variableAndValues.get(paramVal);
+        }
+        return paramVal;
+    }
+
+
 }
