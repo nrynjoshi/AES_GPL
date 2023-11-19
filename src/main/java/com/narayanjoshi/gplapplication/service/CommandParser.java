@@ -1,11 +1,18 @@
 package com.narayanjoshi.gplapplication.service;
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
+import com.narayanjoshi.gplapplication.service.command.programming.ProgrammingRootCommand;
 import com.narayanjoshi.gplapplication.util.Util;
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
 import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import com.narayanjoshi.gplapplication.util.GPLShowMessage;
 import javafx.scene.canvas.Canvas;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The {@code CommandParser} class is responsible to perform all operation like 
@@ -85,7 +92,7 @@ public class CommandParser {
             } else if(canvasUtil.isRun()){
                 GPLShowMessage.showSuccess(messagePrefix+" run successfully.");
             }
-        }catch (CommandNotFound x){
+        }catch (CommandNotFoundException x){
             x.printStackTrace();
             if(x.getCode() == -1){
                 GPLShowMessage.showError(x.getMessage());
@@ -106,13 +113,12 @@ public class CommandParser {
     public void processTheGivenInstruction(String command, CanvasUtil canvasUtil){
 
         if(Util.isEmpty(command)){
-            throw new CommandNotFound("Command has not passed.\nPlease write your command on console and press Run button.", -1);
+            throw new CommandNotFoundException("Command has not passed.\nPlease write your command on console and press Run button.", -1);
 
         }
 
         String[] commandSplit = command.split("\n");
 
-        canvasUtil.setUserInputCommands(command);
 
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
@@ -125,13 +131,15 @@ public class CommandParser {
 
             CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
 
+            canvasUtil.setUserInputCommandLineByLine(chunkCommand);
             RootCommandIfc gplEngine = commandEnum.getCommandInstance();
             gplEngine.init(canvasUtil, commandEnum);
 
-            gplEngine.validate(chunkCommand);
+            gplEngine.validate();
 
-            if (canvasUtil.isRun()) {
-                gplEngine.execute(chunkCommand);
+
+            if (canvasUtil.isRun() || gplEngine instanceof ProgrammingRootCommand) {
+                gplEngine.execute();
             }
         }
     }
@@ -144,7 +152,7 @@ public class CommandParser {
         }else if(Util.isNotEmpty(commandMultiple)){
             return false;
         }
-        throw new CommandNotFound("Command has not passed.\nPlease write your command on console and press Run button.", 1);
+        throw new CommandNotFoundException("Command has not passed.\nPlease write your command on console and press Run button.", 1);
 
     }
 
