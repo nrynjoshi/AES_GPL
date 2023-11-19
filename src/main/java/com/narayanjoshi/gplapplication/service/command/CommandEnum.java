@@ -2,9 +2,7 @@ package com.narayanjoshi.gplapplication.service.command;
 
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import com.narayanjoshi.gplapplication.service.command.draw.*;
-import com.narayanjoshi.gplapplication.service.command.programming.CommentCommand;
-import com.narayanjoshi.gplapplication.service.command.programming.ReadFromFileCommand;
-import com.narayanjoshi.gplapplication.service.command.programming.SaveToFileCommand;
+import com.narayanjoshi.gplapplication.service.command.programming.*;
 
 /**
  * The {@code CommandEnum} class represents all command, parameter, and its process instance.
@@ -74,7 +72,14 @@ public enum CommandEnum {
      * The command to fill a shape is 'fill &lt;flag_boolean&gt;'.
      * &lt;flag_boolean&gt; attributes can have on or off values only
      */
-    FILL("fill","<flag_boolean>", new FillCommand(),"description goes here")
+    FILL("fill","<flag_boolean>", new FillCommand(),"description goes here"),
+
+    /**
+     * The command to fill a shape is 'fill &lt;flag_boolean&gt;'.
+     * &lt;flag_boolean&gt; attributes can have on or off values only
+     */
+    VARIABLE("var","<varname=varvalue_string>", new VariableCommand(),"description goes here"),
+
     ;
 
     public final String command;
@@ -83,6 +88,7 @@ public enum CommandEnum {
 
     public final String description;
     public final RootCommandIfc commandIfc;
+
     CommandEnum(String command, String param, RootCommandIfc commandIfc, String description) {
         this.command = command;
         this.param = param;
