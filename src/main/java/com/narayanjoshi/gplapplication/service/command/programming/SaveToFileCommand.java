@@ -13,7 +13,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class SaveToFileCommand  extends DrawRootCommand {
+public class SaveToFileCommand  extends ProgrammingRootCommand {
 
 
     /**
@@ -21,10 +21,8 @@ public class SaveToFileCommand  extends DrawRootCommand {
      * This method will save a command to a file path given by user in command param.  
      */
     @Override
-    public void draw(String command) {
+    public void execute() {
 
-        List<String> param = Util.getAllParameterFromCommand(command);
-
-        Util.saveContentToFile(param.get(0), this.canvasUtil.getUserInputCommands());
+        Util.saveContentToFile(paramList.get(0), this.canvasUtil.getUserInputCommandLineByLine());
     }
 }

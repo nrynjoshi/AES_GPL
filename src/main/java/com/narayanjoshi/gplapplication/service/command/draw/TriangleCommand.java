@@ -20,15 +20,13 @@ public class TriangleCommand extends DrawRootCommand {
      * This will read base and adjacent of the triangle from parameter of that particular command and draw a triangle. 
      */
     @Override
-    public void draw(String command) {
-
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
-        double base = Float.parseFloat(params.get(0))+ moveX;
-        double adj = Float.parseFloat(params.get(1))+ moveY;
+        double base = Float.parseFloat(paramList.get(0))+ moveX;
+        double adj = Float.parseFloat(paramList.get(1))+ moveY;
 //        double hyp = Float.parseFloat(params.get(2))+ moveY;
 
 

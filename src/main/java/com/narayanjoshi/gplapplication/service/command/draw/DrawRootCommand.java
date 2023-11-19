@@ -2,6 +2,7 @@ package com.narayanjoshi.gplapplication.service.command.draw;
 
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
 import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.util.Util;
 
 /**
  * The {@code FillCommand} class represents validation of command and
@@ -13,14 +14,14 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
 public abstract class DrawRootCommand extends RootCommand {
 
 
+
     /**
      * This method is responsible to perform draw operation of all types of shapes and command process.
-     * @param command represent the user input instruction with consist of command and param
      * @see CommandEnum for command syntax
      * */
-    public abstract void draw(String command);
+    public abstract void draw();
 
-    public void execute(String command){
-        this.draw(command);
+    public void execute(){
+        this.draw();
     }
 }

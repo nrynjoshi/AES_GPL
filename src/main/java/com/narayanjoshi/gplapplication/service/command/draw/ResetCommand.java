@@ -18,16 +18,19 @@ public class ResetCommand extends DrawRootCommand {
       * This is reset everything like pen position, pen colour, drawing from the output area.
      */
     @Override
-    public void draw(String command) {
+    public void draw() {
         ClearCommand clearCommand = new ClearCommand();
+        canvasUtil.setUserInputCommandLineByLine(CommandEnum.CLEAR.getCommand());
         clearCommand.init(canvasUtil, CommandEnum.CLEAR);
-        clearCommand.draw(CommandEnum.CLEAR.getCommand());
+        clearCommand.draw();
         MoveToCommand moveToCommand  = new MoveToCommand();
+        canvasUtil.setUserInputCommandLineByLine(CommandEnum.MOVE_TO.getCommand()+" 0,0");
         moveToCommand.init(canvasUtil, CommandEnum.MOVE_TO);
-        moveToCommand.draw(CommandEnum.MOVE_TO.getCommand()+" 0,0");
+        moveToCommand.draw();
         PenCommand penCommand = new PenCommand();
+        canvasUtil.setUserInputCommandLineByLine(CommandEnum.PEN.getCommand()+" black");
         penCommand.init(canvasUtil, CommandEnum.PEN);
-        penCommand.draw(CommandEnum.PEN.getCommand()+" black");
+        penCommand.draw();
         canvasUtil.setFillOn(false);
     }
 }

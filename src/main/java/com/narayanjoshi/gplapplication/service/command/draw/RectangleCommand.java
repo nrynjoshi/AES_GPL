@@ -20,12 +20,10 @@ public class RectangleCommand extends DrawRootCommand {
      * This will read width and height of the rectangle from parameter of that particular command and draw a rectangle.
      */
     @Override
-    public void draw(String command) {
+    public void draw() {
 
-        List<String> params = Util.getAllParameterFromCommand(command);
-
-        double width = Float.parseFloat(params.get(0));
-        double height = Float.parseFloat(params.get(1));
+        double width = Float.parseFloat(paramList.get(0));
+        double height = Float.parseFloat(paramList.get(1));
         if(canvasUtil.isFillOn()){
             canvasUtil.getGraphicsContext().fillRect(canvasUtil.getMoveX(), canvasUtil.getMoveY(), width,height);
         }else{

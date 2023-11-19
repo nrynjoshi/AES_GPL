@@ -1,6 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.GPLShowMessage;
 import com.narayanjoshi.gplapplication.util.Util;
@@ -85,7 +85,7 @@ public class GPLController {
         File file = fileChooser.showSaveDialog(new Stage());
         //cancel the file chooser without saving file
         if (file == null) {
-            throw new CommandNotFound( "File has not saved.", -5);
+            throw new CommandNotFoundException( "File has not saved.", -5);
         }
 
         String commandSingle = inputSingleCodeText.getText();
@@ -110,7 +110,7 @@ public class GPLController {
         File file = fileChooser.showOpenDialog(new Stage());
         //cancel the file chooser without saving file
         if (file == null) {
-            throw new CommandNotFound( "File has not selected or canceled.", -5);
+            throw new CommandNotFoundException( "File has not selected or canceled.", -5);
         }
         String readCommand = Util.readFromFile(file.getAbsolutePath());
         inputMultipleCodeText.setText(readCommand);

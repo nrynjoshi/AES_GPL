@@ -3,6 +3,10 @@ package com.narayanjoshi.gplapplication.util;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The {@code CanvasUtil} class represents all instance of canvas and hold all type of
  * data necessary for canvas and display work.
@@ -51,7 +55,11 @@ public class CanvasUtil{
     /**
      * holds the user submit instruction
      * */
-    private String userInputCommands=null;
+    private String userInputCommandLineByLine=null;
+
+
+    Map<String, String> variableAndValues = new HashMap<>();
+
     /**
      * this contractor will run the instruction by default
      * @param canvasId canvas instance
@@ -111,12 +119,12 @@ public class CanvasUtil{
         return this.isRun;
     }
 
-    public String getUserInputCommands() {
-        return this.userInputCommands;
+    public String getUserInputCommandLineByLine() {
+        return userInputCommandLineByLine;
     }
 
-    public void setUserInputCommands(String userInputCommands) {
-        this.userInputCommands = userInputCommands;
+    public void setUserInputCommandLineByLine(String userInputCommandLineByLine) {
+        this.userInputCommandLineByLine = userInputCommandLineByLine;
     }
 
     public void setFillOn(boolean fillOn) {
@@ -141,5 +149,13 @@ public class CanvasUtil{
 
     public void setRunEvent(boolean runEvent) {
         this.isRunEvent = runEvent;
+    }
+
+    public Map<String, String> getVariableAndValues() {
+        return variableAndValues;
+    }
+
+    public void setVariableAndValues(Map<String, String> variableAndValues) {
+        this.variableAndValues = variableAndValues;
     }
 }

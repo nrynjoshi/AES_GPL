@@ -13,18 +13,16 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class ReadFromFileCommand  extends DrawRootCommand {
+public class ReadFromFileCommand  extends ProgrammingRootCommand {
 
     /**
      * {@inheritDoc}
      * This method will read a file and execute it from a user given file path. 
      */
     @Override
-    public void draw(String command) {
+    public void execute() {
 
-        List<String> param = Util.getAllParameterFromCommand(command);
-
-        String readCommand = Util.readFromFile(param.get(0));
+        String readCommand = Util.readFromFile(paramList.get(0));
 
         CommandParser commandParser= new CommandParser(canvasUtil.getCanvasId(), null, readCommand);
         commandParser.processTheGivenInstruction(readCommand, canvasUtil);

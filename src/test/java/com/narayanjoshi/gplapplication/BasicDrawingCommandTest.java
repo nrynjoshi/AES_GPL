@@ -225,7 +225,8 @@ public class BasicDrawingCommandTest {
 
         RootCommandIfc gplEngine = commandEnum.getCommandInstance();
         gplEngine.init(canvasUtil, commandEnum);
-        gplEngine.draw(command);
+        canvasUtil.setUserInputCommandLineByLine(command);
+        gplEngine.execute();
         return gplEngine;
     }
 

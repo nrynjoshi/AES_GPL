@@ -19,14 +19,12 @@ public class CircleCommand extends DrawRootCommand {
      * This will read radius from parameter of that particular command and draw a circle.
      */
     @Override
-    public void draw(String command) {
-
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
-        double radius = Float.parseFloat(params.get(0));
+        double radius = Float.parseFloat(paramList.get(0));
         if(canvasUtil.isFillOn()){
             canvasUtil.getGraphicsContext().fillOval(moveX - radius, moveY - radius, 2* radius, 2* radius);
         }else{

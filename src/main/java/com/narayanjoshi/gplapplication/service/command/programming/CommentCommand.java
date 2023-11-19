@@ -9,7 +9,7 @@ import com.narayanjoshi.gplapplication.service.command.draw.DrawRootCommand;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class CommentCommand extends DrawRootCommand {
+public class CommentCommand extends ProgrammingRootCommand {
 
     /**
      * {@inheritDoc}
@@ -18,7 +18,7 @@ public class CommentCommand extends DrawRootCommand {
 
      */
     @Override
-    public void draw(String command) {
+    public void execute() {
         //ignore this as it is comment no process
     }
 }

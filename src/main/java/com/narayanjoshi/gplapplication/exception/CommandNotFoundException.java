@@ -6,7 +6,7 @@ package com.narayanjoshi.gplapplication.exception;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class CommandNotFound extends RuntimeException {
+public class CommandNotFoundException extends RuntimeException {
 
     /**
      * error code for further work to control message
@@ -18,7 +18,7 @@ public class CommandNotFound extends RuntimeException {
      * @param message custom message to throw exception
      * @param code error code to handle message type
      * */
-    public CommandNotFound(String message, int code) {
+    public CommandNotFoundException(String message, int code) {
         super(message);
         this.code = code;
     }

@@ -26,15 +26,13 @@ public interface RootCommandIfc {
 
     /**
      * This method validate user input command and parameter with system defined command and parameter.
-     * @param inputCommand represent the user input instruction with consist of command and param
      * */
-    void validate(String inputCommand);
+    void validate();
 
     /**
      * This method is responsible to perform execution operation of all types of instruction like if else statement, loops, variables.
-     * @param command represent the user input instruction with consist of command and param
      * @see CommandEnum for command syntax
      * */
-    void execute(String command);
+    void execute();
 
 }

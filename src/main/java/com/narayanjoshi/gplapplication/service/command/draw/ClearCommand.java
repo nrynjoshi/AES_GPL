@@ -14,7 +14,7 @@ public class ClearCommand extends DrawRootCommand {
      * This method will clear the drawing area but does not move the pen position.
      */
     @Override
-    public void draw(String command) {
+    public void draw() {
         canvasUtil.getGraphicsContext().clearRect(0, 0, canvasUtil.getCanvasId().getWidth(), canvasUtil.getCanvasId().getHeight());
     }
 

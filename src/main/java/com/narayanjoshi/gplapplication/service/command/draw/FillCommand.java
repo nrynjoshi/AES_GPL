@@ -21,15 +21,15 @@ public class FillCommand extends DrawRootCommand {
      * @see CommandEnum
      */
     @Override
-    public void draw(String command) {
+    public void draw() {
 
-        List<String> params = Util.getAllParameterFromCommand(command);
-        String param1 = params.get(0);
+        String param1 = paramList.get(0);
         canvasUtil.setFillOn(param1.equalsIgnoreCase("on"));
 
         //call this code portion to set color for fill or stock for pen
         RootCommandIfc penCommand = CommandEnum.PEN.getCommandInstance();
+        canvasUtil.setUserInputCommandLineByLine(CommandEnum.PEN.getCommand()+" "+canvasUtil.getPenColor());
         penCommand.init(canvasUtil, CommandEnum.PEN);
-        penCommand.execute(CommandEnum.PEN.getCommand()+" "+canvasUtil.getPenColor());
+        penCommand.execute();
     }
 }

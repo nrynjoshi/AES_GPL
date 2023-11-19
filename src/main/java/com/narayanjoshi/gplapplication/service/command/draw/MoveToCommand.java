@@ -19,11 +19,10 @@ public class MoveToCommand extends DrawRootCommand {
      * This will read x and y position from parameter of that particular command and move the pen position to that x and y position.
      */
     @Override
-    public void draw(String command) {
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
-        double x = Float.parseFloat(params.get(0));
-        double y = Float.parseFloat(params.get(1));
+        double x = Float.parseFloat(paramList.get(0));
+        double y = Float.parseFloat(paramList.get(1));
 
         canvasUtil.setMoveX(x);
         canvasUtil.setMoveY(y);
