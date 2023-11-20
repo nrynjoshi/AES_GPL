@@ -62,6 +62,8 @@ public class CanvasUtil{
 
     String[] commandLineByLineArray;
 
+    private int currentProgramExecutionIndex;
+
     /**
      * this contractor will run the instruction by default
      * @param canvasId canvas instance
@@ -167,5 +169,13 @@ public class CanvasUtil{
 
     public void setCommandLineByLineArray(String[] commandLineByLineArray) {
         this.commandLineByLineArray = commandLineByLineArray;
+    }
+
+    public int getCurrentProgramExecutionIndex() {
+        return currentProgramExecutionIndex;
+    }
+
+    public void setCurrentProgramExecutionIndex(int currentProgramExecutionIndex) {
+        this.currentProgramExecutionIndex = currentProgramExecutionIndex;
     }
 }
