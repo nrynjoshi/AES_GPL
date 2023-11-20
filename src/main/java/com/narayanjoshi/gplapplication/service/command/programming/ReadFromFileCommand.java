@@ -25,7 +25,7 @@ public class ReadFromFileCommand  extends ProgrammingRootCommand {
         String readCommand = Util.readFromFile(paramList.get(0));
 
         CommandParser commandParser= new CommandParser(canvasUtil.getCanvasId(), null, readCommand);
-        commandParser.processTheGivenInstruction(readCommand, canvasUtil);
+        commandParser.processTheGivenInstruction(readCommand, canvasUtil, false); // this one will execute the user save command without manipulation from inner program
 
     }
 }
