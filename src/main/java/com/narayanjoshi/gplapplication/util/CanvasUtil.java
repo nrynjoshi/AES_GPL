@@ -60,6 +60,8 @@ public class CanvasUtil{
 
     Map<String, String> variableAndValues = new HashMap<>();
 
+    String[] commandLineByLineArray;
+
     /**
      * this contractor will run the instruction by default
      * @param canvasId canvas instance
@@ -157,5 +159,13 @@ public class CanvasUtil{
 
     public void setVariableAndValues(Map<String, String> variableAndValues) {
         this.variableAndValues = variableAndValues;
+    }
+
+    public String[] getCommandLineByLineArray() {
+        return commandLineByLineArray;
+    }
+
+    public void setCommandLineByLineArray(String[] commandLineByLineArray) {
+        this.commandLineByLineArray = commandLineByLineArray;
     }
 }
