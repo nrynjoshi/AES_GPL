@@ -1,6 +1,7 @@
 package com.narayanjoshi.gplapplication.service;
 
 import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
+import com.narayanjoshi.gplapplication.exception.CommandProcessingException;
 import com.narayanjoshi.gplapplication.service.command.programming.ProgrammingRootCommand;
 import com.narayanjoshi.gplapplication.util.Util;
 import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
@@ -15,44 +16,44 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The {@code CommandParser} class is responsible to perform all operation like 
+ * The {@code CommandParser} class is responsible to perform all operation like
  * identifying command and class that instance to perform operation.
  *
  * @author Narayan Joshi
  * @since v1.0
- * */
+ */
 public class CommandParser {
 
     /**
      * This commandSingle holds single line of code for parser.
-     * */
+     */
     private final String commandSingle;
 
     /**
      * This commandMultiple holds multiple line of code for parser.
-     * */
+     */
     private final String commandMultiple;
 
     /**
      * This canvasId holds canvas for performing operation on GPL application.
      * for more information @see Canvas
-     * */
+     */
     public Canvas canvasId;
 
     /**
-     * @param canvasId canvas instance
-     * @param commandSingle user provided single line of code.
-     * @param commandMultiple  user provided multiple line of code.
-     * */
-    public CommandParser(Canvas canvasId, String commandSingle, String commandMultiple){
+     * @param canvasId        canvas instance
+     * @param commandSingle   user provided single line of code.
+     * @param commandMultiple user provided multiple line of code.
+     */
+    public CommandParser(Canvas canvasId, String commandSingle, String commandMultiple) {
         this.canvasId = canvasId;
-        this.commandSingle= commandSingle;
+        this.commandSingle = commandSingle;
         this.commandMultiple = commandMultiple;
     }
 
     /**
      * this will process the run operation of command
-     * */
+     */
     public void run() {
         //this will run validate for run event
         CanvasUtil canvasUtilValidate = new CanvasUtil(canvasId, false);
@@ -65,8 +66,8 @@ public class CommandParser {
 
     /**
      * this will process the code for validation of syntax.
-     * */
-    public void syntax(){
+     */
+    public void syntax() {
         CanvasUtil canvasUtil = new CanvasUtil(canvasId, false);
         canvasUtil.setRunEvent(false);
         checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil);
@@ -75,28 +76,28 @@ public class CommandParser {
     /**
      * This method check the single or multiple line of code and gives priority
      * to single line of code over multiple line of code.
-     * */
-    public void checkSingleOrMultiLineCodeAndProcessAccordingly(CanvasUtil canvasUtil){
+     */
+    public void checkSingleOrMultiLineCodeAndProcessAccordingly(CanvasUtil canvasUtil) {
 
-        try{
+        try {
             boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
-            if(isRunSingleLineCommand){
-                processTheGivenInstruction(commandSingle, canvasUtil);
-            }else{
-                processTheGivenInstruction(commandMultiple, canvasUtil);
+            if (isRunSingleLineCommand) {
+                processTheGivenInstruction(commandSingle, canvasUtil, false);
+            } else {
+                processTheGivenInstruction(commandMultiple, canvasUtil, false);
             }
 
-            String messagePrefix = isRunSingleLineCommand?"Single line code":"Multiple line code";
-            if(!canvasUtil.isRunEvent()){
-                GPLShowMessage.showBuildSuccess(messagePrefix+" compiles successfully.");
-            } else if(canvasUtil.isRun()){
-                GPLShowMessage.showSuccess(messagePrefix+" run successfully.");
+            String messagePrefix = isRunSingleLineCommand ? "Single line code" : "Multiple line code";
+            if (!canvasUtil.isRunEvent()) {
+                GPLShowMessage.showBuildSuccess(messagePrefix + " compiles successfully.");
+            } else if (canvasUtil.isRun()) {
+                GPLShowMessage.showSuccess(messagePrefix + " run successfully.");
             }
-        }catch (CommandNotFoundException x){
+        } catch (CommandNotFoundException x) {
             x.printStackTrace();
-            if(x.getCode() == -1){
+            if (x.getCode() == -1) {
                 GPLShowMessage.showError(x.getMessage());
-            }else{
+            } else {
                 GPLShowMessage.showInfo(x.getMessage());
             }
             throw x;
@@ -109,27 +110,40 @@ public class CommandParser {
      * This method is responsible to split the instruction and get appropriate process instance
      * {@link CommandEnum} to perform operation of particular command. And validate the code
      * syntax and process it as per the event generate by the GPL application.
-     * */
-    public void processTheGivenInstruction(String command, CanvasUtil canvasUtil){
+     */
+    public void processTheGivenInstruction(String command, CanvasUtil canvasUtil, boolean innerEngineCall) {
 
-        if(Util.isEmpty(command)){
+        if (Util.isEmpty(command)) {
             throw new CommandNotFoundException("Command has not passed.\nPlease write your command on console and press Run button.", -1);
 
         }
 
-        String[] commandSplit = command.split("\n");
-
+        // this will be set only command passed by user without manipulation from inner call
+        String[] commandSplit;
+        if(!innerEngineCall){
+            canvasUtil.setCommandLineByLineArray(command.split("\n"));
+            commandSplit = canvasUtil.getCommandLineByLineArray();
+        }else{
+            commandSplit = new String[1];
+            commandSplit[0]= command;
+        }
 
         for (int i = 0; i < commandSplit.length; i++) {
             String chunkCommand = commandSplit[i];
-            if(Util.isEmpty(chunkCommand)){
+            if (Util.isEmpty(chunkCommand)) {
                 //ignore this as a new empty line
                 continue;
             }
 
-            chunkCommand = chunkCommand.trim();
+            chunkCommand = chunkCommand.toLowerCase().trim();
 
-            CommandEnum commandEnum=Util.getCommandOperation(chunkCommand);
+            if (Util.containIgnoreCase(chunkCommand, "while")) {
+                int lastProcessedCodeIndex = loopCommandProcess(i, canvasUtil);
+                i = lastProcessedCodeIndex;
+                continue;
+            }
+
+            CommandEnum commandEnum = Util.getCommandOperation(chunkCommand);
 
             canvasUtil.setUserInputCommandLineByLine(chunkCommand);
             RootCommandIfc gplEngine = commandEnum.getCommandInstance();
@@ -144,18 +158,81 @@ public class CommandParser {
         }
     }
 
+    private int loopCommandProcess(int currentExecutionIndex, CanvasUtil canvasUtil) {
+        String[] commandLineByLineArray = canvasUtil.getCommandLineByLineArray();
+        String chunkCommand = commandLineByLineArray[currentExecutionIndex];
+        String[] loopSplit = chunkCommand.split(" ", 2);
+        String conditionPart = loopSplit[1];
+
+        int loopStatementStartIndex = currentExecutionIndex+1;
+        int loopStatementProcessingIndex = currentExecutionIndex+1;
+        while (evalCondition(conditionPart, canvasUtil)) {
+            String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
+
+            if (chunkCommandNext.contains("endwhile")) {
+                loopStatementProcessingIndex = loopStatementStartIndex;
+            }else if (chunkCommandNext.contains("while")) {
+                return loopCommandProcess(loopStatementProcessingIndex, canvasUtil);
+            }else if(Util.isNotEmpty(chunkCommandNext)){
+                processTheGivenInstruction(chunkCommandNext, canvasUtil, true);
+                loopStatementProcessingIndex++;
+            }
+        }
+        return loopStatementProcessingIndex+1;
+    }
+
+    private boolean evalCondition(String command, CanvasUtil canvasUtil) {
+        boolean result;
+        if (Util.containIgnoreCase(command, "<")) {
+            String[] split = command.split("<");
+            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
+            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
+            result = operand1 < operand2;
+        } else if (Util.containIgnoreCase(command, ">")) {
+            String[] split = command.split(">");
+            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
+            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
+            result = operand1 > operand2;
+        } else if (Util.containIgnoreCase(command, "<=")) {
+            String[] split = command.split("<=");
+            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
+            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
+            result = operand1 <= operand2;
+        } else if (Util.containIgnoreCase(command, ">=")) {
+            String[] split = command.split(">=");
+            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
+            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
+            result = operand1 >= operand2;
+        } else if (Util.containIgnoreCase(command, "!=")) {
+            String[] split = command.split("!=");
+            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
+            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
+            result = operand1 != operand2;
+        } else if (Util.containIgnoreCase(command, "==")) {
+            String[] split = command.split("==");
+            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
+            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
+            result = operand1 == operand2;
+        } else {
+            throw new IllegalArgumentException("Invalid operator");
+        }
+        return result;
+    }
+
+
+
     /**
-     * */
+     *
+     */
     private boolean isRunSingleLineCommand(String commandSingle, String commandMultiple) {
-        if(Util.isNotEmpty(commandSingle)){
+        if (Util.isNotEmpty(commandSingle)) {
             return true;
-        }else if(Util.isNotEmpty(commandMultiple)){
+        } else if (Util.isNotEmpty(commandMultiple)) {
             return false;
         }
         throw new CommandNotFoundException("Command has not passed.\nPlease write your command on console and press Run button.", 1);
 
     }
-
 
 
 }
