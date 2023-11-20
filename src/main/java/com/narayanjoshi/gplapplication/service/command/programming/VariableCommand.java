@@ -31,8 +31,8 @@ public class VariableCommand extends ProgrammingRootCommand {
 
     }
 
-    private double arithmeticOperation(String expression) {
-        double result;
+    private int arithmeticOperation(String expression) {
+        int result;
         if (Util.containIgnoreCase(expression, "+")) {
             String[] splitVariableValue = expression.split("[+]");
             int operand1 = Util.getOperandValue(canvasUtil, splitVariableValue[0]);
@@ -47,7 +47,7 @@ public class VariableCommand extends ProgrammingRootCommand {
             String[] splitVariableValue = expression.split("/");
             int operand1 = Util.getOperandValue(canvasUtil, splitVariableValue[0]);
             int operand2 = Util.getOperandValue(canvasUtil, splitVariableValue[1]);
-            result = (double) operand1 / operand2;
+            result = operand1 / operand2;
         } else if (Util.containIgnoreCase(expression, "*")) {
             String[] splitVariableValue = expression.split("[*]");
             int operand1 = Util.getOperandValue(canvasUtil, splitVariableValue[0]);
