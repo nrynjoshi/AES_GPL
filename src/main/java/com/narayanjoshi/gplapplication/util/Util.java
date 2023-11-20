@@ -154,6 +154,12 @@ public class Util {
         return content != null && !content.trim().isEmpty();
     }
 
+
+    public static boolean containIgnoreCase(String content, String searchKeyword){
+        return content.toLowerCase().contains(searchKeyword.toLowerCase());
+    }
+
+
     /**
      * check pass value is validated and compare with lowercase
      *
@@ -269,5 +275,7 @@ public class Util {
         return paramVal;
     }
 
-
+    public static int getOperandValue(CanvasUtil canvasUtil, String nameOrVal) {
+        return Integer.parseInt(Util.checkForVariableAndExtractActualValue(canvasUtil, nameOrVal));
+    }
 }
