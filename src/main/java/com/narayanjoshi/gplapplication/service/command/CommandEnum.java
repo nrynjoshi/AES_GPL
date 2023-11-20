@@ -79,6 +79,8 @@ public enum CommandEnum {
      * &lt;flag_boolean&gt; attributes can have on or off values only
      */
     VARIABLE("var","<varname=varvalue_string>", new VariableCommand(),"description goes here"),
+    WHILE_LOOP("while","<varname=varvalue_string>", new WhileLoopCommand(),"description goes here"),
+    IF("if","<varname=varvalue_string>", new IFStatementCommand(),"description goes here"),
 
     ;
 
