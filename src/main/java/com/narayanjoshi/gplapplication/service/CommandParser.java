@@ -137,11 +137,7 @@ public class CommandParser {
 
             chunkCommand = chunkCommand.toLowerCase().trim();
 
-            if (Util.containIgnoreCase(chunkCommand, "while")) {
-                int lastProcessedCodeIndex = loopCommandProcess(i, canvasUtil);
-                i = lastProcessedCodeIndex;
-                continue;
-            }
+            canvasUtil.setCurrentProgramExecutionIndex(i);
 
             CommandEnum commandEnum = Util.getCommandOperation(chunkCommand);
 
@@ -155,69 +151,12 @@ public class CommandParser {
             if (canvasUtil.isRun() || gplEngine instanceof ProgrammingRootCommand) {
                 gplEngine.execute();
             }
+            //re-initialize loop index if some code like while if already execute its box and skip that one now using this one
+            i = canvasUtil.getCurrentProgramExecutionIndex();
         }
     }
 
-    private int loopCommandProcess(int currentExecutionIndex, CanvasUtil canvasUtil) {
-        String[] commandLineByLineArray = canvasUtil.getCommandLineByLineArray();
-        String chunkCommand = commandLineByLineArray[currentExecutionIndex];
-        String[] loopSplit = chunkCommand.split(" ", 2);
-        String conditionPart = loopSplit[1];
 
-        int loopStatementStartIndex = currentExecutionIndex+1;
-        int loopStatementProcessingIndex = currentExecutionIndex+1;
-        while (evalCondition(conditionPart, canvasUtil)) {
-            String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
-
-            if (chunkCommandNext.contains("endwhile")) {
-                loopStatementProcessingIndex = loopStatementStartIndex;
-            }else if (chunkCommandNext.contains("while")) {
-                return loopCommandProcess(loopStatementProcessingIndex, canvasUtil);
-            }else if(Util.isNotEmpty(chunkCommandNext)){
-                processTheGivenInstruction(chunkCommandNext, canvasUtil, true);
-                loopStatementProcessingIndex++;
-            }
-        }
-        return loopStatementProcessingIndex+1;
-    }
-
-    private boolean evalCondition(String command, CanvasUtil canvasUtil) {
-        boolean result;
-        if (Util.containIgnoreCase(command, "<")) {
-            String[] split = command.split("<");
-            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
-            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
-            result = operand1 < operand2;
-        } else if (Util.containIgnoreCase(command, ">")) {
-            String[] split = command.split(">");
-            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
-            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
-            result = operand1 > operand2;
-        } else if (Util.containIgnoreCase(command, "<=")) {
-            String[] split = command.split("<=");
-            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
-            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
-            result = operand1 <= operand2;
-        } else if (Util.containIgnoreCase(command, ">=")) {
-            String[] split = command.split(">=");
-            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
-            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
-            result = operand1 >= operand2;
-        } else if (Util.containIgnoreCase(command, "!=")) {
-            String[] split = command.split("!=");
-            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
-            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
-            result = operand1 != operand2;
-        } else if (Util.containIgnoreCase(command, "==")) {
-            String[] split = command.split("==");
-            int operand1 = Util.getOperandValue(canvasUtil, split[0]);
-            int operand2 = Util.getOperandValue(canvasUtil, split[1]);
-            result = operand1 == operand2;
-        } else {
-            throw new IllegalArgumentException("Invalid operator");
-        }
-        return result;
-    }
 
 
 
