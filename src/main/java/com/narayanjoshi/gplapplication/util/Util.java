@@ -276,6 +276,6 @@ public class Util {
     }
 
     public static int getOperandValue(CanvasUtil canvasUtil, String nameOrVal) {
-        return Integer.parseInt(Util.checkForVariableAndExtractActualValue(canvasUtil, nameOrVal));
+        return Integer.parseInt(Util.checkForVariableAndExtractActualValue(canvasUtil, nameOrVal.trim()));
     }
 }
