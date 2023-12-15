@@ -86,6 +86,24 @@ Open your command prompt on this application folder and run below command to acc
 	circle 80
 	moveto 25,205
 	triangle 50,50
+	
+// advance programming code
+   x = 100
+   y = 100
+   num1 = 25
+   num2 = 25
+   while num1< 200
+       moveto x,y
+       circle num1
+       while num2<200
+           triangle num2,num1
+           num2 = num2 + 25
+           x = x +5
+       endwhile
+   num2 = 25
+   num1 = num1 + 25
+   y = y +5
+   endwhile
 ```
 
 # Code Documentation File
