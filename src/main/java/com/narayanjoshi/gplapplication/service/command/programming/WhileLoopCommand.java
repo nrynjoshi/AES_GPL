@@ -31,20 +31,25 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
 
         int loopStatementStartIndex = currentExecutionIndex+1;
         int loopStatementProcessingIndex = currentExecutionIndex+1;
+        int loopStatementLastProcessedBeforeEndwhileTriggerIndex = currentExecutionIndex+1;
         while (evalCondition(conditionPart, canvasUtil)) {
             String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
-
+            if(Util.isEmpty(chunkCommandNext)){
+                loopStatementProcessingIndex++;
+                continue;
+            }
             if (chunkCommandNext.contains("endwhile")) {
+                loopStatementLastProcessedBeforeEndwhileTriggerIndex= loopStatementProcessingIndex;
                 loopStatementProcessingIndex = loopStatementStartIndex;
             }else if (chunkCommandNext.contains("while")) {
-                return loopCommandProcess(loopStatementProcessingIndex);
+                loopStatementProcessingIndex = loopCommandProcess(loopStatementProcessingIndex);
             }else if(Util.isNotEmpty(chunkCommandNext)){
                 CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, chunkCommandNext);
                 commandParser.processTheGivenInstruction(chunkCommandNext, canvasUtil, true);
                 loopStatementProcessingIndex++;
             }
         }
-        return loopStatementProcessingIndex+1;
+        return loopStatementLastProcessedBeforeEndwhileTriggerIndex+1;
     }
 
 

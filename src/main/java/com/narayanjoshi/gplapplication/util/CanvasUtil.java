@@ -4,6 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,49 +14,51 @@ import java.util.Map;
  *
  * @author Narayan Joshi
  * @since v1.0
- * */
-public class CanvasUtil{
+ */
+public class CanvasUtil {
 
     /**
      * This will hold the Canvas instance for processing.
+     *
      * @see Canvas
-     * */
+     */
     protected Canvas canvasId;
     /**
      * This will hold graphicsContext of canvas to perform draw operation of shapes.
+     *
      * @see GraphicsContext
-     * */
+     */
     protected GraphicsContext graphicsContext;
     /**
      * hold pen X position for drawing
-     * */
+     */
     private double moveX;
     /**
      * hold pen Y position for drawing
-     * */
+     */
     private double moveY;
     /**
      * if true run the command else just syntax check of the particular instruction
-     * */
+     */
     private boolean isRun = true;
 
     /**
      * if true when user called run event otherwise false for syntax check
-     * */
+     */
     private boolean isRunEvent = true;
 
     /**
      * if true fill the drawing shape else just draw using outline or stroke
-     * */
+     */
     private boolean isFillOn = false;
     /**
      * holds the pen color for drawing and by default it will be set as black
-     * */
+     */
     private Color penColor = Color.BLACK;
     /**
      * holds the user submit instruction
-     * */
-    private String userInputCommandLineByLine=null;
+     */
+    private String userInputCommandLineByLine = null;
 
 
     Map<String, String> variableAndValues = new HashMap<>();
@@ -66,33 +69,40 @@ public class CanvasUtil{
 
     /**
      * this contractor will run the instruction by default
+     *
      * @param canvasId canvas instance
-     * */
-    public CanvasUtil(Canvas canvasId){
+     */
+    public CanvasUtil(Canvas canvasId) {
         init(canvasId, true);
     }
+
     /**
      * this constructor will run or validate syntax as per the @see isRun boolean flag
+     *
      * @param canvasId canvas instance
-     * @param isRun indicator to run the program or just validate syntax
-     * */
-    public CanvasUtil(Canvas canvasId,boolean isRun){
+     * @param isRun    indicator to run the program or just validate syntax
+     */
+    public CanvasUtil(Canvas canvasId, boolean isRun) {
         init(canvasId, isRun);
     }
+
     /**
      * initialize the canvas, graphics and other basic flag to operation drawing and related command
+     *
      * @param canvasId canvas instance
-     * @param isRun indicator to run the program or just validate syntax
-     * */
-    private void init(Canvas canvasId, boolean isRun){
-        if(canvasId ==null){
+     * @param isRun    indicator to run the program or just validate syntax
+     */
+    private void init(Canvas canvasId, boolean isRun) {
+        if (canvasId == null) {
             throw new IllegalArgumentException("Canvas cannot be null.");
         }
-        this.canvasId= canvasId;
+        this.canvasId = canvasId;
         this.graphicsContext = canvasId.getGraphicsContext2D();
         this.graphicsContext.beginPath();
         this.isRun = isRun;
     }
+
+    private Map<String, String> methodCodeBlock = new HashMap<>();
 
     public Canvas getCanvasId() {
         return this.canvasId;
@@ -168,7 +178,7 @@ public class CanvasUtil{
     }
 
     public void setCommandLineByLineArray(String[] commandLineByLineArray) {
-        this.commandLineByLineArray = commandLineByLineArray;
+        this.commandLineByLineArray =Arrays.asList(commandLineByLineArray).stream().map(data -> data.trim()).toArray(String[]::new) ;
     }
 
     public int getCurrentProgramExecutionIndex() {
@@ -177,5 +187,9 @@ public class CanvasUtil{
 
     public void setCurrentProgramExecutionIndex(int currentProgramExecutionIndex) {
         this.currentProgramExecutionIndex = currentProgramExecutionIndex;
+    }
+
+    public Map<String, String> getMethodCodeBlock() {
+        return methodCodeBlock;
     }
 }
