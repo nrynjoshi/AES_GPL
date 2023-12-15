@@ -98,7 +98,7 @@ public class Util {
         }
 
         // check first with first one and other rest as param
-        String[] words1 = inputCommand.trim().split("\\s+");
+        String[] words1 = inputCommand.trim().split("\\s+", 2);
         List<String> al = Arrays.asList(words1);
 
 

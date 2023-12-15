@@ -23,8 +23,8 @@ public class VariableCommand extends ProgrammingRootCommand {
     public void execute() {
         String userParam = paramList.get(0);
         String[] split = userParam.split("=");
-        String resultVariableName = split[0];
-        String expression = split[1];
+        String resultVariableName = split[0].trim();
+        String expression = split[1].trim();
 
         //ignore this as it is comment no process
         canvasUtil.getVariableAndValues().put(resultVariableName, String.valueOf(arithmeticOperation(expression)));
