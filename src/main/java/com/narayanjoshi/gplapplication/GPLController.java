@@ -5,6 +5,7 @@ import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.GPLShowMessage;
 import com.narayanjoshi.gplapplication.util.Util;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -21,59 +22,78 @@ import java.io.File;
  *
  * @author Narayan Joshi
  * @since v1.0
- * */
+ */
 public class GPLController {
 
     /**
      * This canvasId is responsible for making all shapes and performing output on the display box.
+     *
      * @see Canvas for more information
-     * */
+     */
     @FXML
     public Canvas canvasId;
 
     /**
      * This inputMultipleCodeText holds multiple line code for further processing.
+     *
      * @see TextArea for more information
-     * */
+     */
     @FXML
     private TextArea inputMultipleCodeText;
 
     /**
      * This inputSingleCodeText holds single line code for further processing.
+     *
      * @see TextField for more information
-     * */
+     */
     @FXML
     private TextField inputSingleCodeText;
 
     /**
+     * This secondThreadMultilineTextArea holds multiple line code for further processing.
+     *
+     * @see TextArea for more information
+     */
+    @FXML
+    private TextArea secondThreadMultilineTextArea;
+
+    /**
+     * This secondThreadSingleTextField holds single line code for further processing.
+     *
+     * @see TextField for more information
+     */
+    @FXML
+    private TextField secondThreadSingleTextField;
+
+    /**
      * The run button form GLP application is the entry point for processing as per the given instruction
-     * */
+     */
     @FXML
     protected void onRunButtonClick() {
 
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        CommandParser commandParser= new CommandParser(canvasId, commandSingle, commandMultiple);
+        CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
         commandParser.run();
     }
 
     /**
      * The syntax button form GLP application is the entry point for validating all the command by the user input.
-     * */
+     */
     @FXML
     protected void onSyntaxButtonClick() {
 
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        CommandParser commandParser= new CommandParser(canvasId, commandSingle, commandMultiple);
+        CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
         commandParser.syntax();
     }
 
     /**
      * The save command button form GLP application will save the given instruction to a file path.
-     * */
+     */
     @FXML
     protected void onSaveCommandButtonClick() {
         FileChooser fileChooser = new FileChooser();
@@ -85,20 +105,20 @@ public class GPLController {
         File file = fileChooser.showSaveDialog(new Stage());
         //cancel the file chooser without saving file
         if (file == null) {
-            throw new CommandNotFoundException( "File has not saved.", -5);
+            throw new CommandNotFoundException("File has not saved.", -5);
         }
 
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        Util.saveContentToFile(file.getAbsolutePath(), commandSingle+"\n"+commandMultiple);
+        Util.saveContentToFile(file.getAbsolutePath(), commandSingle + "\n" + commandMultiple);
         GPLShowMessage.showSuccess("File saved successfully.");
 
     }
 
     /**
      * The open file button form GLP application will open file and read all instruction from particular file.
-     * */
+     */
     @FXML
     protected void onOpenFileButtonClick() {
         FileChooser fileChooser = new FileChooser();
@@ -110,7 +130,7 @@ public class GPLController {
         File file = fileChooser.showOpenDialog(new Stage());
         //cancel the file chooser without saving file
         if (file == null) {
-            throw new CommandNotFoundException( "File has not selected or canceled.", -5);
+            throw new CommandNotFoundException("File has not selected or canceled.", -5);
         }
         String readCommand = Util.readFromFile(file.getAbsolutePath());
         inputMultipleCodeText.setText(readCommand);
@@ -119,12 +139,53 @@ public class GPLController {
 
     /**
      * This method is trigger when the close button form GLP application trigger and will close the application.
+     *
      * @param event event object passed from UI menu with addition information of event
-     * */
+     */
     @FXML
     public void doExit(ActionEvent event) {
         Platform.exit();
         System.exit(0);
+    }
+
+    /**
+     * The run button form GLP application is the entry point for processing as per the given instruction
+     */
+    @FXML
+    protected void onSecondThreadRunButtonClick() {
+        String commandSingle = secondThreadSingleTextField.getText();
+        String commandMultiple = secondThreadMultilineTextArea.getText();
+        runSecondThreadProcess(commandSingle, commandMultiple, true);
+    }
+
+    /**
+     * The syntax button form GLP application is the entry point for validating all the command by the user input.
+     */
+    @FXML
+    protected void onSecondThreadSyntaxButtonClick() {
+        String commandSingle = secondThreadSingleTextField.getText();
+        String commandMultiple = secondThreadMultilineTextArea.getText();
+        runSecondThreadProcess(commandSingle, commandMultiple, false);
+    }
+
+    public void runSecondThreadProcess(String commandSingle, String commandMultiple, boolean isRun) {
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws Exception {
+                CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
+                if (isRun) {
+                    commandParser.run();
+                } else {
+                    commandParser.syntax();
+                }
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setName("Second Thread Task");
+        thread.run();
     }
 
 }
