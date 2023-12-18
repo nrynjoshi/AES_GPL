@@ -104,11 +104,11 @@ public class CanvasUtil {
 
     private Map<String, String> methodCodeBlock = new HashMap<>();
 
-    public Canvas getCanvasId() {
+    public synchronized Canvas getCanvasId() {
         return this.canvasId;
     }
 
-    public GraphicsContext getGraphicsContext() {
+    public synchronized GraphicsContext getGraphicsContext() {
         return this.graphicsContext;
     }
 
