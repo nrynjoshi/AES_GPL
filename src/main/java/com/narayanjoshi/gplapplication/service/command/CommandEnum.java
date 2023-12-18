@@ -82,6 +82,7 @@ public enum CommandEnum {
     WHILE_LOOP("while","<varname=varvalue_string>", new WhileLoopCommand(),"description goes here"),
     IF("if","<varname=varvalue_string>", new IFStatementCommand(),"description goes here"),
 
+    METHOD_DEF("def","<varname=varvalue_string>", new MethodDefCommand(),"description goes here"),
     ;
 
     public final String command;
