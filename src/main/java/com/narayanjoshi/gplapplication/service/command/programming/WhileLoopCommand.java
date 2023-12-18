@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication.service.command.programming;
 
+import com.narayanjoshi.gplapplication.exception.CommandProcessingException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import com.narayanjoshi.gplapplication.util.Util;
@@ -32,23 +33,28 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
         int loopStatementStartIndex = currentExecutionIndex+1;
         int loopStatementProcessingIndex = currentExecutionIndex+1;
         int loopStatementLastProcessedBeforeEndwhileTriggerIndex = currentExecutionIndex+1;
-        while (evalCondition(conditionPart, canvasUtil)) {
-            String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
-            if(Util.isEmpty(chunkCommandNext)){
-                loopStatementProcessingIndex++;
-                continue;
+        if(evalCondition(conditionPart, canvasUtil)){
+            while (evalCondition(conditionPart, canvasUtil)) {
+                String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
+                if(Util.isEmpty(chunkCommandNext)){
+                    loopStatementProcessingIndex++;
+                    continue;
+                }
+                if (chunkCommandNext.contains("endwhile")) {
+                    loopStatementLastProcessedBeforeEndwhileTriggerIndex= loopStatementProcessingIndex;
+                    loopStatementProcessingIndex = loopStatementStartIndex;
+                }else if (chunkCommandNext.contains("while")) {
+                    loopStatementProcessingIndex = loopCommandProcess(loopStatementProcessingIndex);
+                }else if(Util.isNotEmpty(chunkCommandNext)){
+                    CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, chunkCommandNext);
+                    commandParser.processTheGivenInstruction(chunkCommandNext, canvasUtil, true);
+                    loopStatementProcessingIndex++;
+                }
             }
-            if (chunkCommandNext.contains("endwhile")) {
-                loopStatementLastProcessedBeforeEndwhileTriggerIndex= loopStatementProcessingIndex;
-                loopStatementProcessingIndex = loopStatementStartIndex;
-            }else if (chunkCommandNext.contains("while")) {
-                loopStatementProcessingIndex = loopCommandProcess(loopStatementProcessingIndex);
-            }else if(Util.isNotEmpty(chunkCommandNext)){
-                CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, chunkCommandNext);
-                commandParser.processTheGivenInstruction(chunkCommandNext, canvasUtil, true);
-                loopStatementProcessingIndex++;
-            }
+        }else {
+           throw new CommandProcessingException("Loop condition is not valid to process", -1);
         }
+
         return loopStatementLastProcessedBeforeEndwhileTriggerIndex+1;
     }
 
