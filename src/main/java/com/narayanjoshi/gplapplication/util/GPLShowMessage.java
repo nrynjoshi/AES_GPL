@@ -29,8 +29,8 @@ public class GPLShowMessage {
      *
      * @param message text message to display on notification message box area
      * */
-    public static void showError(String message){
-        prepareMessage("Error: ", message, 4000).showError();
+    public static void showError(String message, int lastExecutionIndex){
+        prepareMessage("Error: ", message+" (Error at Line "+(lastExecutionIndex+1)+")", 4000).showError();
     }
 
     /**
