@@ -9,6 +9,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -65,6 +66,9 @@ public class GPLController {
     @FXML
     private TextField secondThreadSingleTextField;
 
+    @FXML
+    private Tab threadTabOne;
+
     /**
      * The run button form GLP application is the entry point for processing as per the given instruction
      */
@@ -74,8 +78,7 @@ public class GPLController {
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
-        commandParser.run();
+        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, true, "First Thread Run");
     }
 
     /**
@@ -87,8 +90,7 @@ public class GPLController {
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
-        commandParser.syntax();
+        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, false, "First Thread Syntax");
     }
 
     /**
@@ -98,9 +100,17 @@ public class GPLController {
     protected void onSaveCommandButtonClick() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("C:/"));
-        fileChooser.setTitle("Save your command to file");
+        boolean tabOneSelected = threadTabOne.isSelected();
+        fileChooser.setTitle("Save your "+(tabOneSelected?"Thread One":"Thread Two")+" command to file");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-        fileChooser.setInitialFileName("gpl_application_command");
+
+
+        if(tabOneSelected){
+            fileChooser.setInitialFileName("gpl_application_thread1_command");
+        }else{
+            fileChooser.setInitialFileName("gpl_application_thread2_command");
+        }
+
 
         File file = fileChooser.showSaveDialog(new Stage());
         //cancel the file chooser without saving file
@@ -108,8 +118,16 @@ public class GPLController {
             throw new CommandNotFoundException("File has not saved.", -5);
         }
 
-        String commandSingle = inputSingleCodeText.getText();
-        String commandMultiple = inputMultipleCodeText.getText();
+        String commandSingle;
+        String commandMultiple;
+        if(tabOneSelected){
+            commandSingle = inputSingleCodeText.getText();
+            commandMultiple = inputMultipleCodeText.getText();
+        }else{
+            commandSingle = secondThreadSingleTextField.getText();
+            commandMultiple = secondThreadMultilineTextArea.getText();
+        }
+
 
         Util.saveContentToFile(file.getAbsolutePath(), commandSingle + "\n" + commandMultiple);
         GPLShowMessage.showSuccess("File saved successfully.");
@@ -123,7 +141,8 @@ public class GPLController {
     protected void onOpenFileButtonClick() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("C:/"));
-        fileChooser.setTitle("Load your saved command from file");
+        boolean tabOneSelected = threadTabOne.isSelected();
+        fileChooser.setTitle("Load your saved command from file to "+(tabOneSelected?"Thread One":"Thread Two"));
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
 
 
@@ -133,7 +152,13 @@ public class GPLController {
             throw new CommandNotFoundException("File has not selected or canceled.", -5);
         }
         String readCommand = Util.readFromFile(file.getAbsolutePath());
-        inputMultipleCodeText.setText(readCommand);
+
+        if(tabOneSelected){
+            inputMultipleCodeText.setText(readCommand);
+        }else {
+            secondThreadMultilineTextArea.setText(readCommand);
+        }
+
         GPLShowMessage.showSuccess("File read successfully.");
     }
 
@@ -155,7 +180,7 @@ public class GPLController {
     protected void onSecondThreadRunButtonClick() {
         String commandSingle = secondThreadSingleTextField.getText();
         String commandMultiple = secondThreadMultilineTextArea.getText();
-        runSecondThreadProcess(commandSingle, commandMultiple, true);
+        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, true, "Second Thread Run");
     }
 
     /**
@@ -165,26 +190,28 @@ public class GPLController {
     protected void onSecondThreadSyntaxButtonClick() {
         String commandSingle = secondThreadSingleTextField.getText();
         String commandMultiple = secondThreadMultilineTextArea.getText();
-        runSecondThreadProcess(commandSingle, commandMultiple, false);
+        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, false, "Second Thread Syntax");
     }
 
-    public void runSecondThreadProcess(String commandSingle, String commandMultiple, boolean isRun) {
+    public void runGPLProgrammingOnThreadProcess(String commandSingle, String commandMultiple, boolean isRun, String threadName) {
 
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
                 CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
+                System.out.println("Processing: "+threadName);
                 if (isRun) {
                     commandParser.run();
                 } else {
                     commandParser.syntax();
                 }
+                System.out.println("Processed: "+threadName);
                 return null;
             }
         };
 
         Thread thread = new Thread(task);
-        thread.setName("Second Thread Task");
+        thread.setName(threadName);
         thread.run();
     }
 
