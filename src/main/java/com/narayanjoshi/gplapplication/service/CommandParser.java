@@ -96,7 +96,15 @@ public class CommandParser {
         } catch (CommandNotFoundException x) {
             x.printStackTrace();
             if (x.getCode() == -1) {
-                GPLShowMessage.showError(x.getMessage());
+                GPLShowMessage.showError(x.getMessage(), canvasUtil.getCurrentProgramExecutionIndex());
+            } else {
+                GPLShowMessage.showInfo(x.getMessage());
+            }
+            throw x;
+        } catch (CommandProcessingException x) {
+            x.printStackTrace();
+            if (x.getCode() == -1) {
+                GPLShowMessage.showError(x.getMessage(), canvasUtil.getCurrentProgramExecutionIndex());
             } else {
                 GPLShowMessage.showInfo(x.getMessage());
             }
