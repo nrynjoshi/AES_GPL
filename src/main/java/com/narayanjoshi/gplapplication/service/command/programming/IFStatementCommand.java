@@ -29,13 +29,17 @@ public class IFStatementCommand   extends ProgrammingRootCommand {
 
         int loopStatementStartIndex = currentExecutionIndex+1;
         int loopStatementProcessingIndex = currentExecutionIndex+1;
+        boolean ifStatementCondition = evalCondition(conditionPart, canvasUtil);
         while (true){
-            if (evalCondition(conditionPart, canvasUtil)) {
-                String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
 
-                if (chunkCommandNext.contains("endif")) {
-                    break;
-                }else if (chunkCommandNext.contains("if")) {
+            String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
+
+            if (chunkCommandNext.contains("endif")) {
+                break;
+            }
+
+            if (ifStatementCondition) {
+                if (chunkCommandNext.contains("if")) {
                     return ifCommandProcess(loopStatementProcessingIndex);
                 }else if(Util.isNotEmpty(chunkCommandNext)){
                     CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, chunkCommandNext);
