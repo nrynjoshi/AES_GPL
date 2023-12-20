@@ -83,6 +83,8 @@ public enum CommandEnum {
     IF("if","<varname=varvalue_string>", new IFStatementCommand(),"description goes here"),
 
     METHOD_DEF("def","<varname=varvalue_string>", new MethodDefCommand(),"description goes here"),
+    METHOD_CALL("methodCall","<varname=varvalue_string>", new MethodCallCommand(),"description goes here"),
+
     ;
 
     public final String command;

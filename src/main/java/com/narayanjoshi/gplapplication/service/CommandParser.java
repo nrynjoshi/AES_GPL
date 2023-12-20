@@ -135,37 +135,42 @@ public class CommandParser {
             commandSplit = new String[1];
             commandSplit[0]= command;
         }
-
-        for (int i = 0; i < commandSplit.length; i++) {
-            String chunkCommand = commandSplit[i];
-            if (Util.isEmpty(chunkCommand)) {
-                //ignore this as a new empty line
-                continue;
-            }
-
-            chunkCommand = chunkCommand.toLowerCase().trim();
-
+        canvasUtil.setCurrentProgramExecutionIndex(0);
+        for (int i = 0; i < commandSplit.length; i=canvasUtil.getCurrentProgramExecutionIndex()+1) {
             canvasUtil.setCurrentProgramExecutionIndex(i);
 
-            CommandEnum commandEnum = Util.getCommandOperation(chunkCommand);
+            System.out.println("Processing Index :"+i+", Working on: "+(canvasUtil.isRun()?"Running":"Syntax"));
 
-            canvasUtil.setUserInputCommandLineByLine(chunkCommand);
-            RootCommandIfc gplEngine = commandEnum.getCommandInstance();
-            gplEngine.init(canvasUtil, commandEnum);
-
-            gplEngine.validate();
-
-
-            if (canvasUtil.isRun() || gplEngine instanceof ProgrammingRootCommand) {
-                gplEngine.execute();
-            }
+            if (executeCoreEngine(canvasUtil, commandSplit, i)) continue;
             //re-initialize loop index if some code like while if already execute its box and skip that one now using this one
-            i = canvasUtil.getCurrentProgramExecutionIndex();
+            System.out.println("Processed Index :"+i+", Working on: "+(canvasUtil.isRun()?"Running":"Syntax"));
         }
     }
 
+    public static boolean executeCoreEngine(CanvasUtil canvasUtil, String[] commandSplit, int i) {
+        String chunkCommand = commandSplit[i];
+        if (Util.isEmpty(chunkCommand)) {
+            //ignore this as a new empty line
+            System.out.println("Processed Index :"+ i +", Working on: "+(canvasUtil.isRun()?"Running":"Syntax"));
+            return true;
+        }
+
+        chunkCommand = chunkCommand.toLowerCase().trim();
+
+        CommandEnum commandEnum = Util.getCommandOperation(chunkCommand);
+
+        canvasUtil.setUserInputCommandLineByLine(chunkCommand);
+        RootCommandIfc gplEngine = commandEnum.getCommandInstance();
+        gplEngine.init(canvasUtil, commandEnum);
+
+        gplEngine.validate();
 
 
+        if (canvasUtil.isRun() || gplEngine instanceof ProgrammingRootCommand) {
+            gplEngine.execute();
+        }
+        return false;
+    }
 
 
     /**
