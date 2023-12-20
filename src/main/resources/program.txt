@@ -40,3 +40,14 @@ var num2 = 25
 var num1 = num1 + 25
 var y = y +5
 endwhile
+
+//method work
+def testMethod a, b
+	var i =40
+	circle i
+endMethod
+
+clear
+circle 80
+methodCall testMethod
+circle 5
