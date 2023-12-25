@@ -3,6 +3,7 @@ package com.narayanjoshi.gplapplication.service;
 import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.exception.CommandProcessingException;
 import com.narayanjoshi.gplapplication.service.command.programming.ProgrammingRootCommand;
+import com.narayanjoshi.gplapplication.util.GPLThreadRunner;
 import com.narayanjoshi.gplapplication.util.Util;
 import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
@@ -81,11 +82,12 @@ public class CommandParser {
 
         try {
             boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
-            if (isRunSingleLineCommand) {
-                processTheGivenInstruction(commandSingle, canvasUtil, false);
-            } else {
-                processTheGivenInstruction(commandMultiple, canvasUtil, false);
-            }
+
+            //thread code block
+            GPLThreadRunner gplThreadRunner = new GPLThreadRunner();
+            gplThreadRunner.init(isRunSingleLineCommand, commandSingle, commandMultiple, canvasUtil, false);
+            gplThreadRunner.start();
+            //thread code block end
 
             String messagePrefix = isRunSingleLineCommand ? "Single line code" : "Multiple line code";
             if (!canvasUtil.isRunEvent()) {
@@ -139,11 +141,9 @@ public class CommandParser {
         for (int i = 0; i < commandSplit.length; i=canvasUtil.getCurrentProgramExecutionIndex()+1) {
             canvasUtil.setCurrentProgramExecutionIndex(i);
 
-            System.out.println("Processing Index :"+i+", Working on: "+(canvasUtil.isRun()?"Running":"Syntax"));
 
             if (executeCoreEngine(canvasUtil, commandSplit, i)) continue;
             //re-initialize loop index if some code like while if already execute its box and skip that one now using this one
-            System.out.println("Processed Index :"+i+", Working on: "+(canvasUtil.isRun()?"Running":"Syntax"));
         }
     }
 
@@ -151,7 +151,6 @@ public class CommandParser {
         String chunkCommand = commandSplit[i];
         if (Util.isEmpty(chunkCommand)) {
             //ignore this as a new empty line
-            System.out.println("Processed Index :"+ i +", Working on: "+(canvasUtil.isRun()?"Running":"Syntax"));
             return true;
         }
 
@@ -169,6 +168,8 @@ public class CommandParser {
         if (canvasUtil.isRun() || gplEngine instanceof ProgrammingRootCommand) {
             gplEngine.execute();
         }
+        //sleep thread after each command to process another command
+        Util.sleepThread(10);
         return false;
     }
 

@@ -278,4 +278,13 @@ public class Util {
     public static int getOperandValue(CanvasUtil canvasUtil, String nameOrVal) {
         return Integer.parseInt(Util.checkForVariableAndExtractActualValue(canvasUtil, nameOrVal.trim()));
     }
+
+    public static void sleepThread(long millis){
+        try {
+            // Sleep for a short duration to control the update rate
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

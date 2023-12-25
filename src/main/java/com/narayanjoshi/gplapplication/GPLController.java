@@ -78,7 +78,7 @@ public class GPLController {
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, true, "First Thread Run");
+        runGPLProgrammingOnThreadProcessThread(commandSingle, commandMultiple, true, "First Thread Run");
     }
 
     /**
@@ -90,7 +90,7 @@ public class GPLController {
         String commandSingle = inputSingleCodeText.getText();
         String commandMultiple = inputMultipleCodeText.getText();
 
-        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, false, "First Thread Syntax");
+        runGPLProgrammingOnThreadProcessThread(commandSingle, commandMultiple, false, "First Thread Syntax");
     }
 
     /**
@@ -180,7 +180,7 @@ public class GPLController {
     protected void onSecondThreadRunButtonClick() {
         String commandSingle = secondThreadSingleTextField.getText();
         String commandMultiple = secondThreadMultilineTextArea.getText();
-        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, true, "Second Thread Run");
+        runGPLProgrammingOnThreadProcessThread(commandSingle, commandMultiple, true, "Second Thread Run");
     }
 
     /**
@@ -190,29 +190,23 @@ public class GPLController {
     protected void onSecondThreadSyntaxButtonClick() {
         String commandSingle = secondThreadSingleTextField.getText();
         String commandMultiple = secondThreadMultilineTextArea.getText();
-        runGPLProgrammingOnThreadProcess(commandSingle, commandMultiple, false, "Second Thread Syntax");
+        runGPLProgrammingOnThreadProcessThread(commandSingle, commandMultiple, false, "Second Thread Syntax");
     }
 
-    public void runGPLProgrammingOnThreadProcess(String commandSingle, String commandMultiple, boolean isRun, String threadName) {
+    public void runGPLProgrammingOnThreadProcessThread(String commandSingle, String commandMultiple, boolean isRun, String threadName) {
+        System.out.println("Processing: "+threadName);
 
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws Exception {
-                CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
-                System.out.println("Processing: "+threadName);
-                if (isRun) {
-                    commandParser.run();
-                } else {
-                    commandParser.syntax();
-                }
-                System.out.println("Processed: "+threadName);
-                return null;
-            }
-        };
+        CommandParser commandParser = new CommandParser(canvasId, commandSingle, commandMultiple);
+        if (isRun) {
+            commandParser.run();
+        } else {
+            commandParser.syntax();
+        }
 
-        Thread thread = new Thread(task);
-        thread.setName(threadName);
-        thread.run();
     }
+
+
+
+
 
 }
