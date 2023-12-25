@@ -1,6 +1,9 @@
 package com.narayanjoshi.gplapplication;
 
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.service.CommandParser;
+import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

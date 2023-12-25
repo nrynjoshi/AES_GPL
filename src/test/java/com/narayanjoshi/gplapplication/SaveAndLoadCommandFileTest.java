@@ -1,13 +1,11 @@
 
 package com.narayanjoshi.gplapplication;
 
-import java.io.File;
-
+import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.util.Util;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.canvas.Canvas;
 /**
  * save file and open file test
  * */

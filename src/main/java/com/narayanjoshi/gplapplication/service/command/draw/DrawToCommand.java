@@ -1,7 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class DrawToCommand extends RootCommand {
+public class DrawToCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -20,11 +19,11 @@ public class DrawToCommand extends RootCommand {
      * This will read line  X and Y coordinate of the ending point of the line from the user input command.
      */
     @Override
-    public void draw(String command) {
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
-        double x = Float.parseFloat(params.get(0));
-        double y = Float.parseFloat(params.get(1));
+
+        double x = Float.parseFloat(paramList.get(0));
+        double y = Float.parseFloat(paramList.get(1));
 
         if(canvasUtil.isFillOn()){
             canvasUtil.getGraphicsContext().strokeLine(canvasUtil.getMoveX(), canvasUtil.getMoveY(), x, y);

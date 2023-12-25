@@ -1,7 +1,4 @@
-package com.narayanjoshi.gplapplication.service.command;
-
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
 /**
  * The {@code ClearCommand} class represents validation of command and
@@ -10,14 +7,14 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class ClearCommand extends RootCommand {
+public class ClearCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
      * This method will clear the drawing area but does not move the pen position.
      */
     @Override
-    public void draw(String command) {
+    public void draw() {
         canvasUtil.getGraphicsContext().clearRect(0, 0, canvasUtil.getCanvasId().getWidth(), canvasUtil.getCanvasId().getHeight());
     }
 

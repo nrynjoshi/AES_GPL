@@ -1,8 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.CommandEnum;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class CircleCommand extends RootCommand {
+public class CircleCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -21,14 +19,12 @@ public class CircleCommand extends RootCommand {
      * This will read radius from parameter of that particular command and draw a circle.
      */
     @Override
-    public void draw(String command) {
-
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
-        double radius = Float.parseFloat(params.get(0));
+        double radius = Float.parseFloat(paramList.get(0));
         if(canvasUtil.isFillOn()){
             canvasUtil.getGraphicsContext().fillOval(moveX - radius, moveY - radius, 2* radius, 2* radius);
         }else{

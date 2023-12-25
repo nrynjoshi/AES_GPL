@@ -1,7 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.programming;
 
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.service.command.draw.DrawRootCommand;
 
 /**
  * The {@code CommentCommand} class represents validation of command and
@@ -10,7 +9,7 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class CommentCommand extends RootCommand {
+public class CommentCommand extends ProgrammingRootCommand {
 
     /**
      * {@inheritDoc}
@@ -19,7 +18,7 @@ public class CommentCommand extends RootCommand {
 
      */
     @Override
-    public void draw(String command) {
+    public void execute() {
         //ignore this as it is comment no process
     }
 }

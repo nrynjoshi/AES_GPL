@@ -1,11 +1,10 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.CommandNotFound;
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
+import com.narayanjoshi.gplapplication.util.Util;
 import javafx.scene.paint.Color;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,21 +14,22 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class PenCommand extends RootCommand {
+public class PenCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
      * this will validate the colour param passed by user.
-     * @throws CommandNotFound if param colour is not defined or valid.
+     * @throws CommandNotFoundException if param colour is not defined or valid.
      */
     @Override
-    public void validate(String command) {
-        Util.validateCommand(command, this.command, this.param);
-        String color = Util.getAllParameterFromCommand(command).get(0);
+    public void validate() {
+        Util.validateCommand(canvasUtil.getUserInputCommandLineByLine(), paramList, commandEnum);
+
+        String color = paramList.get(0);
         try{
             Color.valueOf(color);
         }catch (IllegalArgumentException e){
-            throw new CommandNotFound(String.format("'%s' command attribute values does not exist.\nError on '%s'.",this.command, command), -1);
+            throw new CommandNotFoundException(String.format("'%s' command attribute values does not exist.\nError on '%s'.",commandEnum.getCommand(), canvasUtil.getUserInputCommandLineByLine()), -1);
         }
 
 
@@ -42,9 +42,8 @@ public class PenCommand extends RootCommand {
      * @see Color for more information about pen colour acceptance
      */
     @Override
-    public void draw(String command) {
-        List<String> param = Util.getAllParameterFromCommand(command);
-        Color color = Color.valueOf(param.get(0));
+    public void draw() {
+        Color color = Color.valueOf(paramList.get(0));
         canvasUtil.setPenColor(color);
         if(canvasUtil.isFillOn()){
             canvasUtil.getGraphicsContext().setFill(canvasUtil.getPenColor());

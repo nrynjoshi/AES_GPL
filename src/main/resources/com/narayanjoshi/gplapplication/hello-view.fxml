@@ -8,27 +8,119 @@
 <?import javafx.scene.text.*?>
 
 <GridPane prefHeight="599.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.narayanjoshi.gplapplication.GPLController">
-
-
-   <HBox prefHeight="144.0" prefWidth="800.0" style="-fx-padding: 2;" GridPane.rowIndex="1">
-
+   <VBox prefHeight="811.0" prefWidth="1001.0">
       <children>
-         <Button onAction="#onRunButtonClick" prefHeight="30.0" prefWidth="60.0" style="-fx-start-margin: 1; -fx-background-color: #28a745;" text="Run" textAlignment="CENTER" textFill="WHITE">
-            <HBox.margin>
-               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-            </HBox.margin>
-            <font>
-               <Font name="System Bold Italic" size="14.0" />
-            </font></Button>
-         <Button onAction="#onSyntaxButtonClick" prefHeight="30.0" prefWidth="68.0" style="-fx-start-margin: 1; -fx-background-color: #dc3545;" text="Syntax" textFill="WHITE">
-            <HBox.margin>
-               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </HBox.margin>
-            <font>
-               <Font name="System Bold Italic" size="14.0" />
-            </font></Button>
+         <MenuBar prefHeight="26.0" prefWidth="1003.0">
+           <menus>
+               <Menu mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem mnemonicParsing="false" onAction="#onOpenFileButtonClick" text="Open File" />
+                       <MenuItem mnemonicParsing="false" onAction="#onSaveCommandButtonClick" text="Save Command" />
+                       <MenuItem mnemonicParsing="false" onAction="#doExit" text="Close" />
+                   </items>
+               </Menu>
+           </menus>
+         </MenuBar>
+         <HBox prefHeight="633.0" prefWidth="1001.0">
+            <children>
+               <TabPane prefHeight="473.0" prefWidth="745.0" style="-fx-border-color: white;" tabClosingPolicy="UNAVAILABLE">
+                 <tabs>
+                   <Tab fx:id="threadTabOne" text="Thread Tab 1">
+                     <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <VBox prefHeight="543.0" prefWidth="595.0">
+                                    <children>
+                                       <TextArea fx:id="inputMultipleCodeText" prefHeight="421.0" prefWidth="551.0">
+                                          <VBox.margin>
+                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          </VBox.margin>
+                                       </TextArea>
+                                       <TextField fx:id="inputSingleCodeText" prefHeight="30.0" prefWidth="575.0">
+                                          <VBox.margin>
+                                             <Insets bottom="10.0" left="10.0" right="10.0" />
+                                          </VBox.margin>
+                                       </TextField>
+                                       <HBox prefHeight="39.0" prefWidth="200.0">
+                                          <children>
+                                             <Button onAction="#onRunButtonClick" prefHeight="30.0" prefWidth="60.0" style="-fx-start-margin: 1; -fx-background-color: #28a745;" text="Run" textAlignment="CENTER" textFill="WHITE">
+                                                <HBox.margin>
+                                                   <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                                                </HBox.margin>
+                                                <font>
+                                                   <Font name="System Bold Italic" size="14.0" />
+                                                </font>
+                                             </Button>
+                                             <Button onAction="#onSyntaxButtonClick" prefHeight="30.0" prefWidth="68.0" style="-fx-start-margin: 1; -fx-background-color: #dc3545;" text="Syntax" textFill="WHITE">
+                                                <HBox.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </HBox.margin>
+                                                <font>
+                                                   <Font name="System Bold Italic" size="14.0" />
+                                                </font>
+                                             </Button>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </AnchorPane>
+                     </content>
+                   </Tab>
+                   <Tab fx:id="threadTabTwo" text="Thread Tab 2">
+                     <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                             <children>
+                                 <VBox prefHeight="543.0" prefWidth="595.0">
+                                     <children>
+                                         <TextArea fx:id="secondThreadMultilineTextArea" prefHeight="421.0" prefWidth="551.0">
+                                             <VBox.margin>
+                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </VBox.margin>
+                                         </TextArea>
+                                         <TextField fx:id="secondThreadSingleTextField" prefHeight="30.0" prefWidth="575.0">
+                                             <VBox.margin>
+                                                 <Insets bottom="10.0" left="10.0" right="10.0" />
+                                             </VBox.margin>
+                                         </TextField>
+                                         <HBox prefHeight="39.0" prefWidth="200.0">
+                                             <children>
+                                                 <Button onAction="#onSecondThreadRunButtonClick" prefHeight="30.0" prefWidth="60.0" style="-fx-start-margin: 1; -fx-background-color: #28a745;" text="Run" textAlignment="CENTER" textFill="WHITE">
+                                                     <HBox.margin>
+                                                         <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                                                     </HBox.margin>
+                                                     <font>
+                                                         <Font name="System Bold Italic" size="14.0" />
+                                                     </font>
+                                                 </Button>
+                                                 <Button onAction="#onSecondThreadSyntaxButtonClick" prefHeight="30.0" prefWidth="68.0" style="-fx-start-margin: 1; -fx-background-color: #dc3545;" text="Syntax" textFill="WHITE">
+                                                     <HBox.margin>
+                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                     </HBox.margin>
+                                                     <font>
+                                                         <Font name="System Bold Italic" size="14.0" />
+                                                     </font>
+                                                 </Button>
+                                             </children>
+                                         </HBox>
+                                     </children>
+                                 </VBox>
+                             </children>
+                         </AnchorPane>
+                     </content>
+                   </Tab>
+                 </tabs>
+                  
+               </TabPane>
 
+               <Canvas fx:id="canvasId" height="570.0" style="-fx-border-width: 1px;" width="405.0" />
+            </children>
+         </HBox>
       </children>
+   </VBox>
+
+
+   <HBox opacity="0.0" prefHeight="144.0" prefWidth="800.0" style="-fx-padding: 2;" GridPane.rowIndex="1">
       <effect>
          <Lighting bumpInput="$null">
             <light>
@@ -37,71 +129,6 @@
          </Lighting>
       </effect>
    </HBox>
-   <VBox>
-      <children>
-         <MenuBar>
-           <menus>
-               <Menu mnemonicParsing="false" text="File">
-                   <items>
-                       <MenuItem mnemonicParsing="false" text="Open File" onAction="#onOpenFileButtonClick"/>
-                       <MenuItem mnemonicParsing="false" text="Save Command" onAction="#onSaveCommandButtonClick"/>
-                       <MenuItem mnemonicParsing="false" text="Close" onAction="#doExit" />
-                   </items>
-               </Menu>
-           </menus>
-         </MenuBar>
-         <HBox>
-      
-      
-            <children>
-               <VBox>
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                  </VBox.margin>
-                  <children>
-                     <TextArea fx:id="inputMultipleCodeText" prefHeight="513.0" prefWidth="595.0">
-                        <VBox.margin>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                        </VBox.margin>
-                     </TextArea>
-                     <TextField fx:id="inputSingleCodeText" prefHeight="80.0" prefWidth="575.0">
-                        <VBox.margin>
-                           <Insets bottom="10.0" left="10.0" right="10.0" />
-                        </VBox.margin>
-                     </TextField>
-                  </children>
-      
-               </VBox>
-      
-               <VBox style="-fx-background-color: lightgray;">
-                  <VBox.margin>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                  </VBox.margin>
-                  <children>
-      <!--               <Label fx:id="welcomeText" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #e8e3e3;">-->
-      <!--                  <HBox.margin>-->
-      <!--                     <Insets left="5.0" />-->
-      <!--                  </HBox.margin>-->
-      <!--               </Label>-->
-                     <Canvas fx:id="canvasId" height="478.0" style="-fx-border-width: 1px;" width="405.0">
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Canvas>
-                  </children>
-                  <opaqueInsets>
-                     <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                     <Insets bottom="10.0" right="10.0" top="10.0" />
-                  </HBox.margin>
-      
-               </VBox>
-      
-            </children>
-         </HBox>
-      </children>
-   </VBox>
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>

@@ -1,8 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
-import javafx.scene.paint.Color;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class TriangleCommand extends RootCommand {
+public class TriangleCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -22,15 +20,13 @@ public class TriangleCommand extends RootCommand {
      * This will read base and adjacent of the triangle from parameter of that particular command and draw a triangle. 
      */
     @Override
-    public void draw(String command) {
-
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
         double moveX = canvasUtil.getMoveX();
         double moveY = canvasUtil.getMoveY();
 
-        double base = Float.parseFloat(params.get(0))+ moveX;
-        double adj = Float.parseFloat(params.get(1))+ moveY;
+        double base = Float.parseFloat(paramList.get(0))+ moveX;
+        double adj = Float.parseFloat(paramList.get(1))+ moveY;
 //        double hyp = Float.parseFloat(params.get(2))+ moveY;
 
 

@@ -1,8 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
-import javafx.fxml.FXML;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class MoveToCommand extends RootCommand {
+public class MoveToCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -21,11 +19,10 @@ public class MoveToCommand extends RootCommand {
      * This will read x and y position from parameter of that particular command and move the pen position to that x and y position.
      */
     @Override
-    public void draw(String command) {
-        List<String> params = Util.getAllParameterFromCommand(command);
+    public void draw() {
 
-        double x = Float.parseFloat(params.get(0));
-        double y = Float.parseFloat(params.get(1));
+        double x = Float.parseFloat(paramList.get(0));
+        double y = Float.parseFloat(paramList.get(1));
 
         canvasUtil.setMoveX(x);
         canvasUtil.setMoveY(y);

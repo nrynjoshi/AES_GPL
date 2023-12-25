@@ -19,4 +19,12 @@ module com.narayanjoshi.gplapplication {
     opens com.narayanjoshi.gplapplication.service to javafx.fxml;
     exports com.narayanjoshi.gplapplication.service.command;
     opens com.narayanjoshi.gplapplication.service.command to javafx.fxml;
+    exports com.narayanjoshi.gplapplication.service.command.draw;
+    opens com.narayanjoshi.gplapplication.service.command.draw to javafx.fxml;
+    exports com.narayanjoshi.gplapplication.service.command.programming;
+    opens com.narayanjoshi.gplapplication.service.command.programming to javafx.fxml;
+    exports com.narayanjoshi.gplapplication.util;
+    opens com.narayanjoshi.gplapplication.util to javafx.fxml;
+    exports com.narayanjoshi.gplapplication.exception;
+    opens com.narayanjoshi.gplapplication.exception to javafx.fxml;
 }

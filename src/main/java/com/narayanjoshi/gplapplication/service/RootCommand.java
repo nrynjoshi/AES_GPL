@@ -1,62 +1,65 @@
 package com.narayanjoshi.gplapplication.service;
 
-import com.narayanjoshi.gplapplication.CanvasUtil;
-import com.narayanjoshi.gplapplication.CommandEnum;
-import com.narayanjoshi.gplapplication.CommandNotFound;
-import com.narayanjoshi.gplapplication.Util;
+import com.narayanjoshi.gplapplication.exception.PreProcessConfigException;
+import com.narayanjoshi.gplapplication.util.CanvasUtil;
+import com.narayanjoshi.gplapplication.service.command.CommandEnum;
+import com.narayanjoshi.gplapplication.util.Util;
 
-/**
- * The {@code FillCommand} class represents validation of command and
- * performing fill operation of pen based on defined instruction.
- *
- * @author Narayan Joshi
- * @since v1.0
- * */
-public abstract class RootCommand implements RootCommandIfc {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+public abstract class RootCommand implements RootCommandIfc{
     /**
      *  This instance holds all the required information for performing operation
      * @see CanvasUtil
      * */
     protected CanvasUtil canvasUtil;
 
+
     /**
      * system defined command
-     * */
-    public String command;
-
-    /**
      * system defined parameter for particular command
      * */
-    public String param;
+    public CommandEnum commandEnum = null;
 
-    /**
-     * protected constructor
-     * */
-    protected RootCommand(){
-    }
+    public List<String> paramList = null;
 
     /**
      * {@inheritDoc}
      */
     public void init(CanvasUtil canvasUtil, CommandEnum commandEnum){
         this.canvasUtil= canvasUtil;
-        this.command = commandEnum.getCommand();
-        this.param = commandEnum.getParam();
-    }
+        this.commandEnum = commandEnum;
 
-    /**
-     * {@inheritDoc}
-     */
-     @Override
-     public abstract void draw(String command);
+        this.paramList = Util.getAllParameterFromCommand(canvasUtil.getUserInputCommandLineByLine());
+        this.paramList = Util.checkForVariableAndReplaceWithValue(canvasUtil, this.paramList);
+
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void validate(String inputCommand) {
-        Util.validateCommand(inputCommand, this.command, this.param);
+    public void validate() {
+        this.preProcessCheck();
+        Util.validateCommand(canvasUtil.getUserInputCommandLineByLine(), paramList, commandEnum);
     }
 
+
+
+        public void preProcessCheck(){
+            if(canvasUtil == null ){
+                throw new PreProcessConfigException("CanvasUtil instance not initialized.", -1 );
+            }
+
+            if(commandEnum == null ){
+                throw new PreProcessConfigException("CommandEnum instance not initialized.", -1 );
+            }
+
+            if(Util.isEmpty(canvasUtil.getUserInputCommandLineByLine())){
+                throw new PreProcessConfigException("User input command not found", -1 );
+            }
+
+        }
 }

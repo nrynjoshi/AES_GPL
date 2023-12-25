@@ -1,7 +1,6 @@
-package com.narayanjoshi.gplapplication.service.command;
+package com.narayanjoshi.gplapplication.service.command.draw;
 
-import com.narayanjoshi.gplapplication.Util;
-import com.narayanjoshi.gplapplication.service.RootCommand;
+import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Narayan Joshi
  * @since v1.0
  * */
-public class RectangleCommand extends RootCommand {
+public class RectangleCommand extends DrawRootCommand {
 
     /**
      * {@inheritDoc}
@@ -21,12 +20,10 @@ public class RectangleCommand extends RootCommand {
      * This will read width and height of the rectangle from parameter of that particular command and draw a rectangle.
      */
     @Override
-    public void draw(String command) {
+    public void draw() {
 
-        List<String> params = Util.getAllParameterFromCommand(command);
-
-        double width = Float.parseFloat(params.get(0));
-        double height = Float.parseFloat(params.get(1));
+        double width = Float.parseFloat(paramList.get(0));
+        double height = Float.parseFloat(paramList.get(1));
         if(canvasUtil.isFillOn()){
             canvasUtil.getGraphicsContext().fillRect(canvasUtil.getMoveX(), canvasUtil.getMoveY(), width,height);
         }else{

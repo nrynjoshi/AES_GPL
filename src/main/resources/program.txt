@@ -19,3 +19,35 @@ moveto 25,205
 triangle 50,50
 //saveToFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
 //readFromFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
+
+// advance program
+var x = 100
+var y = 100
+var num1 = 25
+var num2 = 25
+
+while num1< 200
+    moveto x,y
+    circle num1
+
+    while num2<200
+        triangle num2,num1
+        var num2 = num2 + 25
+        var x = x +5
+    endwhile
+
+var num2 = 25
+var num1 = num1 + 25
+var y = y +5
+endwhile
+
+//method work
+def testMethod a, b
+	var i =40
+	circle i
+endMethod
+
+clear
+circle 80
+methodCall testMethod
+circle 5
