@@ -1,7 +1,7 @@
 
 package com.narayanjoshi.gplapplication;
 
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.util.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,11 +14,11 @@ public class SaveAndLoadCommandFileTest{
 	/**
 	 * file path where command string will be saved for testing purpose
 	 * */
-    String save_file_path = "C:\\Users\\USLEGAL\\OneDrive - Leeds Beckett University\\Advance Software Engineering\\assignment 1\\save_program.txt";
+    String save_file_path = "C:\\Users\\geeva\\OneDrive - Leeds Beckett University\\semester 2\\Advance Software Engineering\\assignment 1\\save_program.txt";
 	/**
 	 * file path from where command will be retrieved for testing purpose
 	 * */
-	String read_file_path = "C:\\Users\\USLEGAL\\OneDrive - Leeds Beckett University\\Advance Software Engineering\\assignment 1\\read_program.txt";
+	String read_file_path = "C:\\Users\\geeva\\OneDrive - Leeds Beckett University\\semester 2\\Advance Software Engineering\\assignment 1\\read_program.txt";
 
 	/**
 	 * command which will be saved to save and compared with read file command
@@ -67,7 +67,7 @@ public class SaveAndLoadCommandFileTest{
 	public void testReadFromFileWithInvalidPath(){
 
 		Assertions.assertThrows(
-				CommandNotFound.class,
+				CommandNotFoundException.class,
 				() -> Util.readFromFile("d:\\njoshi\\test.txt"),
 				"'d:\\njoshi\\test.txt' file path does not exists or file not found.");
 	}
@@ -78,7 +78,7 @@ public class SaveAndLoadCommandFileTest{
 	@Test
 	public void testSaveToFileWithInvalidPath(){
 		Assertions.assertThrows(
-				CommandNotFound.class,
+				CommandNotFoundException.class,
 				() -> Util.saveContentToFile("d:\\njoshi\\test.txt", cmd),
 				"'d:\\njoshi\\test.txt' filepath can not be created.");
 		;

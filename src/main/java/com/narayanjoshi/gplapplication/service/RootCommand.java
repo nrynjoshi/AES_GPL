@@ -32,9 +32,18 @@ public abstract class RootCommand implements RootCommandIfc{
         this.canvasUtil= canvasUtil;
         this.commandEnum = commandEnum;
 
-        this.paramList = Util.getAllParameterFromCommand(canvasUtil.getUserInputCommandLineByLine());
-        this.paramList = Util.checkForVariableAndReplaceWithValue(canvasUtil, this.paramList);
+        this.paramList =  paramListFilter();
 
+    }
+
+    /**
+     * This method is responsible to get all the parameter from the command
+     * and replace variables with actual values
+     * */
+    public List<String> paramListFilter() {
+        paramList = Util.getAllParameterFromCommand(canvasUtil.getUserInputCommandLineByLine());
+        paramList = Util.checkForVariableAndReplaceWithValue(canvasUtil, paramList);
+        return paramList;
     }
 
     /**

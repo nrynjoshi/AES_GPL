@@ -1,7 +1,7 @@
 package com.narayanjoshi.gplapplication;
 
 
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import javafx.scene.canvas.Canvas;
@@ -56,8 +56,8 @@ public class CommandParserTest {
     public void testWithNull(){
         String command = null;
         Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+                CommandNotFoundException.class,
+                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
                 "Please write your command on console and press Run button."
         );
     }
@@ -70,8 +70,8 @@ public class CommandParserTest {
         String command = "";
 
         Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+                CommandNotFoundException.class,
+                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
                 "Please write your command on console and press Run button."
         );
     }
@@ -83,8 +83,8 @@ public class CommandParserTest {
     public void testWithSpaceInString(){
         String command = "   ";
         Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+                CommandNotFoundException.class,
+                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
                 "Please write your command on console and press Run button."
         );
 

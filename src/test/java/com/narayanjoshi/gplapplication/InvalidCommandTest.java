@@ -1,6 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import org.junit.jupiter.api.Assertions;
@@ -44,8 +44,8 @@ public class InvalidCommandTest {
 	    public void testWithInValidSingleCommandWithIntParamRequiredString(){
 	        String command = "pEn 10";
 	        Assertions.assertThrows(
-	                CommandNotFound.class,
-	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+					CommandNotFoundException.class,
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
 	                "pen does not have a valid param type. Param Values Errors: 10 is not a string."
 	        );
 
@@ -60,8 +60,8 @@ public class InvalidCommandTest {
 	        String command = "rectangles 100,200";
 
 	        Assertions.assertThrows(
-	                CommandNotFound.class,
-	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+					CommandNotFoundException.class,
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
 	                "'rectangles 100,200' command has not defined"
 	        );
 
@@ -76,8 +76,8 @@ public class InvalidCommandTest {
 	        String command = "fill true";
 	        
 	        Assertions.assertThrows(
-	                CommandNotFound.class,
-	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+					CommandNotFoundException.class,
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
 	                "fill does not have a valid param type. Param Values Errors: true is not a boolean."
 	        );
 	    }
@@ -90,8 +90,8 @@ public class InvalidCommandTest {
 	    public void testWithTriangleInvalidCommand_three_param(){
 	        String command = "triangle 50,100,100";
 	        Assertions.assertThrows(
-	                CommandNotFound.class,
-	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil),
+					CommandNotFoundException.class,
+	                () -> this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false),
 	                "'triangle <base_float>,<adjacent_float>' command parameter does not match.\n" +
 							"Error on 'triangle 50,100,100'"
 	        );

@@ -40,7 +40,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithClearValidString(){
 	        String command = "clear";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 		/**
@@ -49,7 +49,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithPenValidCommandAndParam(){
 	        String command = "pen blue";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 
@@ -59,7 +59,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithPenValidSingleCommandAndParamWithMixCase(){
 	        String command = "pEn blue";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 		/**
@@ -68,7 +68,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithValidCommentCmd(){
 	        String command = "// comment_here";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 		/**
@@ -77,7 +77,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithFillOnCommandCommentCmd(){
 	        String command = "fill on";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 		/**
@@ -86,7 +86,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithFillOffCommand(){
 	        String command = "fill off";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 		/**
@@ -95,7 +95,7 @@ public class CommandLineTest {
 	    @Test
 	    public void testWithTriangleCommand(){
 	        String command = "triangle 50,100";
-	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil);
+	        this.commandParser.processTheGivenInstruction(command, this.canvasUtil, false);
 	    }
 
 }

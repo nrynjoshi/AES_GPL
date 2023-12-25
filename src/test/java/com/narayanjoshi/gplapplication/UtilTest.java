@@ -1,7 +1,7 @@
 package com.narayanjoshi.gplapplication;
 
 
-import com.narayanjoshi.gplapplication.exception.CommandNotFound;
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
 import com.narayanjoshi.gplapplication.service.command.draw.CircleCommand;
 import com.narayanjoshi.gplapplication.service.command.draw.ResetCommand;
@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,8 +30,8 @@ public class UtilTest {
     @Test
     public void testWithValidUserCommandAndNoArgs_validateCommand(){
         Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> Util.validateCommand("pen","pen", "<colorName>"),
+                CommandNotFoundException.class,
+                () -> Util.validateCommand("pen",Arrays.asList(), CommandEnum.PEN),
                 "pen <colorName> command parameter is not defined properly."
         );
     }
@@ -43,8 +44,8 @@ public class UtilTest {
     @Test
     public void testWithInvalidUserCommandAndArgs_validateCommand(){
         Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> Util.validateCommand("pen12 red","pen", "<colorName>"),
+                CommandNotFoundException.class,
+                () -> Util.validateCommand("pen12 red",Arrays.asList("red"), CommandEnum.PEN),
                 "pen <colorName> command parameter is not defined properly."
         );
     }
@@ -57,8 +58,8 @@ public class UtilTest {
     @Test
     public void testWithInvalidUserCommandAndNoArgs_validateCommand(){
         Assertions.assertThrows(
-                CommandNotFound.class,
-                () -> Util.validateCommand("pen12", CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam()),
+                CommandNotFoundException.class,
+                () -> Util.validateCommand("pen12", Arrays.asList(), CommandEnum.PEN),
                 "pen <colorName> command is not defined."
         );
     }
@@ -70,7 +71,7 @@ public class UtilTest {
      * */
     @Test
     public void testWithValidUserCommandAndArgs_validateCommand(){
-        Util.validateCommand("pen red",CommandEnum.PEN.getCommand(), CommandEnum.PEN.getParam());
+        Util.validateCommand("pen",Arrays.asList("red"), CommandEnum.PEN);
     }
 
     /**
@@ -80,7 +81,7 @@ public class UtilTest {
      * */
     @Test
     public void testWithValidateCommand_emptyArgsDefined_validateCommand(){
-        Util.validateCommand("clear",CommandEnum.CLEAR.getCommand(), "");
+        Util.validateCommand("clear",Arrays.asList(), CommandEnum.CLEAR);
     }
 
     /**
@@ -90,7 +91,7 @@ public class UtilTest {
      * */
     @Test
     public void testWithValidateCommand_noArgsDefinedButSpace_validateCommand(){
-        Util.validateCommand("clear",CommandEnum.CLEAR.getCommand(), "  ");
+        Util.validateCommand("clear",Arrays.asList(), CommandEnum.CLEAR);
     }
 
     /**
@@ -100,7 +101,7 @@ public class UtilTest {
      * */
     @Test
     public void testWithValidateCommand_nullArgsDefined_validateCommand(){
-        Util.validateCommand("reset",CommandEnum.RESET.getCommand(), null);
+        Util.validateCommand("reset",Arrays.asList(), CommandEnum.RESET);
     }
 
     //--------------------------isNotEmpty-------------
@@ -233,7 +234,7 @@ public class UtilTest {
     @Test
     public void testWithNull_getCommandOperation(){
         Assertions.assertThrows(
-                CommandNotFound.class,
+                CommandNotFoundException.class,
                 () -> Util.getCommandOperation(null),
                 "'null' command does not exist.\n" +
                         "Please check doc file for more information."
@@ -248,7 +249,7 @@ public class UtilTest {
     @Test
     public void testWithEmptyString_getCommandOperation(){
         Assertions.assertThrows(
-                CommandNotFound.class,
+                CommandNotFoundException.class,
                 () -> Util.getCommandOperation(""),
                 "'' command does not exist.\n" +
                         "Please check doc file for more information."
@@ -262,7 +263,7 @@ public class UtilTest {
     @Test
     public void testWithSpaceInString_getCommandOperation(){
         Assertions.assertThrows(
-                CommandNotFound.class,
+                CommandNotFoundException.class,
                 () -> Util.getCommandOperation("  "),
                 "'  ' command does not exist.\n" +
                         "Please check doc file for more information."
