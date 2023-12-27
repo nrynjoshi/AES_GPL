@@ -58,11 +58,11 @@ public class CommandParser {
     public void run() {
         //this will run validate for run event
         CanvasUtil canvasUtilValidate = new CanvasUtil(canvasId, false);
-        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtilValidate);
+        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtilValidate, false);
 
         //this will run drawing for run event
         CanvasUtil canvasUtil = new CanvasUtil(canvasId);
-        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil);
+        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil, true);
     }
 
     /**
@@ -71,23 +71,27 @@ public class CommandParser {
     public void syntax() {
         CanvasUtil canvasUtil = new CanvasUtil(canvasId, false);
         canvasUtil.setRunEvent(false);
-        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil);
+        checkSingleOrMultiLineCodeAndProcessAccordingly(canvasUtil, true);
     }
 
     /**
      * This method check the single or multiple line of code and gives priority
      * to single line of code over multiple line of code.
      */
-    public void checkSingleOrMultiLineCodeAndProcessAccordingly(CanvasUtil canvasUtil) {
+    public void checkSingleOrMultiLineCodeAndProcessAccordingly(CanvasUtil canvasUtil, boolean isThreadProcess) {
 
         try {
             boolean isRunSingleLineCommand = isRunSingleLineCommand(commandSingle, commandMultiple);
 
-            //thread code block
-            GPLThreadRunner gplThreadRunner = new GPLThreadRunner();
-            gplThreadRunner.init(isRunSingleLineCommand, commandSingle, commandMultiple, canvasUtil, false);
-            gplThreadRunner.start();
-            //thread code block end
+            if(isThreadProcess){//thread code block
+                GPLThreadRunner gplThreadRunner = new GPLThreadRunner();
+                gplThreadRunner.init(isRunSingleLineCommand, commandSingle, commandMultiple, canvasUtil, false);
+                gplThreadRunner.start();
+                //thread code block end
+            }else{
+                processTheGivenInstruction(isRunSingleLineCommand, commandSingle, commandMultiple, canvasUtil, false);
+            }
+
 
             String messagePrefix = isRunSingleLineCommand ? "Single line code" : "Multiple line code";
             if (!canvasUtil.isRunEvent()) {
@@ -114,6 +118,22 @@ public class CommandParser {
         }
 
 
+    }
+
+    /**
+     * @param canvasUtil        canvasUtil instance
+     * @param commandSingle   user provided single line of code.
+     * @param commandMultiple user provided multiple line of code.
+     * @param isRunSingleLineCommand make which command to run
+     * @param innerEngineCall flag to indicate call generate from loops or condition to run internally
+     */
+    public void processTheGivenInstruction(boolean isRunSingleLineCommand,String commandSingle, String commandMultiple, CanvasUtil canvasUtil,boolean innerEngineCall) {
+        CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), commandSingle, commandMultiple);
+        if (isRunSingleLineCommand) {
+            commandParser.processTheGivenInstruction(commandSingle, canvasUtil, innerEngineCall);
+        } else {
+            commandParser.processTheGivenInstruction(commandMultiple, canvasUtil, innerEngineCall);
+        }
     }
 
     /**
