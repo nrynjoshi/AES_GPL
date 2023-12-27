@@ -44,9 +44,9 @@ public class IFStatementCommand   extends ProgrammingRootCommand {
                 }else if(Util.isNotEmpty(chunkCommandNext)){
                     CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, chunkCommandNext);
                     commandParser.processTheGivenInstruction(chunkCommandNext, canvasUtil, true);
-                    loopStatementProcessingIndex++;
                 }
             }
+            loopStatementProcessingIndex++;
         }
         return loopStatementProcessingIndex;
     }
