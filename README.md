@@ -24,6 +24,8 @@ This application is based on producing a simple programming language and environ
    And this application always give priority to section 4 (single line code first) and if there is no single line code then it will go for section 2 (multiline code program).
 6. Syntax button:
    This button checks all syntax error and compile program.
+7. Tab button:
+   This tab bar has two tab for two different thread to operation on single canvas.
 
 Every event occurred within this application has alert message on top right section of the screen for better understanding of event.
 <img src="./src/main/resources/alert.png" width="400"/>
@@ -49,21 +51,24 @@ Open your command prompt on this application folder and run below command to acc
 
 # Basic Overview On Available Command
 
-| S.N | Command                      | Description                                                                                                                                                                                       |
-|-----|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | saveToFile \<filepath>       | This command save program to a filepath as given in parameter. filepath should be absolute path (i.e. c:/abc/abc.txt). You can also save file using file menu and then clicked on save menu.      |
-| 2   | readFromFile \<filepath>     | This command read program from a given filepath and execute. You can also open file using file menu and then clicked on open menu.                                                                |
-| 3   | moveTo \<x>,\<y>             | This command move the pen or cursor to the given x and y axis.                                                                                                                                    |
-| 4   | circle \<radius>             | This command draw a circle with a given radius.                                                                                                                                                   |
-| 5   | rectangle \<width>,\<height> | This command draw a rectangle with given width and height.                                                                                                                                        |
-| 6   | triangle \<base>,\<adjacent> | This command draw a triangle with given base and adjacent.                                                                                                                                        |
-| 7   | drawTo \<x>,\<y>             | This command draw a line to particular x and y axis from the pen position.                                                                                                                        |
-| 8   | //                           | This command is comment purpose to ignore some code from execution like other programming language. Note: please make sure // has one space before your words in between example // your_comments |
-| 9   | clear                        | This command clear the output box but does not move pen position or reset pen color.                                                                                                              |
-| 10  | reset                        | This command trigger the clear command along with reset all set parameter i.e pen position or pen color and others.                                                                               |
-| 11  | pen \<color>                 | This command set the pen color to draw any shape and by default black is set. Values accepted are all valid color names.                                                                          |
-| 12  | fill \<boolean>              | This command fill the shape if set on. Values accepted are on,off.                                                                                                                                |
-
+| S.N | Command                                                                                                                                                         | Description                                                                                                                                                                                       |
+|-----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | saveToFile \<filepath>                                                                                                                                          | This command save program to a filepath as given in parameter. filepath should be absolute path (i.e. c:/abc/abc.txt). You can also save file using file menu and then clicked on save menu.      |
+| 2   | readFromFile \<filepath>                                                                                                                                        | This command read program from a given filepath and execute. You can also open file using file menu and then clicked on open menu.                                                                |
+| 3   | moveTo \<x>,\<y>                                                                                                                                                | This command move the pen or cursor to the given x and y axis.                                                                                                                                    |
+| 4   | circle \<radius>                                                                                                                                                | This command draw a circle with a given radius.                                                                                                                                                   |
+| 5   | rectangle \<width>,\<height>                                                                                                                                    | This command draw a rectangle with given width and height.                                                                                                                                        |
+| 6   | triangle \<base>,\<adjacent>                                                                                                                                    | This command draw a triangle with given base and adjacent.                                                                                                                                        |
+| 7   | drawTo \<x>,\<y>                                                                                                                                                | This command draw a line to particular x and y axis from the pen position.                                                                                                                        |
+| 8   | //                                                                                                                                                              | This command is comment purpose to ignore some code from execution like other programming language. Note: please make sure // has one space before your words in between example // your_comments |
+| 9   | clear                                                                                                                                                           | This command clear the output box but does not move pen position or reset pen color.                                                                                                              |
+| 10  | reset                                                                                                                                                           | This command trigger the clear command along with reset all set parameter i.e pen position or pen color and others.                                                                               |
+| 11  | pen \<color>                                                                                                                                                    | This command set the pen color to draw any shape and by default black is set. Values accepted are all valid color names.                                                                          |
+| 12  | fill \<boolean>                                                                                                                                                 | This command fill the shape if set on. Values accepted are on,off.<br/>                                                                                                                           |
+| 13  | var a=5 <br/> var a= x+10                                                                                                                                          ||
+| 14  | var a=50 <br/> if a<50 <br/> circle a <br/> var a = a+ 80 <br/> endif                                                                                           ||
+| 15  | var x = 100 <br/> var num1 = 25 <br/> var num2 = 25 <br/> while num2<200 <br/>  triangle num2,num1 <br/> var num2 = num2 + 25 <br/> var x = x +5 <br/> endwhile ||
+| 16  | def testMethod a, b <br/> var i =40 <br/> circle i <br/> endMethod <br/><br/> clear <br/> methodCall testMethod                                                      ||
 # Sample Command For Testing Basic Operation
 ```
 	clear
@@ -88,22 +93,50 @@ Open your command prompt on this application folder and run below command to acc
 	triangle 50,50
 	
 // advance programming code
-   x = 100
-   y = 100
-   num1 = 25
-   num2 = 25
+// Loop sample program
+   var x = 100
+   var y = 100
+   var num1 = 25
+   var num2 = 25
    while num1< 200
        moveto x,y
        circle num1
        while num2<200
            triangle num2,num1
-           num2 = num2 + 25
-           x = x +5
+           var num2 = num2 + 25
+           var x = x +5
        endwhile
-   num2 = 25
-   num1 = num1 + 25
-   y = y +5
+   var num2 = 25
+   var num1 = num1 + 25
+   var y = y +5
    endwhile
+   
+   // if block sample program
+   clear
+   var a=50
+   if a<50
+       circle a
+       var a = a+ 80
+   endif
+   circle a
+   
+   // variable sample program
+   var a=50
+   circle a
+   var a=a+50
+   circle a
+   
+   // method sample program
+   // method defination code block
+   def testMethod a, b
+	var i =40
+	circle i
+   endMethod
+   // main block 
+   clear
+   circle 80
+   methodCall testMethod
+   circle 5
 ```
 
 # Code Documentation File
