@@ -26,7 +26,7 @@ public class MethodDefCommand extends ProgrammingRootCommand {
 
         StringBuilder methodBody = new StringBuilder();
         int lastProgramExecutionIndex;
-        for (lastProgramExecutionIndex = canvasUtil.getCurrentProgramExecutionIndex()+1; lastProgramExecutionIndex <= commandLineByLineArray.length; lastProgramExecutionIndex++) {
+        for (lastProgramExecutionIndex = canvasUtil.getCurrentProgramExecutionIndex()+1; lastProgramExecutionIndex < commandLineByLineArray.length; lastProgramExecutionIndex++) {
             String nextStatment = commandLineByLineArray[lastProgramExecutionIndex];
             if (nextStatment.trim().equalsIgnoreCase("endmethod")) {
                 break;
@@ -34,8 +34,6 @@ public class MethodDefCommand extends ProgrammingRootCommand {
             methodBody.append(nextStatment).append("\n");
         }
 
-        int endMethod = userInput.indexOf("");
-        userInput.substring(canvasUtil.getCurrentProgramExecutionIndex(), endMethod);
 
         String methodKey = split[1];
         String methodCodeBlock = methodBody.toString();
