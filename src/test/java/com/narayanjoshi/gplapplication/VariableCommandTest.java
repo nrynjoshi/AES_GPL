@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
 import com.narayanjoshi.gplapplication.service.command.draw.CircleCommand;
@@ -97,6 +98,25 @@ public class VariableCommandTest {
 
         Assertions.assertEquals("50", canvasUtil.getVariableAndValues().get("x"), "x values changed to 50.");
         Assertions.assertEquals(VariableCommand.class, commandIfc.getClass(), "variable command parser class not invoke.");
+
+
+    }
+
+    /**
+     * The test case will check for variable initialize with two values addition and modified at some stage of program running.
+     * and This test also cover variable should be passed and calculated on arithmetician operation.
+     * */
+    @Test
+    public void arithmeticMulOnVariableWithInvalidRightSideValueTest() {
+        String commandInit = "var x=";
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+
+        Assertions.assertThrows(
+                CommandNotFoundException.class,
+                () -> drawMock(commandInit, canvasUtil),
+                "Variables right hand side portion is blank.'=' operator right hand side variable value is missing."
+        );
+
 
 
     }
