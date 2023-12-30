@@ -8,6 +8,10 @@ import java.util.Arrays;
 
 public class MethodDefCommand extends ProgrammingRootCommand {
 
+    /**
+     * {@inheritDoc}
+     * This method will validation method def statement expression and its terminate block.
+     */
     @Override
     public void validate() {
         String userInput = canvasUtil.getUserInputCommandLineByLine();
