@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication;
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.service.RootCommandIfc;
 import com.narayanjoshi.gplapplication.service.command.CommandEnum;
@@ -60,6 +61,29 @@ public class IfStatementCommandTest {
         Assertions.assertEquals(0, canvasUtil.getMoveY(), "move second param not set properly.");
 
         Assertions.assertEquals("5", canvasUtil.getVariableAndValues().get("a"), "a values does not changed here because if condition false.");
+
+
+    }
+
+    /**
+     * The test will run if statement command without endIf statement at the end.
+     * It will throw a error with end block of if statement does not exist.
+     * */
+    @Test
+    public void ifStatementWithNoEndStatement() {
+        String command =
+                "clear\n" +
+                        "   var a=5\n" +
+                        "   if a>50\n" +
+                        "       circle a\n" +
+                        "       var a = a+ 80\n";
+
+
+        Assertions.assertThrows(
+                CommandNotFoundException.class,
+                () -> drawMock(command),
+                "Looks like the method definition does not have end method statement."
+        );
 
 
     }
