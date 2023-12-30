@@ -1,12 +1,23 @@
 package com.narayanjoshi.gplapplication.service.command.programming;
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
+import com.narayanjoshi.gplapplication.util.Util;
 
 public class MethodCallCommand extends ProgrammingRootCommand {
 
     @Override
     public void validate() {
+        super.validate();
+        String userInput = canvasUtil.getUserInputCommandLineByLine();
+        System.out.println("Method Call Processing Index :" + canvasUtil.getCurrentProgramExecutionIndex());
 
+        String[] split = userInput.split("\\s", 3);
+        String methodKey = split[1];
+        String methodCodeBlock = canvasUtil.getMethodCodeBlock().get(methodKey);
+        if(methodCodeBlock == null || methodCodeBlock.isEmpty()){
+            throw new CommandNotFoundException(methodKey+ " method is not defined yet.", -1);
+        }
     }
 
     /**
@@ -29,13 +40,6 @@ public class MethodCallCommand extends ProgrammingRootCommand {
             canvasUtil.setCurrentProgramExecutionIndex(i);
             CommandParser.executeCoreEngine(canvasUtil, commandSplit, i);
         }
-
-
-
-//        //change current index to 0 to process method command
-//        canvasUtil.setCurrentProgramExecutionIndex(0);
-//        CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, methodCodeBlock);
-//        commandParser.processTheGivenInstruction(methodCodeBlock, canvasUtil, true);
 
         //reset to previous working index i.e method call index
         canvasUtil.setCurrentProgramExecutionIndex(currentProgramExecutionIndex);
