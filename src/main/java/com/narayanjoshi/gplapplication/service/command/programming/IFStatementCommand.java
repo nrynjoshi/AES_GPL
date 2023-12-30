@@ -31,6 +31,11 @@ public class IFStatementCommand   extends ProgrammingRootCommand {
         boolean isIfTerminationExist = false;
         while (true){
 
+            if(commandLineByLineArray.length== loopStatementProcessingIndex){
+                isIfTerminationExist=true;
+                break;
+            }
+
             String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
 
             if (chunkCommandNext.contains("endif")) {
