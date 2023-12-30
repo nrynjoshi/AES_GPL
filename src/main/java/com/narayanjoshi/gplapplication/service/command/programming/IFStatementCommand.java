@@ -1,13 +1,54 @@
 package com.narayanjoshi.gplapplication.service.command.programming;
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.Util;
 
 public class IFStatementCommand   extends ProgrammingRootCommand {
 
+    /**
+     * {@inheritDoc}
+     * This method will validation if statement expression and its terminate block.
+     */
     @Override
     public void validate() {
+        String[] commandLineByLineArray = canvasUtil.getCommandLineByLineArray();
 
+        int currentExecutionIndex = canvasUtil.getCurrentProgramExecutionIndex();
+        String chunkCommand = commandLineByLineArray[currentExecutionIndex];
+        String[] loopSplit = chunkCommand.split(" ", 2);
+        String conditionPart = loopSplit[1];
+
+        int loopStatementProcessingIndex = currentExecutionIndex+1;
+
+        try{
+            evalCondition(conditionPart, canvasUtil);
+        }catch (Exception x){
+            throw new CommandNotFoundException("If evaluation expression condition is not valid.", -1);
+        }
+
+        int count = 0;
+        boolean isIfTerminationExist = false;
+        while (true){
+
+            String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
+
+            if (chunkCommandNext.contains("endif")) {
+                isIfTerminationExist=true;
+                break;
+            }
+
+            loopStatementProcessingIndex++;
+
+            count++;
+            if(count >500){ //limiting the threshold to terminate the loops
+                break;
+            }
+        }
+
+        if(isIfTerminationExist){
+            throw new CommandNotFoundException("Looks like the method definition does not have end method statement.", -1);
+        }
     }
 
     /**
