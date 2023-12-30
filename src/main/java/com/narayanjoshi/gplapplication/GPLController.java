@@ -130,7 +130,7 @@ public class GPLController {
 
 
         Util.saveContentToFile(file.getAbsolutePath(), commandSingle + "\n" + commandMultiple);
-        GPLShowMessage.showSuccess("File saved successfully.");
+        GPLShowMessage.getInstance().showSuccess("File saved successfully.");
 
     }
 
@@ -159,7 +159,7 @@ public class GPLController {
             secondThreadMultilineTextArea.setText(readCommand);
         }
 
-        GPLShowMessage.showSuccess("File read successfully.");
+        GPLShowMessage.getInstance().showSuccess("File read successfully.");
     }
 
     /**

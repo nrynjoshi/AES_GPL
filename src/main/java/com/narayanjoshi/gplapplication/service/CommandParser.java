@@ -95,24 +95,24 @@ public class CommandParser {
 
             String messagePrefix = isRunSingleLineCommand ? "Single line code" : "Multiple line code";
             if (!canvasUtil.isRunEvent()) {
-                GPLShowMessage.showBuildSuccess(messagePrefix + " compiles successfully.");
+                GPLShowMessage.getInstance().showBuildSuccess(messagePrefix + " compiles successfully.");
             } else if (canvasUtil.isRun()) {
-                GPLShowMessage.showSuccess(messagePrefix + " run successfully.");
+                GPLShowMessage.getInstance().showSuccess(messagePrefix + " run successfully.");
             }
         } catch (CommandNotFoundException x) {
             x.printStackTrace();
             if (x.getCode() == -1) {
-                GPLShowMessage.showError(x.getMessage(), canvasUtil.getCurrentProgramExecutionIndex());
+                GPLShowMessage.getInstance().showError(x.getMessage(), canvasUtil.getCurrentProgramExecutionIndex());
             } else {
-                GPLShowMessage.showInfo(x.getMessage());
+                GPLShowMessage.getInstance().showInfo(x.getMessage());
             }
             throw x;
         } catch (CommandProcessingException x) {
             x.printStackTrace();
             if (x.getCode() == -1) {
-                GPLShowMessage.showError(x.getMessage(), canvasUtil.getCurrentProgramExecutionIndex());
+                GPLShowMessage.getInstance().showError(x.getMessage(), canvasUtil.getCurrentProgramExecutionIndex());
             } else {
-                GPLShowMessage.showInfo(x.getMessage());
+                GPLShowMessage.getInstance().showInfo(x.getMessage());
             }
             throw x;
         }

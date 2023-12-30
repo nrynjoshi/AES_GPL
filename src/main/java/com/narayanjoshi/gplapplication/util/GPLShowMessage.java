@@ -5,13 +5,24 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 public class GPLShowMessage {
+    private static GPLShowMessage instance;
 
+    private GPLShowMessage() {
+        // private constructor to prevent instantiation
+    }
+
+    public static GPLShowMessage getInstance() {
+        if (instance == null) {
+            instance = new GPLShowMessage();
+        }
+        return instance;
+    }
     /**
      * This method show success notification message for GPL desktop application
      *
      * @param message text message to display on notification message box area
      * */
-    public static void showSuccess(String message){
+    public void showSuccess(String message){
         prepareMessage("Success: ", message, 2000).show();
     }
 
@@ -20,7 +31,7 @@ public class GPLShowMessage {
      *
      * @param message text message to display on notification message box area
      * */
-    public static void showBuildSuccess(String message){
+    public void showBuildSuccess(String message){
         prepareMessage("Build Success: ", message, 2000).show();
     }
 
@@ -29,7 +40,7 @@ public class GPLShowMessage {
      *
      * @param message text message to display on notification message box area
      * */
-    public static void showError(String message, int lastExecutionIndex){
+    public void showError(String message, int lastExecutionIndex){
         prepareMessage("Error: ", message+" (Error at Line "+(lastExecutionIndex+1)+")", 4000).showError();
     }
 
@@ -38,7 +49,7 @@ public class GPLShowMessage {
      *
      * @param message text message to display on notification message box area
      * */
-    public static void showInfo(String message){
+    public void showInfo(String message){
         prepareMessage("Info: ", message, 2000).showInformation();
     }
 
@@ -51,7 +62,7 @@ public class GPLShowMessage {
      * @param duration_in_ms the millisecond time to display the notification duration
      * @return {@link Notifications} instance to called method
      * */
-    private static Notifications prepareMessage(String title, String message, int duration_in_ms){
+    private Notifications prepareMessage(String title, String message, int duration_in_ms){
         return Notifications.create().title(title).text(message).position(Pos.TOP_RIGHT).hideAfter(Duration.millis(duration_in_ms));
     }
 }
