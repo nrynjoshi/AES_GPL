@@ -8,6 +8,11 @@ import org.junit.jupiter.api.Test;
 
 public class LoopCommandTest {
 
+    /**
+     * The test will run nested loop statement and nested loop statement
+     * It will also check for move pointer to be  changed as and at the correct position at the end
+     * as well as the variable values hold at the end to make sure data is correct.
+     * */
     @Test
     public void loopStatementWithTrueCondition() {
         String command =
@@ -37,7 +42,11 @@ public class LoopCommandTest {
 
     }
 
-
+    /**
+     * The test will run loop statement and nested loop statement
+     * It will also check for move pointer to be  changed as and at the correct position at the end
+     * as well as the variable values hold at the end to make sure data is correct.
+     * */
     @Test
     public void loopStatementWithDifferentLoopCondition() {
         String command =

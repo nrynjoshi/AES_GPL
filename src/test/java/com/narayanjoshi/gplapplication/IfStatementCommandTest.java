@@ -14,6 +14,10 @@ import org.junit.jupiter.api.Test;
 public class IfStatementCommandTest {
 
 
+    /**
+     * The test will run if statement command with valid condition.
+     * It will also check for move pointer not be changed as well as the variable values hold at the end to make sure data is correct.
+     * */
     @Test
     public void ifStatementWithTrueCondition() {
         String command =
@@ -35,6 +39,10 @@ public class IfStatementCommandTest {
     }
 
 
+    /**
+     * The test will run if statement command with false condition.
+     * It will also check for move pointer not be changed as well as the variable values hold at the end to make sure data is correct.
+     * */
     @Test
     public void ifStatementWithFalseCondition() {
         String command =
