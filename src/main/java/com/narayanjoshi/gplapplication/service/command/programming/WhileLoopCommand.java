@@ -8,7 +8,10 @@ import com.narayanjoshi.gplapplication.util.Util;
 
 public class WhileLoopCommand   extends ProgrammingRootCommand {
 
-
+    /**
+     * {@inheritDoc}
+     * This method will validation while loop statement expression and its terminate block.
+     */
     @Override
     public void validate() {
         String[] commandLineByLineArray = canvasUtil.getCommandLineByLineArray();
@@ -20,7 +23,14 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
 
         int loopStatementProcessingIndex = currentExecutionIndex+1;
 
-        boolean isLoopTerminationExist = evalCondition(conditionPart, canvasUtil);
+
+        try{
+            evalCondition(conditionPart, canvasUtil);
+        }catch (Exception x){
+            throw new CommandNotFoundException("While evaluation expression condition is not valid.", -1);
+        }
+
+        boolean isLoopTerminationExist = false;
         int count = 0;
         if(evalCondition(conditionPart, canvasUtil)){
             while (evalCondition(conditionPart, canvasUtil)) {
