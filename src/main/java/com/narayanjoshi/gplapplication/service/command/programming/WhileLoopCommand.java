@@ -1,5 +1,6 @@
 package com.narayanjoshi.gplapplication.service.command.programming;
 
+import com.narayanjoshi.gplapplication.exception.CommandNotFoundException;
 import com.narayanjoshi.gplapplication.exception.CommandProcessingException;
 import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.CanvasUtil;
@@ -10,7 +11,37 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
 
     @Override
     public void validate() {
+        String[] commandLineByLineArray = canvasUtil.getCommandLineByLineArray();
 
+        int currentExecutionIndex = canvasUtil.getCurrentProgramExecutionIndex();
+        String chunkCommand = commandLineByLineArray[currentExecutionIndex];
+        String[] loopSplit = chunkCommand.split(" ", 2);
+        String conditionPart = loopSplit[1];
+
+        int loopStatementProcessingIndex = currentExecutionIndex+1;
+
+        boolean isLoopTerminationExist = evalCondition(conditionPart, canvasUtil);
+        int count = 0;
+        if(evalCondition(conditionPart, canvasUtil)){
+            while (evalCondition(conditionPart, canvasUtil)) {
+                String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
+
+                if (chunkCommandNext.contains("endwhile")) {
+                    isLoopTerminationExist = true;
+                }
+
+                count++;
+                if(count >500){ //limiting the threshold to terminate the loops
+                    break;
+                }
+            }
+        }else {
+            throw new CommandProcessingException("Loop condition is not valid to process", -1);
+        }
+
+        if(!isLoopTerminationExist){ //limiting the threshold to terminate the loops
+            throw new CommandNotFoundException("Looks like the method definition does not have end method statement.", -1);
+        }
     }
 
     /**
