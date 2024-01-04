@@ -1,4 +1,8 @@
 module:com.narayanjoshi.gplapplication
 com.narayanjoshi.gplapplication
+com.narayanjoshi.gplapplication.exception
 com.narayanjoshi.gplapplication.service
 com.narayanjoshi.gplapplication.service.command
+com.narayanjoshi.gplapplication.service.command.draw
+com.narayanjoshi.gplapplication.service.command.programming
+com.narayanjoshi.gplapplication.util
