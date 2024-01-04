@@ -38,8 +38,9 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
 
                 if (chunkCommandNext.contains("endwhile")) {
                     isLoopTerminationExist = true;
+                    break;
                 }
-
+                loopStatementProcessingIndex++;
                 count++;
                 if(count >500){ //limiting the threshold to terminate the loops
                     break;
@@ -50,7 +51,7 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
         }
 
         if(!isLoopTerminationExist){ //limiting the threshold to terminate the loops
-            throw new CommandNotFoundException("Looks like the method definition does not have end method statement.", -1);
+            throw new CommandNotFoundException("Looks like the Loop definition does not have end method statement.", -1);
         }
     }
 
