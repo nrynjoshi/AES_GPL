@@ -12,6 +12,7 @@ module com.narayanjoshi.gplapplication {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires junit;
+    requires org.junit.jupiter.api;
 
     opens com.narayanjoshi.gplapplication to javafx.fxml;
     exports com.narayanjoshi.gplapplication;
@@ -27,4 +28,5 @@ module com.narayanjoshi.gplapplication {
     opens com.narayanjoshi.gplapplication.util to javafx.fxml;
     exports com.narayanjoshi.gplapplication.exception;
     opens com.narayanjoshi.gplapplication.exception to javafx.fxml;
+
 }
