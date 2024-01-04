@@ -24,6 +24,11 @@ public class MethodDefCommand extends ProgrammingRootCommand {
         int count = 0;
         boolean isMethodTerminationExist = false;
         for (lastProgramExecutionIndex = canvasUtil.getCurrentProgramExecutionIndex()+1; lastProgramExecutionIndex < commandLineByLineArray.length; lastProgramExecutionIndex++) {
+
+            if(commandLineByLineArray.length== lastProgramExecutionIndex){
+                break;
+            }
+
             String nextStatment = commandLineByLineArray[lastProgramExecutionIndex];
             if (nextStatment.trim().equalsIgnoreCase("endmethod")) {
                 isMethodTerminationExist= true;
