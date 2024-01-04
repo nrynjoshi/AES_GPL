@@ -51,8 +51,8 @@ public class IFStatementCommand   extends ProgrammingRootCommand {
             }
         }
 
-        if(isIfTerminationExist){
-            throw new CommandNotFoundException("Looks like the method definition does not have end method statement.", -1);
+        if(!isIfTerminationExist){
+            throw new CommandNotFoundException("Looks like the if statement does not have end if statement.", -1);
         }
     }
 
