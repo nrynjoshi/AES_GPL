@@ -75,15 +75,32 @@ public enum CommandEnum {
     FILL("fill","<flag_boolean>", new FillCommand(),"description goes here"),
 
     /**
-     * The command to fill a shape is 'fill &lt;flag_boolean&gt;'.
-     * &lt;flag_boolean&gt; attributes can have on or off values only
+     * The command perform programming variable set and arithmetic operation.
+     *
      */
-    VARIABLE("var","<varname=varvalue_string>", new VariableCommand(),"description goes here"),
-    WHILE_LOOP("while","<varname=varvalue_string>", new WhileLoopCommand(),"description goes here"),
-    IF("if","<varname=varvalue_string>", new IFStatementCommand(),"description goes here"),
+    VARIABLE("var","<variable_name_value_string>", new VariableCommand(),"description goes here"),
+    /**
+     * The command perform programming loop operation.
+     *
+     */
+    WHILE_LOOP("while","<evaluate_condition_string>", new WhileLoopCommand(),"description goes here"),
 
-    METHOD_DEF("def","<varname=varvalue_string>", new MethodDefCommand(),"description goes here"),
-    METHOD_CALL("methodCall","<varname=varvalue_string>", new MethodCallCommand(),"description goes here"),
+    /**
+     * The command perform programming if statement and condition evaluation for if operation.
+     *
+     */
+    IF("if","<evaluate_condition_string>", new IFStatementCommand(),"description goes here"),
+
+    /**
+     * The command specified the method definition which will be called latter.
+     *
+     */
+    METHOD_DEF("def","<methodname_string>", new MethodDefCommand(),"description goes here"),
+    /**
+     * The command perform the method call.
+     *
+     */
+    METHOD_CALL("methodCall","<methodname_string>", new MethodCallCommand(),"description goes here"),
 
     ;
 

@@ -13,6 +13,13 @@ import com.narayanjoshi.gplapplication.service.RootCommandIfc;
  * */
 import java.util.List;
 
+/**
+ * The {@code FillCommand} class represents validation of command and
+ * performing draw operation of fill based on defined instruction.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class FillCommand extends DrawRootCommand {
 
     /**

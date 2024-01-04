@@ -1,5 +1,11 @@
 package com.narayanjoshi.gplapplication.exception;
 
+/**
+ * The {@code PreProcessConfigException} class represents exception if all required information to process GPL not setup properly.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class PreProcessConfigException  extends RuntimeException {
 
     /**

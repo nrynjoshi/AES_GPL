@@ -257,6 +257,13 @@ public class Util {
         return pattern.matcher(strNum).matches();
     }
 
+    /**
+     * This method check for all variable and if variables defined then replace with actual values from map.
+     *
+     * @see CanvasUtil
+     * @param paramList all parameter list to look after
+     * @return paramList return the parameter list with updated value
+     * */
     public static List<String> checkForVariableAndReplaceWithValue(CanvasUtil canvasUtil, List<String> paramList){
         List<String> parsedParamList = new ArrayList<>();
         for (String paramVal: paramList) {
@@ -267,6 +274,13 @@ public class Util {
         return parsedParamList;
     }
 
+    /**
+     * This method check for variable and if variables defined then replace with actual value from map.
+     *
+     * @see CanvasUtil
+     * @param paramVal  parameter value to look after
+     * @return paramVal return the parameter value with updated value
+     * */
     public static String checkForVariableAndExtractActualValue(CanvasUtil canvasUtil, String paramVal) {
         Map<String, String> variableAndValues = canvasUtil.getVariableAndValues();
         if(!Util.isNumeric(paramVal) && variableAndValues.containsKey(paramVal)){
@@ -275,10 +289,23 @@ public class Util {
         return paramVal;
     }
 
+    /**
+     * This method check for variable and if variables defined then replace with actual value from map.
+     *
+     * @see CanvasUtil
+     * @param nameOrVal  parameter value to look after
+     * @return integer return the int value after parsing variable into its equivalent value.
+     * */
     public static int getOperandValue(CanvasUtil canvasUtil, String nameOrVal) {
         return Integer.parseInt(Util.checkForVariableAndExtractActualValue(canvasUtil, nameOrVal.trim()));
     }
 
+    /**
+     * This method perform the sleep thread.
+     *
+     * @see CanvasUtil
+     * @param millis  time to sleep
+     * */
     public static void sleepThread(long millis){
         try {
             // Sleep for a short duration to control the update rate

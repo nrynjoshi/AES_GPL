@@ -6,6 +6,13 @@ import com.narayanjoshi.gplapplication.service.CommandParser;
 import com.narayanjoshi.gplapplication.util.CanvasUtil;
 import com.narayanjoshi.gplapplication.util.Util;
 
+/**
+ * The {@code WhileLoopCommand} class represents validation of command and
+ * performing while loop operation with evaluating the condition.
+ *
+ * @author Narayan Joshi
+ * @since v2.0
+ * */
 public class WhileLoopCommand   extends ProgrammingRootCommand {
 
     /**

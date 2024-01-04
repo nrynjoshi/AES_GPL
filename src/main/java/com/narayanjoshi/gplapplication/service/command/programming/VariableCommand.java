@@ -7,6 +7,13 @@ import com.narayanjoshi.gplapplication.util.Util;
 
 import java.util.Map;
 
+/**
+ * The {@code VariableCommand} class represents validation of command and
+ * performing variable save and arithmetic operation variables.
+ *
+ * @author Narayan Joshi
+ * @since v2.0
+ * */
 public class VariableCommand extends ProgrammingRootCommand {
 
     /**
@@ -62,6 +69,9 @@ public class VariableCommand extends ProgrammingRootCommand {
 
     }
 
+    /**
+     * this method is responsible to performing arithmetic operation on variable values
+     * */
     private int arithmeticOperation(String expression) {
         int result;
         if (Util.containIgnoreCase(expression, "+")) {

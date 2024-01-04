@@ -5,8 +5,7 @@ import com.narayanjoshi.gplapplication.service.RootCommand;
 import com.narayanjoshi.gplapplication.util.Util;
 
 /**
- * The {@code FillCommand} class represents validation of command and
- * performing fill operation of pen based on defined instruction.
+ * The {@code DrawRootCommand} class represents super class for all draw operation.
  *
  * @author Narayan Joshi
  * @since v1.0
@@ -21,6 +20,10 @@ public abstract class DrawRootCommand extends RootCommand {
      * */
     public abstract void draw();
 
+    /**
+     * {@inheritDoc}
+     * This method will draw by taking user input command.
+     */
     public void execute(){
         this.draw();
     }

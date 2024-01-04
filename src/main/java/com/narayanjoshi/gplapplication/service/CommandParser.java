@@ -167,6 +167,10 @@ public class CommandParser {
         }
     }
 
+    /**
+     * This method is responsible to perform actual process of GPL application.
+     * It is core engine for GPL application to execute the application logic.
+     */
     public static boolean executeCoreEngine(CanvasUtil canvasUtil, String[] commandSplit, int i) {
         String chunkCommand = commandSplit[i];
         if (Util.isEmpty(chunkCommand)) {
@@ -195,7 +199,8 @@ public class CommandParser {
 
 
     /**
-     *
+     * It will check for the single line command and if empty then it will check for multiline command.
+     * If both command section has passed with empty line then this one will throw the exception.
      */
     private boolean isRunSingleLineCommand(String commandSingle, String commandMultiple) {
         if (Util.isNotEmpty(commandSingle)) {

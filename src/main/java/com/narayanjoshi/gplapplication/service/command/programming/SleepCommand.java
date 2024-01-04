@@ -1,5 +1,12 @@
 package com.narayanjoshi.gplapplication.service.command.programming;
 
+/**
+ * The {@code SleepCommand} class represents validation of command and
+ * performing sleep for a specific time.
+ *
+ * @author Narayan Joshi
+ * @since v2.0
+ * */
 public class SleepCommand extends ProgrammingRootCommand {
 
     /**

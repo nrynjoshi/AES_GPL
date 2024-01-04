@@ -48,7 +48,9 @@ public abstract class RootCommand implements RootCommandIfc{
     }
 
 
-
+/**
+ * Pre validation code for GPL application which is responsible to validate all required param to process.
+ * */
         public void preProcessCheck(){
             if(canvasUtil == null ){
                 throw new PreProcessConfigException("CanvasUtil instance not initialized.", -1 );

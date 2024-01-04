@@ -1,5 +1,11 @@
 package com.narayanjoshi.gplapplication.exception;
 
+/**
+ * The {@code CommandProcessingException} class represents exception generate by GPL application process like programming.
+ *
+ * @author Narayan Joshi
+ * @since v1.0
+ * */
 public class CommandProcessingException extends RuntimeException {
 
     /**
