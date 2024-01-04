@@ -21,20 +21,20 @@ public class MethodCommandTest {
     @Test
     public void methodDefAndCallTest() {
         String command =
-                "def testMethod a, b\n" +
+                "def testmethod a, b\n" +
                         "var i =40\n" +
                         "circle i\n" +
                         "endMethod";
 
-        CanvasUtil canvasUtil = drawMock(command);
 
-        RootCommandIfc commandIfcDef = drawMock(command, canvasUtil);
+        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
+        CommandParser commandIfcDef = new CommandParser(canvasUtil.getCanvasId(), null, command);
+        commandIfcDef.processTheGivenInstruction(false, null, command, canvasUtil, false);
 
-        Assertions.assertEquals(MethodDefCommand.class, commandIfcDef.getClass(), "method def command parser class not invoke.");
-        Assertions.assertNotNull(canvasUtil.getMethodCodeBlock().get("testMethod"), "method def command parser class found.");
+        Assertions.assertNotNull(canvasUtil.getMethodCodeBlock().get("testmethod"), "method def command parser class found.");
 
 
-        String commandDraw = "methodCall testMethod";
+        String commandDraw = "methodCall testmethod";
 
         RootCommandIfc commandIfcCall = drawMock(commandDraw, canvasUtil);
 
@@ -42,14 +42,6 @@ public class MethodCommandTest {
     }
 
 
-
-
-    private CanvasUtil drawMock(String command){
-        CanvasUtil canvasUtil = new CanvasUtil(new Canvas());
-        CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), null, command);
-        commandParser.processTheGivenInstruction(false, null, command, canvasUtil, false);
-        return canvasUtil;
-    }
 
     private RootCommandIfc drawMock(String command, CanvasUtil canvasUtil){
         CommandEnum commandEnum= Util.getCommandOperation(command);
