@@ -82,7 +82,7 @@ public class IfStatementCommandTest {
         Assertions.assertThrows(
                 CommandNotFoundException.class,
                 () -> drawMock(command),
-                "Looks like the method definition does not have end method statement."
+                "Looks like the if statement does not have end if statement."
         );
 
 
