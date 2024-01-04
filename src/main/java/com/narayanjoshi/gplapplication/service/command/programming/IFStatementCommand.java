@@ -32,7 +32,6 @@ public class IFStatementCommand   extends ProgrammingRootCommand {
         while (true){
 
             if(commandLineByLineArray.length== loopStatementProcessingIndex){
-                isIfTerminationExist=true;
                 break;
             }
 
