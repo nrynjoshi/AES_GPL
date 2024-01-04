@@ -1,53 +1,87 @@
 clear
-pen red
-moveTo 5,5
-rectangle 150,100
-pen gray
-moveTo 150,100
-circle 50
-pen yellow
-moveTo 50, 50
-fill on
-triangle 100,100
-// new
-fill off
-pen blue
-moveto 0, 200
-rectangle 80,80
-circle 80
-moveto 25,205
-triangle 50,50
-//saveToFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
-//readFromFile C:/Users/USLEGAL/Desktop/ASE_PROGRAM.txt
+	pen red
+	moveTo 5,5
+	rectangle 150,100
+	pen gray
+	moveTo 150,100
+	circle 50
+	pen yellow
+	moveTo 50, 50
+	fill on
+	triangle 100,100
+	
+	// few more command for testing
+	fill off
+	pen blue
+	moveto 0, 200
+	rectangle 80,80
+	circle 80
+	moveto 25,205
+	triangle 50,50
+	
+	// simple loop sample program with multi statement
+   var x = 100
+   var y = 100
+   var num1 = 25
+   while num1< 200
+       moveto x,y
+       circle num1
+   var num1 = num1 + 25
+   var y = y +5
+   endwhile
+	
+	// simple loop sample program with basic statement
+   clear
+   var num1 = 25
+   while num1< 200
+       circle num1
+      var num1 = num1 + 25
+   endwhile
+   
+   // variable sample program
+   clear
+   var a=50
+   circle a
+   var a=a+50
+   circle a
+	
+// advance programming code
+// nested Loop sample program
+   clear
+   var x = 100
+   var y = 100
+   var num1 = 25
+   var num2 = 25
+   while num1< 200
+       moveto x,y
+       circle num1
+       while num2<200
+           triangle num2,num1
+           var num2 = num2 + 25
+           var x = x +5
+       endwhile
+   var num2 = 25
+   var num1 = num1 + 25
+   var y = y +5
+   endwhile
 
-// advance program
-var x = 100
-var y = 100
-var num1 = 25
-var num2 = 25
+   // if block sample program
+   clear
+   var a=50
+   if a<50
+       circle a
+       var a = a+ 80
+   endif
+   circle a
 
-while num1< 200
-    moveto x,y
-    circle num1
-
-    while num2<200
-        triangle num2,num1
-        var num2 = num2 + 25
-        var x = x +5
-    endwhile
-
-var num2 = 25
-var num1 = num1 + 25
-var y = y +5
-endwhile
-
-//method work
-def testMethod a, b
+   // method sample program
+   // method defination code block
+   def testMethod a, b
 	var i =40
 	circle i
-endMethod
-
-clear
-circle 80
-methodCall testMethod
-circle 5
+   endMethod
+   // main block 
+   clear
+   circle 80
+   methodCall testMethod
+   circle 5
