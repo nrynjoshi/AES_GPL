@@ -34,6 +34,11 @@ public class WhileLoopCommand   extends ProgrammingRootCommand {
         int count = 0;
         if(evalCondition(conditionPart, canvasUtil)){
             while (evalCondition(conditionPart, canvasUtil)) {
+
+                if(commandLineByLineArray.length== loopStatementProcessingIndex){
+                    break;
+                }
+
                 String chunkCommandNext = commandLineByLineArray[loopStatementProcessingIndex];
 
                 if (chunkCommandNext.contains("endwhile")) {
