@@ -92,8 +92,35 @@ Open your command prompt on this application folder and run below command to acc
 	moveto 25,205
 	triangle 50,50
 	
+	// simple loop sample program with multi statement
+   var x = 100
+   var y = 100
+   var num1 = 25
+   while num1< 200
+       moveto x,y
+       circle num1
+   var num1 = num1 + 25
+   var y = y +5
+   endwhile
+	
+	// simple loop sample program with basic statement
+   clear
+   var num1 = 25
+   while num1< 200
+       circle num1
+      var num1 = num1 + 25
+   endwhile
+   
+   // variable sample program
+   clear
+   var a=50
+   circle a
+   var a=a+50
+   circle a
+	
 // advance programming code
 // nested Loop sample program
+   clear
    var x = 100
    var y = 100
    var num1 = 25
@@ -110,25 +137,7 @@ Open your command prompt on this application folder and run below command to acc
    var num1 = num1 + 25
    var y = y +5
    endwhile
-   
-   // simple loop sample program with multi statement
-   var x = 100
-   var y = 100
-   var num1 = 25
-   while num1< 200
-       moveto x,y
-       circle num1
-   var num1 = num1 + 25
-   var y = y +5
-   endwhile
-   
-   // simple loop sample program with basic statement
-   var num1 = 25
-   while num1< 200
-       circle num1
-      var num1 = num1 + 25
-   endwhile
-   
+
    // if block sample program
    clear
    var a=50
@@ -137,13 +146,7 @@ Open your command prompt on this application folder and run below command to acc
        var a = a+ 80
    endif
    circle a
-   
-   // variable sample program
-   var a=50
-   circle a
-   var a=a+50
-   circle a
-   
+
    // method sample program
    // method defination code block
    def testMethod a, b
