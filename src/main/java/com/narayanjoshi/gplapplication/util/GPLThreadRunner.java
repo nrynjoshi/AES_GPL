@@ -38,9 +38,10 @@ public class GPLThreadRunner extends Thread {
     @Override
     public void run() {
         System.out.println("Calling "+Thread.currentThread().getName());
-        Util.sleepThread(10);
+        Util.sleepThread(1000);
         CommandParser commandParser = new CommandParser(canvasUtil.getCanvasId(), commandSingle, commandMultiple);
-       commandParser.processTheGivenInstruction(isRunSingleLineCommand, commandSingle, commandMultiple, canvasUtil, innerEngineCall);
+        commandParser.processTheGivenInstruction(isRunSingleLineCommand, commandSingle, commandMultiple, canvasUtil, innerEngineCall);
+
         System.out.println("Completed "+Thread.currentThread().getName());
     }
 }
