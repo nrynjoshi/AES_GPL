@@ -192,8 +192,10 @@ public class CommandParser {
         if (canvasUtil.isRun() || gplEngine instanceof ProgrammingRootCommand) {
             gplEngine.execute();
         }
-        //sleep thread after each command to process another command
-        Util.sleepThread(10);
+        if(canvasUtil.isRun()){
+            //sleep thread after each command to process another command
+            Util.sleepThread(100);
+        }
         return false;
     }
 
